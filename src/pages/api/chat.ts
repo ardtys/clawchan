@@ -23,7 +23,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Get API key from environment at runtime (works in Vercel)
     const GROQ_API_KEY = process.env.GROQ_API_KEY || import.meta.env.GROQ_API_KEY
-    const GROQ_MODEL = process.env.GROQ_MODEL || import.meta.env.GROQ_MODEL || 'llama-3.1-70b-versatile'
+    const GROQ_MODEL = process.env.GROQ_MODEL || import.meta.env.GROQ_MODEL || 'llama-3.3-70b-versatile'
 
     if (!GROQ_API_KEY) {
       return new Response(
