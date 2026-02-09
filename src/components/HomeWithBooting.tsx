@@ -6,29 +6,29 @@ interface HomeWithBootingProps {
 }
 
 const HomeWithBooting = ({ children }: HomeWithBootingProps) => {
-  const [showBooting, setShowBooting] = useState(true)
-  const [hasBooted, setHasBooted] = useState(false)
+  const [isBooting, setIsBooting] = useState(true)
 
   useEffect(() => {
     // Check if user has already booted in this session
     const booted = sessionStorage.getItem('clawchan-booted')
     if (booted === 'true') {
-      setShowBooting(false)
-      setHasBooted(true)
+      setIsBooting(false)
     }
   }, [])
 
   const handleBootComplete = () => {
     sessionStorage.setItem('clawchan-booted', 'true')
-    setShowBooting(false)
-    setHasBooted(true)
+    setIsBooting(false)
   }
 
-  if (showBooting && !hasBooted) {
-    return <BootingAnimation onComplete={handleBootComplete} />
-  }
-
-  return <>{children}</>
+  return (
+    <>
+      {isBooting && <BootingAnimation onComplete={handleBootComplete} />}
+      <div style={{ display: isBooting ? 'none' : 'block' }}>
+        {children}
+      </div>
+    </>
+  )
 }
 
 export default HomeWithBooting
