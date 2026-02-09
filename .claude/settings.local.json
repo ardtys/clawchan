@@ -49,7 +49,8 @@
       "Bash(for file in groq-setup.astro installation.astro code-examples.astro getting-started.astro)",
       "Bash(then mv \"$file\" \"_$file\")",
       "Bash(for file in faqs.astro quick-start.astro)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(git push:*)"
     ]
   }
 }

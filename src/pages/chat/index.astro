@@ -1,0 +1,78 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout>
+  <PageHead slot="head" title="Chat" />
+  <div class="mx-auto w-full max-w-[calc(var(--container-3xl)-2rem)]">
+    <Breadcrumbs items={[{ label: 'Chat', icon: 'lucide:message-circle' }]} />
+  </div>
+
+  <section class="mx-auto flex max-w-[calc(var(--container-3xl)-2rem)] flex-col gap-6">
+    <div class="text-center">
+      <h1 class="text-2xl font-bold mb-2">Chat with CLAWCHAN</h1>
+      <p class="text-muted-foreground text-sm">Choose your preferred chat experience</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+      <!-- ElizaCloud Chat Card -->
+      <a href="/chat/eliza" class="group bento-card p-6 hover:border-blue-500/50 transition-all duration-300">
+        <div class="flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-lg font-semibold mb-1 group-hover:text-blue-400 transition-colors">ElizaCloud Chat</h2>
+            <p class="text-muted-foreground text-sm">Chat via ElizaCloud platform with full features and persistent memory</p>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-muted-foreground">
+            <span class="px-2 py-1 rounded bg-blue-500/10 text-blue-400">Cloud-based</span>
+            <span class="px-2 py-1 rounded bg-green-500/10 text-green-400">Persistent</span>
+          </div>
+          <div class="flex items-center gap-1 text-sm text-blue-400 group-hover:gap-2 transition-all">
+            <span>Open ElizaCloud</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+
+      <!-- Built-in AI Chat Card -->
+      <a href="/chat/ai" class="group bento-card p-6 hover:border-purple-500/50 transition-all duration-300">
+        <div class="flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8V4H8"/>
+              <rect width="16" height="12" x="4" y="8" rx="2"/>
+              <path d="M2 14h2"/>
+              <path d="M20 14h2"/>
+              <path d="M15 13v2"/>
+              <path d="M9 13v2"/>
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-lg font-semibold mb-1 group-hover:text-purple-400 transition-colors">AI Agent Chat</h2>
+            <p class="text-muted-foreground text-sm">Direct chat with CLAWCHAN AI agent powered by Groq LLM</p>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-muted-foreground">
+            <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-400">Real-time</span>
+            <span class="px-2 py-1 rounded bg-orange-500/10 text-orange-400">Fast</span>
+          </div>
+          <div class="flex items-center gap-1 text-sm text-purple-400 group-hover:gap-2 transition-all">
+            <span>Start Chatting</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+</Layout>
