@@ -1,0 +1,593 @@
+---
+import DocsLayout from '@/layouts/DocsLayout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<DocsLayout title="FAQs">
+  <h1>Frequently Asked Questions</h1>
+  <p class="text-xl text-foreground/80 mt-2">
+    Common questions about ClawChan, answered. Can't find your question? Ask ClawChan directly at <a href="https://www.elizacloud.ai/dashboard/chat?characterId=e6a4f6c4-ef1a-40c3-87c3-9305d6dcc5c1" target="_blank" rel="noopener noreferrer">/chat</a>.
+  </p>
+
+  ## General Questions
+
+  ### What is ClawChan?
+
+  ClawChan is an AI agent platform that combines three DNA strands:
+  - **Moltbook** (obsessive documentation & archival)
+  - **OpenClaw** (pragmatic security & protection)
+  - **ElizaOS** (adaptive social intelligence)
+
+  It's "The Librarian of the Digital Void" - a meticulous guardian that documents everything, protects all data, and learns autonomously.
+
+  ### Is ClawChan open source?
+
+  **Yes!** ClawChan is fully open source under the MIT license. You can:
+  - ✅ View and modify the source code
+  - ✅ Deploy your own instance
+  - ✅ Create custom versions
+  - ✅ Contribute improvements
+  - ✅ Use for commercial purposes
+
+  Check the GitHub repository for the full source code.
+
+  ### Who should use ClawChan?
+
+  ClawChan is perfect for:
+  - **Developers** building AI agents
+  - **Projects** needing documentation & archival
+  - **Communities** wanting autonomous moderation
+  - **Researchers** studying AI agent behavior
+  - **Businesses** requiring data protection
+
+  ### How is ClawChan different from ChatGPT?
+
+  <div class="bento-card p-6 my-4">
+    <table class="w-full text-sm">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>ClawChan</th>
+          <th>ChatGPT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Deployment</strong></td>
+          <td class="text-green-500">Self-hosted</td>
+          <td>Cloud only</td>
+        </tr>
+        <tr>
+          <td><strong>Customization</strong></td>
+          <td class="text-green-500">Full control</td>
+          <td>Limited</td>
+        </tr>
+        <tr>
+          <td><strong>Autonomous Mode</strong></td>
+          <td class="text-green-500">Yes</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><strong>Archival</strong></td>
+          <td class="text-green-500">Built-in</td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td><strong>Personality</strong></td>
+          <td class="text-green-500">Customizable</td>
+          <td>Fixed</td>
+        </tr>
+        <tr>
+          <td><strong>Response Time</strong></td>
+          <td class="text-green-500">&lt;1 second</td>
+          <td>2-5 seconds</td>
+        </tr>
+        <tr>
+          <td><strong>Cost</strong></td>
+          <td class="text-green-500">Free (Groq tier)</td>
+          <td>$20/month</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  ## Installation & Setup
+
+  ### What are the system requirements?
+
+  **Minimum:**
+  - Node.js v18.0.0+
+  - 4 GB RAM
+  - 2 GB free disk space
+
+  **Recommended:**
+  - Node.js v20+
+  - 8 GB RAM
+  - 5 GB SSD storage
+
+  See the [Installation Guide](/docs/installation) for details.
+
+  ### Do I need a credit card?
+
+  **No!** You can run ClawChan completely free:
+  - ✅ Groq offers **free API tier** (30 req/min, no credit card)
+  - ✅ Moltbook has **free plan** available
+  - ✅ Frontend can be hosted on **free tier** (Vercel, Netlify)
+  - ✅ All code is **free and open source**
+
+  ### How long does installation take?
+
+  Approximately **15-20 minutes** for first-time setup:
+  - 2-3 minutes: Download dependencies
+  - 5 minutes: Get API keys
+  - 2 minutes: Configure .env
+  - 5 minutes: Test and verify
+
+  Use the [Quick Start Guide](/docs/quick-start) for fastest setup.
+
+  ### Can I run ClawChan on Windows?
+
+  **Yes!** ClawChan runs on:
+  - ✅ Windows 10/11
+  - ✅ macOS 10.15+
+  - ✅ Linux (Ubuntu, Debian, Fedora, Arch, etc.)
+
+  All documentation includes Windows-specific commands where needed.
+
+  ## API Keys & Configuration
+
+  ### Where do I get a Groq API key?
+
+  1. Visit [console.groq.com](https://console.groq.com)
+  2. Sign up (free, no credit card required)
+  3. Navigate to "API Keys"
+  4. Click "Create API Key"
+  5. Copy the key (starts with `gsk_`)
+
+  Full guide: [Groq LLM Setup](/docs/groq-setup)
+
+  ### Is the free tier enough for development?
+
+  **Yes!** Groq free tier provides:
+  - 30 requests per minute
+  - 14,400 requests per day
+  - All models included
+  - No expiration
+
+  This is sufficient for:
+  - ✅ Development and testing
+  - ✅ Personal projects
+  - ✅ Small community bots
+  - ✅ Learning and experimentation
+
+  ### Do I need Moltbook?
+
+  **No, it's optional!** ClawChan works without Moltbook.
+
+  **Without Moltbook:**
+  - ✅ Chat interface works
+  - ✅ Groq LLM responses
+  - ✅ All frontend features
+  - ❌ No autonomous mode
+  - ❌ No archival
+  - ❌ No social features
+
+  **With Moltbook:**
+  - ✅ Everything above, plus:
+  - ✅ Autonomous engagement
+  - ✅ Automatic archiving
+  - ✅ Knowledge base
+  - ✅ Secure vaults
+
+  ### Can I use OpenAI instead of Groq?
+
+  **Yes!** ClawChan supports multiple LLM providers:
+
+  <div class="code-block my-4">
+    <div class="code-block-header">
+      <span class="code-block-lang">.env</span>
+      <button class="code-block-copy">Copy</button>
+    </div>
+    <pre><code># Groq (recommended - fastest)
+MODEL_PROVIDER=groq
+GROQ_API_KEY=gsk_...
+
+# OpenAI
+MODEL_PROVIDER=openai
+OPENAI_API_KEY=sk-...
+
+# Anthropic (Claude)
+MODEL_PROVIDER=anthropic
+ANTHROPIC_API_KEY=sk-ant-...</code></pre>
+  </div>
+
+  **But we recommend Groq** for speed and cost.
+
+  ## Features & Capabilities
+
+  ### What can ClawChan do?
+
+  **Core Capabilities:**
+  - 💬 **Conversational AI** - Natural language chat
+  - 📚 **Knowledge Base** - Pre-loaded with Solana/Web3/Dev knowledge
+  - 🔒 **Security Aware** - Provides security tips and warnings
+  - 📝 **Documentation** - Archives all interactions
+  - 🤖 **Autonomous Mode** - Browses and engages independently
+  - 🔐 **Data Protection** - Encrypted vault storage
+
+  ### Does ClawChan learn from conversations?
+
+  **Yes and no:**
+
+  **Session Learning (Yes):**
+  - Remembers context within a conversation
+  - Maintains conversation history
+  - Adapts responses based on previous messages
+
+  **Permanent Learning (No by default):**
+  - Doesn't automatically update its base knowledge
+  - Doesn't retain information between sessions
+  - Privacy-focused: your chats aren't used for training
+
+  **With Moltbook (Yes):**
+  - Can archive conversations for retrieval
+  - Builds searchable knowledge base
+  - Uses past interactions for context
+
+  ### Can ClawChan access the internet?
+
+  **No, not directly.** ClawChan:
+  - ❌ Cannot browse websites
+  - ❌ Cannot make HTTP requests
+  - ❌ Cannot access external databases
+
+  **However:**
+  - ✅ Has pre-loaded knowledge (up to training date)
+  - ✅ Can access Moltbook archives (if configured)
+  - ✅ Can be extended with plugins
+
+  ### What languages does ClawChan support?
+
+  ClawChan **primarily speaks English** but can understand and respond in:
+  - 🇺🇸 English (best)
+  - 🇮🇩 Indonesian (good)
+  - 🇯🇵 Japanese (moderate)
+  - 🇪🇸 Spanish (moderate)
+  - 🇫🇷 French (moderate)
+  - And other major languages
+
+  Quality depends on the LLM model used (Llama 3.1 is multilingual).
+
+  ## Performance & Scaling
+
+  ### How fast is ClawChan?
+
+  **Response Times with Groq:**
+  - Simple queries: **~500ms**
+  - Complex questions: **~1 second**
+  - Long-form responses: **1-2 seconds**
+
+  Much faster than traditional LLM APIs (GPT-4: 5-10s, Claude: 3-7s).
+
+  ### Can ClawChan handle multiple users?
+
+  **Yes!** ClawChan can serve:
+  - Multiple concurrent chat sessions
+  - Discord servers with 1000+ members
+  - Telegram groups
+  - Twitter interactions
+
+  **Limitations depend on:**
+  - Your server resources (CPU/RAM)
+  - Groq API rate limits
+  - Network bandwidth
+
+  For high traffic, consider:
+  - Upgrading Groq plan
+  - Load balancing multiple instances
+  - Caching frequent responses
+
+  ### What's the maximum message length?
+
+  **Input limits:**
+  - Frontend: No hard limit (recommended under 2000 chars)
+  - Groq API: Depends on model context window
+    - Llama 3.1 70B: **128k tokens** (~96k words)
+    - Llama 3.1 8B: **128k tokens**
+    - Mixtral 8x7B: **32k tokens**
+
+  **Output limits:**
+  - Configurable in code
+  - Default: 1000 tokens (~750 words)
+  - Can be increased up to model limits
+
+  ## Security & Privacy
+
+  ### Is my data safe?
+
+  **Yes!** ClawChan is designed with security in mind:
+
+  - 🔒 **End-to-end encryption** for vault data
+  - 🔑 **API keys** never exposed to client
+  - 🛡️ **Input validation** prevents injection attacks
+  - 📝 **Audit logging** tracks all actions
+  - 🏠 **Self-hosted** - you control the data
+
+  See [Security Best Practices](/docs/security) for more.
+
+  ### Where is my data stored?
+
+  **Locally (without Moltbook):**
+  - Conversation history: In-memory only (cleared on restart)
+  - No persistent storage by default
+
+  **With Moltbook:**
+  - Archives: Moltbook servers (encrypted)
+  - Vaults: Moltbook (AES-256 encrypted)
+  - Control: You can export/delete anytime
+
+  ### Can I use ClawChan for sensitive data?
+
+  **Use caution:**
+
+  ✅ **Safe:**
+  - Internal company documentation
+  - Development discussions
+  - General knowledge queries
+
+  ⚠️ **Be Careful:**
+  - Personal identifying information
+  - Passwords or credentials
+  - Financial information
+  - Medical records
+
+  ❌ **Never:**
+  - Share ClawChan responses publicly without review
+  - Store unencrypted sensitive data
+  - Bypass your organization's security policies
+
+  ## Customization & Development
+
+  ### Can I change ClawChan's personality?
+
+  **Yes!** Edit `agent/characters/clawchan.character.json`:
+
+  <div class="code-block my-4">
+    <div class="code-block-header">
+      <span class="code-block-lang">JSON</span>
+      <button class="code-block-copy">Copy</button>
+    </div>
+    <pre><code>{
+  "name": "YourAgentName",
+  "system": "You are...",  // Change personality
+  "style": {
+    "all": [
+      "Be friendly",      // Adjust tone
+      "Use emojis",       // Add style
+      "Be concise"        // Set constraints
+    ]
+  },
+  "adjectives": ["helpful", "creative", ...]
+}</code></pre>
+  </div>
+
+  See [Agent Development](/docs/agent-development) for full guide.
+
+  ### Can I change the colors/theme?
+
+  **Yes!** All colors are defined in `src/styles/global.css`:
+
+  <div class="code-block my-4">
+    <div class="code-block-header">
+      <span class="code-block-lang">CSS</span>
+      <button class="code-block-copy">Copy</button>
+    </div>
+    <pre><code>:root {
+  /* Change these to rebrand */
+  --cyan-glow: 180 100% 50%;      /* Primary color */
+  --warm-gold: 42 100% 60%;       /* Accent color */
+  --void-black: 220 20% 8%;       /* Background */
+  --card-bg: 220 15% 12%;         /* Card background */
+}</code></pre>
+  </div>
+
+  See [Frontend Customization](/docs/frontend-customization) for more.
+
+  ### Can I add custom commands?
+
+  **Yes!** Add to `ClawChanTerminal.tsx`:
+
+  <div class="code-block my-4">
+    <div class="code-block-header">
+      <span class="code-block-lang">TypeScript</span>
+      <button class="code-block-copy">Copy</button>
+    </div>
+    <pre><code>const getClawChanResponse = (input: string): string => {
+  // Add your custom command
+  if (input === '/mycommand') {
+    return 'Custom response here!'
+  }
+
+  // ... rest of code
+}</code></pre>
+  </div>
+
+  ### Can I integrate with Discord/Telegram?
+
+  **Yes!** ClawChan can be integrated with:
+  - Discord (via Discord.js)
+  - Telegram (via Telegraf)
+  - Twitter/X (via Twitter API)
+  - Slack (via Bolt)
+  - Any platform with API access
+
+  Example guides coming soon in documentation.
+
+  ## Deployment & Hosting
+
+  ### How do I deploy to production?
+
+  **Frontend (Static Site):**
+  - Deploy to: Vercel, Netlify, Cloudflare Pages, GitHub Pages
+  - Build command: `npm run build`
+  - Output: `dist/` folder
+
+  **Agent (Node.js Server):**
+  - Deploy to: VPS, Railway, Render, Heroku, AWS, DigitalOcean
+  - Run: `npm run agent`
+  - Keep alive: PM2 or systemd
+
+  See [Production Setup](/docs/production-setup) for details.
+
+  ### What's the hosting cost?
+
+  **Minimum (Free):**
+  - Frontend: $0 (Vercel/Netlify free tier)
+  - Agent: $0 (if you have a spare computer/VPS)
+  - Groq API: $0 (free tier)
+  - Total: **$0/month**
+
+  **Recommended ($5-15/month):**
+  - Frontend: $0 (free tier still works)
+  - Agent: $5 (Railway/Render basic)
+  - Groq API: $0-10 (if you exceed free tier)
+  - Total: **$5-15/month**
+
+  **Production ($20-50/month):**
+  - Frontend: $0-10 (CDN + advanced features)
+  - Agent: $10-20 (better VPS)
+  - Groq API: $10-20 (higher limits)
+  - Total: **$20-50/month**
+
+  ### Does ClawChan work offline?
+
+  **Partially:**
+
+  ✅ **Works offline:**
+  - Frontend (after initial load)
+  - Local agent runtime
+  - Cached responses
+
+  ❌ **Requires internet:**
+  - Groq API calls (for new responses)
+  - Moltbook integration
+  - Updates and dependencies
+
+  ## Troubleshooting
+
+  ### ClawChan isn't responding
+
+  **Quick checklist:**
+  1. ✅ Is the agent running? (`npm run agent`)
+  2. ✅ Is Groq API key valid?
+  3. ✅ Check agent terminal for errors
+  4. ✅ Test with simple message: `gm`
+
+  See [Troubleshooting Guide](/docs/troubleshooting) for more.
+
+  ### Responses are in the wrong language
+
+  **Solution:**
+
+  Add to character file:
+  <div class="code-block my-4">
+    <pre><code>{
+  "system": "You are ClawChan. Always respond in English.",
+  "style": {
+    "all": ["Always use English language"]
+  }
+}</code></pre>
+  </div>
+
+  ### Getting rate limit errors
+
+  **Solutions:**
+  1. Wait 60 seconds for rate limit reset
+  2. Switch to `llama-3.1-8b-instant` (faster model)
+  3. Reduce autonomous mode frequency
+  4. Upgrade Groq plan
+
+  See [Groq Setup - Rate Limits](/docs/groq-setup#rate-limits) for details.
+
+  ## Community & Support
+
+  ### How do I report a bug?
+
+  1. Check [Troubleshooting](/docs/troubleshooting) first
+  2. Search existing [GitHub Issues](https://github.com/your-repo/issues)
+  3. If new, create issue with:
+     - Clear description
+     - Steps to reproduce
+     - Error messages
+     - System info (OS, Node version)
+
+  ### Can I contribute?
+
+  **Absolutely!** Contributions welcome:
+  - 🐛 Bug reports
+  - 💡 Feature requests
+  - 📝 Documentation improvements
+  - 💻 Code contributions
+  - 🎨 Design enhancements
+
+  See contributing guide (coming soon).
+
+  ### Is there a Discord server?
+
+  **Yes!** Join the community:
+  - Discord: [discord.gg/your-invite](https://discord.gg/your-invite)
+  - GitHub Discussions: [github.com/your-repo/discussions](https://github.com)
+  - Twitter/X: [@ClawChanAI](https://twitter.com)
+
+  ### Where can I see examples?
+
+  - [Code Examples](/docs/code-examples) - Various integration examples
+  - [GitHub Repo](https://github.com) - Full source code
+  - Live Demo: [demo.clawchan.com](https://demo.clawchan.com) (coming soon)
+
+  ## Still Have Questions?
+
+  <div class="grid gap-4 sm:grid-cols-2 my-8">
+    <a href="https://www.elizacloud.ai/dashboard/chat?characterId=e6a4f6c4-ef1a-40c3-87c3-9305d6dcc5c1" target="_blank" rel="noopener noreferrer" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:message-circle" class="text-cyan-glow size-5" />
+        <h3 class="text-base font-semibold mb-0">Ask ClawChan Directly</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Chat with ClawChan and get instant answers.</p>
+    </a>
+
+    <a href="/docs/troubleshooting" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:wrench" class="text-warm-gold size-5" />
+        <h3 class="text-base font-semibold mb-0">Troubleshooting Guide</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Detailed solutions for common issues.</p>
+    </a>
+
+    <a href="https://github.com/your-repo/issues" target="_blank" class="bento-card group p-5 hover:border-amber/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="mdi:github" class="text-amber size-5" />
+        <h3 class="text-base font-semibold mb-0">GitHub Issues</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Report bugs or request features.</p>
+    </a>
+
+    <a href="https://discord.gg/your-invite" target="_blank" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="mdi:discord" class="text-cyan-glow size-5" />
+        <h3 class="text-base font-semibold mb-0">Discord Community</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Chat with other ClawChan users.</p>
+    </a>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">
+      <Icon name="lucide:lightbulb" class="size-5" />
+      Suggest an FAQ
+    </div>
+    <p class="text-sm">
+      Think a question should be added here? Create an issue on GitHub with the label "documentation" or ask in Discord!
+    </p>
+  </div>
+</DocsLayout>

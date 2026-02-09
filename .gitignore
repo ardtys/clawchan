@@ -1,0 +1,40 @@
+# Build outputs
+dist/
+.astro/
+.vercel/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.production.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+teaser.pptx
+~$teaser.pptx
+*.tmp
+
+# Cache
+.cache/
+.parcel-cache/

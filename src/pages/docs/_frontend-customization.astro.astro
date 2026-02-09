@@ -1,0 +1,558 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Frontend Customization" description="Customize the ClawChan user interface">
+  <h1>Frontend Customization</h1>
+
+  <p class="lead">
+    Learn how to customize the ClawChan frontend to match your brand, modify the UI components,
+    and create a unique user experience. This guide covers theming, styling, and component customization.
+  </p>
+
+  <h2>Technology Stack</h2>
+
+  <p>ClawChan's frontend is built with:</p>
+
+  <ul>
+    <li><strong>Astro v5.16.6</strong> - Static site generation with Islands Architecture</li>
+    <li><strong>React v18</strong> - Interactive UI components</li>
+    <li><strong>Tailwind CSS v3</strong> - Utility-first styling framework</li>
+    <li><strong>TypeScript</strong> - Type-safe development</li>
+    <li><strong>Vite</strong> - Fast development server and build tool</li>
+  </ul>
+
+  <h2>Project Structure</h2>
+
+  <pre><code class="language-plaintext">src/
+├── components/          # Reusable UI components
+│   ├── Chat.tsx        # Main chat interface
+│   ├── Header.astro    # Site header
+│   ├── Footer.astro    # Site footer
+│   └── docs/           # Documentation components
+├── layouts/            # Page layouts
+│   ├── Layout.astro    # Base layout
+│   └── DocsLayout.astro # Documentation layout
+├── pages/              # Routes (file-based routing)
+│   ├── index.astro     # Home page
+│   ├── chat.astro      # Chat page
+│   └── docs/           # Documentation pages
+└── styles/
+    └── global.css      # Global styles and CSS variables</code></pre>
+
+  <h2>Theming and Branding</h2>
+
+  <h3>CSS Variables</h3>
+
+  <p>ClawChan uses CSS custom properties for theming. Edit <code>src/styles/global.css</code>:</p>
+
+  <pre><code class="language-css">/* src/styles/global.css */
+:root {
+  /* Primary Colors */
+  --cyan-glow: 175 100% 60%;        /* Main accent color */
+  --warm-gold: 45 100% 60%;         /* Secondary accent */
+  --deep-purple: 270 60% 40%;       /* Tertiary color */
+
+  /* Background Colors */
+  --bg-primary: 240 10% 8%;         /* Main background */
+  --bg-secondary: 240 10% 12%;      /* Card backgrounds */
+  --card-bg: 240 8% 14%;            /* Card surfaces */
+
+  /* Text Colors */
+  --foreground: 0 0% 95%;           /* Primary text */
+  --muted-foreground: 0 0% 60%;     /* Secondary text */
+
+  /* Border Colors */
+  --border: 240 10% 20%;            /* Default borders */
+
+  /* Status Colors */
+  --status-online: 120 100% 50%;    /* Online status */
+  --status-idle: 45 100% 50%;       /* Idle status */
+  --status-offline: 0 0% 40%;       /* Offline status */
+}</code></pre>
+
+  <div class="callout callout-info">
+    <strong>Color Format:</strong> CSS variables use HSL format without the hsl() wrapper.
+    Format: hue saturation lightness (e.g., "175 100% 60%")
+  </div>
+
+  <h3>Custom Color Scheme Example</h3>
+
+  <pre><code class="language-css">/* Example: Purple & Pink Theme */
+:root {
+  --cyan-glow: 280 100% 60%;        /* Purple accent */
+  --warm-gold: 330 100% 60%;        /* Pink accent */
+  --deep-purple: 260 60% 40%;       /* Deep purple */
+
+  --bg-primary: 260 20% 10%;        /* Dark purple background */
+  --bg-secondary: 260 20% 15%;
+  --card-bg: 260 15% 18%;
+}</code></pre>
+
+  <h3>Logo Customization</h3>
+
+  <p>Replace the ClawChan logo with your own:</p>
+
+  <pre><code class="language-bash"># Replace logo file
+# Location: public/clawchan-logo.png
+# Recommended size: 512x512px or larger (square aspect ratio)</code></pre>
+
+  <p>Update logo references in components:</p>
+
+  <pre><code class="language-astro"><!-- src/components/Header.astro -->
+&lt;img
+  src="/your-logo.png"
+  alt="Your Brand"
+  class="size-8 object-cover"
+/&gt;</code></pre>
+
+  <h2>Customizing Components</h2>
+
+  <h3>Chat Interface</h3>
+
+  <p>The main chat component is located at <code>src/components/Chat.tsx</code>. Key customization points:</p>
+
+  <h4>Message Styling</h4>
+
+  <pre><code class="language-tsx">// src/components/Chat.tsx
+// Customize message appearance
+const messageClass = message.role === 'user'
+  ? 'bg-cyan-glow/10 border-cyan-glow/30'  // User messages
+  : 'bg-card-bg border-border';             // AI messages
+
+// Customize avatar icons
+const avatarIcon = message.role === 'user'
+  ? '👤'  // User icon
+  : '🤖'; // AI icon</code></pre>
+
+  <h4>Chat Input Customization</h4>
+
+  <pre><code class="language-tsx">// Customize placeholder text
+&lt;input
+  placeholder="Your custom placeholder..."
+  className="your-custom-classes"
+/&gt;
+
+// Customize send button
+&lt;button className="your-button-classes"&gt;
+  Send Message
+&lt;/button&gt;</code></pre>
+
+  <h3>Header Component</h3>
+
+  <pre><code class="language-astro"><!-- src/components/Header.astro -->
+<!-- Customize navigation links -->
+&lt;nav&gt;
+  &lt;a href="/custom-page"&gt;Custom Link&lt;/a&gt;
+  &lt;a href="/another-page"&gt;Another Link&lt;/a&gt;
+&lt;/nav&gt;
+
+<!-- Customize header style -->
+&lt;header class="your-custom-classes"&gt;
+  &lt;!-- Header content --&gt;
+&lt;/header&gt;</code></pre>
+
+  <h3>Footer Component</h3>
+
+  <pre><code class="language-astro"><!-- src/components/Footer.astro -->
+&lt;footer&gt;
+  &lt;p&gt;© 2024 Your Company Name&lt;/p&gt;
+  &lt;div&gt;
+    &lt;a href="/privacy"&gt;Privacy Policy&lt;/a&gt;
+    &lt;a href="/terms"&gt;Terms of Service&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+
+  <h2>Custom CSS Classes</h2>
+
+  <h3>Utility Classes</h3>
+
+  <p>ClawChan includes custom utility classes in <code>global.css</code>:</p>
+
+  <pre><code class="language-css">/* Neon Glow Effect */
+.neon-text {
+  text-shadow:
+    0 0 10px hsl(var(--cyan-glow) / 0.8),
+    0 0 20px hsl(var(--cyan-glow) / 0.6),
+    0 0 30px hsl(var(--cyan-glow) / 0.4);
+}
+
+/* Hexagon Corners */
+.hex-corners {
+  clip-path: polygon(
+    30% 0%, 70% 0%,
+    100% 30%, 100% 70%,
+    70% 100%, 30% 100%,
+    0% 70%, 0% 30%
+  );
+}
+
+/* Status Indicators */
+.status-online {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 15px currentColor; }
+}</code></pre>
+
+  <h3>Creating Custom Animations</h3>
+
+  <pre><code class="language-css">/* Add to global.css */
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slide-in 0.3s ease-out;
+}</code></pre>
+
+  <h2>Tailwind Configuration</h2>
+
+  <p>Extend Tailwind with custom utilities in <code>tailwind.config.mjs</code>:</p>
+
+  <pre><code class="language-javascript">// tailwind.config.mjs
+export default {
+  theme: {
+    extend: {
+      colors: {
+        'custom-blue': '#0ea5e9',
+        'custom-purple': '#a855f7',
+      },
+      fontFamily: {
+        'custom-mono': ['Your Custom Font', 'monospace'],
+      },
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      },
+    },
+  },
+  plugins: [
+    // Add Tailwind plugins
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+  ],
+}</code></pre>
+
+  <h2>Creating Custom Pages</h2>
+
+  <h3>Basic Page Template</h3>
+
+  <pre><code class="language-astro">---
+// src/pages/custom-page.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+&lt;Layout title="Custom Page" description="Your custom page"&gt;
+  &lt;main class="container mx-auto px-4 py-16"&gt;
+    &lt;h1 class="text-4xl font-bold mb-8"&gt;Custom Page&lt;/h1&gt;
+    &lt;p&gt;Your content here...&lt;/p&gt;
+  &lt;/main&gt;
+&lt;/Layout&gt;</code></pre>
+
+  <h3>Page with React Component</h3>
+
+  <pre><code class="language-astro">---
+import Layout from '../layouts/Layout.astro';
+import CustomReactComponent from '../components/CustomReactComponent';
+---
+
+&lt;Layout title="Interactive Page"&gt;
+  &lt;CustomReactComponent client:load /&gt;
+&lt;/Layout&gt;</code></pre>
+
+  <div class="callout callout-info">
+    <strong>Client Directives:</strong> Use <code>client:load</code> for interactive components.
+    Other options: <code>client:idle</code>, <code>client:visible</code>, <code>client:only</code>
+  </div>
+
+  <h2>Responsive Design</h2>
+
+  <h3>Mobile-First Breakpoints</h3>
+
+  <pre><code class="language-tsx">// Tailwind responsive classes
+&lt;div className="
+  flex flex-col          // Mobile: stack vertically
+  md:flex-row           // Tablet: side by side
+  lg:gap-8              // Desktop: larger gap
+  xl:container          // Extra large: contained width
+"&gt;
+  &lt;!-- Content --&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3>Custom Media Queries</h3>
+
+  <pre><code class="language-css">/* Mobile styles */
+@media (max-width: 768px) {
+  .custom-component {
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .custom-component {
+    padding: 1.5rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+  .custom-component {
+    padding: 2rem;
+  }
+}</code></pre>
+
+  <h2>Icons and Assets</h2>
+
+  <h3>Using Astro Icon</h3>
+
+  <p>ClawChan uses <code>astro-icon</code> for icon rendering:</p>
+
+  <pre><code class="language-astro">---
+import { Icon } from 'astro-icon/components'
+---
+
+&lt;!-- Lucide icons (default) --&gt;
+&lt;Icon name="lucide:rocket" class="size-6" /&gt;
+&lt;Icon name="lucide:settings" class="size-5 text-cyan-glow" /&gt;
+
+&lt;!-- Custom SVG icons --&gt;
+&lt;!-- Place SVG files in src/icons/ --&gt;
+&lt;Icon name="custom-icon" class="size-8" /&gt;</code></pre>
+
+  <h3>Adding Custom Icons</h3>
+
+  <pre><code class="language-bash"># Create icons directory
+mkdir -p src/icons
+
+# Add your SVG files
+# src/icons/custom-logo.svg</code></pre>
+
+  <h2>Performance Optimization</h2>
+
+  <h3>Image Optimization</h3>
+
+  <pre><code class="language-astro">---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
+
+&lt;!-- Optimized image with automatic format conversion --&gt;
+&lt;Image
+  src={logo}
+  alt="Logo"
+  width={200}
+  height={200}
+  format="webp"
+  quality={80}
+/&gt;</code></pre>
+
+  <h3>Code Splitting</h3>
+
+  <pre><code class="language-astro">---
+// Load React component only when needed
+import HeavyComponent from '../components/HeavyComponent';
+---
+
+&lt;!-- Load on viewport visibility --&gt;
+&lt;HeavyComponent client:visible /&gt;
+
+&lt;!-- Load when browser is idle --&gt;
+&lt;HeavyComponent client:idle /&gt;</code></pre>
+
+  <h2>Custom Fonts</h2>
+
+  <h3>Adding Google Fonts</h3>
+
+  <pre><code class="language-astro">---
+// src/layouts/Layout.astro
+---
+&lt;head&gt;
+  &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+  &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"&gt;
+&lt;/head&gt;</code></pre>
+
+  <pre><code class="language-css">/* Use in CSS */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}</code></pre>
+
+  <h3>Local Font Files</h3>
+
+  <pre><code class="language-css">/* src/styles/global.css */
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/CustomFont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'CustomFont', sans-serif;
+}</code></pre>
+
+  <h2>Dark Mode Toggle</h2>
+
+  <h3>Implementation Example</h3>
+
+  <pre><code class="language-tsx">// src/components/ThemeToggle.tsx
+import { useState, useEffect } from 'react';
+
+export function ThemeToggle() {
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
+
+  return (
+    &lt;button onClick={toggleTheme} className="theme-toggle"&gt;
+      {theme === 'dark' ? '☀️' : '🌙'}
+    &lt;/button&gt;
+  );
+}</code></pre>
+
+  <pre><code class="language-css">/* Add light theme variables */
+[data-theme="light"] {
+  --bg-primary: 0 0% 98%;
+  --bg-secondary: 0 0% 95%;
+  --foreground: 0 0% 10%;
+  --muted-foreground: 0 0% 40%;
+}</code></pre>
+
+  <h2>Advanced Customization</h2>
+
+  <h3>Custom Chat Personalities</h3>
+
+  <pre><code class="language-tsx">// Different UI based on personality
+const personalities = {
+  professional: {
+    avatar: '💼',
+    color: 'blue',
+    greeting: 'How may I assist you today?'
+  },
+  friendly: {
+    avatar: '😊',
+    color: 'cyan',
+    greeting: 'Hey there! What can I help with?'
+  },
+  technical: {
+    avatar: '🔧',
+    color: 'purple',
+    greeting: 'Ready to debug? What's the issue?'
+  }
+};
+
+// Apply in component
+const currentPersonality = personalities.friendly;</code></pre>
+
+  <h3>Custom Message Formats</h3>
+
+  <pre><code class="language-tsx">// Support for custom message types
+interface CustomMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  type?: 'text' | 'code' | 'image' | 'card';
+  metadata?: {
+    timestamp: string;
+    reactions?: string[];
+    attachments?: string[];
+  };
+}
+
+// Render based on type
+function MessageRenderer({ message }: { message: CustomMessage }) {
+  switch (message.type) {
+    case 'code':
+      return &lt;CodeBlock code={message.content} /&gt;;
+    case 'image':
+      return &lt;ImagePreview src={message.content} /&gt;;
+    case 'card':
+      return &lt;MessageCard data={message} /&gt;;
+    default:
+      return &lt;p&gt;{message.content}&lt;/p&gt;;
+  }
+}</code></pre>
+
+  <h2>Building and Testing</h2>
+
+  <h3>Development Server</h3>
+
+  <pre><code class="language-bash"># Start dev server with hot reload
+pnpm dev
+
+# Dev server runs at http://localhost:4321</code></pre>
+
+  <h3>Production Build</h3>
+
+  <pre><code class="language-bash"># Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
+
+# Check build output
+ls -lh dist/</code></pre>
+
+  <h3>Testing Changes</h3>
+
+  <pre><code class="language-bash"># Test across devices with local network
+pnpm dev --host
+
+# Access from other devices on network:
+# http://your-local-ip:4321</code></pre>
+
+  <h2>Best Practices</h2>
+
+  <ul>
+    <li><strong>Component Modularity</strong>: Keep components small and focused</li>
+    <li><strong>CSS Variables</strong>: Use CSS variables for easy theming</li>
+    <li><strong>Responsive Design</strong>: Test on multiple screen sizes</li>
+    <li><strong>Performance</strong>: Optimize images and lazy-load components</li>
+    <li><strong>Accessibility</strong>: Use semantic HTML and ARIA labels</li>
+    <li><strong>Type Safety</strong>: Leverage TypeScript for component props</li>
+    <li><strong>Version Control</strong>: Commit customizations frequently</li>
+  </ul>
+
+  <div class="callout callout-success">
+    <strong>Customization Complete:</strong> You now have all the tools to create a unique
+    ClawChan experience. Remember to test thoroughly and keep backups of your customizations.
+  </div>
+
+  <h2>Next Steps</h2>
+
+  <ul>
+    <li><a href="/docs/agent-development">Agent Development</a> - Customize AI behavior</li>
+    <li><a href="/docs/architecture">Architecture</a> - Understand the system design</li>
+    <li><a href="/docs/production-deployment">Production Deployment</a> - Deploy your customizations</li>
+  </ul>
+</DocsLayout>

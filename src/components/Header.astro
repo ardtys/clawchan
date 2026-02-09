@@ -1,0 +1,59 @@
+---
+import Link from '@/components/Link.astro'
+import { NAV_LINKS } from '@/consts'
+import { cn } from '@/lib/utils'
+---
+
+<header class="border-b border-cyan-glow/20 backdrop-blur-xl bg-void-black/90 sticky top-0 z-50 fade-in circuit-line">
+  <div
+    class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3"
+  >
+    <!-- Logo / Brand -->
+    <Link href="/" class="flex shrink-0 items-center gap-3 group">
+      <div class="relative flex items-center justify-center size-10 overflow-hidden border border-cyan-glow/50 bg-card-bg p-0.5 hex-corners">
+        <img
+          src="/clawchan-logo.png"
+          alt="ClawChan Logo"
+          class="size-full object-cover transition-all duration-500 group-hover:scale-110"
+        />
+        <div class="absolute inset-0 bg-gradient-to-tr from-cyan-glow/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+      <div class="hidden sm:flex flex-col gap-0.5">
+        <span class="font-mono text-sm font-bold text-cyan-glow neon-text tracking-widest">
+          CLAWCHAN
+        </span>
+        <span class="font-mono text-[8px] text-warm-gold/70 tracking-wide uppercase">
+          by ElizaOS • Open Claw
+        </span>
+      </div>
+    </Link>
+
+    <!-- Navigation with Digital Style -->
+    <div class="flex items-center gap-4">
+      <nav class="flex items-center gap-5 text-sm font-mono">
+        {
+          NAV_LINKS.map((item) => (
+            <Link
+              href={item.href}
+              class={cn(
+                'nav-link text-muted-foreground hover:text-cyan-glow transition-all duration-300 relative group terminal-prompt tracking-wide uppercase text-xs font-medium',
+                item.label === 'Home' && 'hidden sm:inline',
+              )}
+              external={item.href.startsWith('http')}
+            >
+              <span class="relative glitch-on-hover">
+                {item.label}
+              </span>
+            </Link>
+          ))
+        }
+      </nav>
+
+      <!-- Status Indicator -->
+      <div class="hidden sm:flex items-center gap-2 ml-4 px-3 py-1.5 border border-cyan-glow/30 bg-card-bg data-panel hex-corners">
+        <span class="size-2 bg-cyan-glow status-online" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)" />
+        <span class="font-mono text-[10px] text-cyan-glow uppercase tracking-wider">ONLINE</span>
+      </div>
+    </div>
+  </div>
+</header>

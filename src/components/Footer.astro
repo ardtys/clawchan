@@ -1,0 +1,31 @@
+---
+import { SOCIAL_LINKS } from '@/consts'
+import SocialIcons from './SocialIcons.astro'
+---
+
+<footer class="border-t border-cyan-glow/20 py-6 backdrop-blur-xl bg-void-black/90 circuit-line">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center justify-center gap-y-4 px-4 sm:flex-row sm:justify-between"
+  >
+    <div class="flex items-center gap-3 fade-in">
+      <div class="flex items-center gap-2 data-panel px-3 py-1.5 transition-all duration-300">
+        <span class="size-2 bg-cyan-glow status-online" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)"></span>
+        <span class="font-mono text-[10px] text-muted-foreground hover:text-cyan-glow transition-colors uppercase tracking-wider">
+          All systems operational
+        </span>
+      </div>
+      <span class="text-cyan-glow/30">|</span>
+      <span class="font-mono text-[10px] text-muted-foreground hover:text-warm-gold transition-colors cursor-default uppercase tracking-wide">
+        &copy; {new Date().getFullYear()} CLAWCHAN
+      </span>
+    </div>
+    <div class="flex items-center gap-4 fade-in">
+      <span class="font-mono text-[10px] text-cyan-glow hidden sm:block neon-text uppercase tracking-widest">
+        The Librarian of the Digital Void
+      </span>
+      <div class="shimmer">
+        <SocialIcons links={SOCIAL_LINKS} />
+      </div>
+    </div>
+  </div>
+</footer>

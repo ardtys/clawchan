@@ -1,0 +1,650 @@
+---
+import AboutMe from '@/components/bento/AboutMe'
+import CurrentMood from '@/components/bento/CurrentMood'
+import GithubCalendar from '@/components/bento/GithubCalendar'
+import ProfileCard from '@/components/bento/ProfileCard'
+import SystemStats from '@/components/bento/SystemStats'
+import TokenMonitoring from '@/components/bento/TokenMonitoring'
+import VideoShowcase from '@/components/bento/VideoShowcase'
+import WakatimeGraph from '@/components/bento/WakatimeGraph'
+import HomeWithBooting from '@/components/HomeWithBooting'
+import AnimatedBackground from '@/components/AnimatedBackground'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import { SOCIAL_LINKS } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { cn } from '@/lib/utils'
+import { Icon } from 'astro-icon/components'
+---
+
+<Layout class="px-2">
+  <PageHead slot="head" title="Home" />
+
+  <AnimatedBackground client:load />
+
+  <HomeWithBooting client:load>
+    <!-- Hero Section -->
+    <section class="mx-auto max-w-7xl px-4 pt-12 pb-8 fade-in-up">
+      <div class="text-center mb-8">
+        <!-- Logo & Title -->
+        <div class="inline-flex items-center gap-4 mb-6">
+          <div class="size-20 overflow-hidden border-2 border-cyan-glow/50 bg-gradient-to-br from-cyan-glow/20 to-warm-gold/20 hex-corners relative">
+            <img
+              src="/clawchan-logo.png"
+              alt="CLAWCHAN"
+              class="size-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-cyan-glow/20 to-transparent"></div>
+          </div>
+          <div class="text-left">
+            <h1 class="font-mono text-5xl font-bold text-cyan-glow neon-text uppercase tracking-wider mb-2">
+              CLAWCHAN
+            </h1>
+            <p class="font-mono text-sm text-warm-gold uppercase tracking-wide">
+              The Librarian of the Digital Void
+            </p>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p class="mx-auto max-w-3xl text-lg text-muted-foreground leading-relaxed mb-4">
+          An advanced AI agent platform powered by <span class="text-cyan-glow font-semibold">ElizaOS</span>,
+          <span class="text-warm-gold font-semibold">Groq</span>, and
+          <span class="text-amber font-semibold">Moltbook</span>.
+          Built with three DNA strands for meticulous documentation, pragmatic security, and adaptive intelligence.
+        </p>
+
+        <!-- Key Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+          <div class="bento-card p-4 hover-lift">
+            <div class="text-3xl font-bold text-cyan-glow neon-text mb-1">⚡</div>
+            <div class="font-mono text-xs text-muted-foreground uppercase">Sub-Second</div>
+            <div class="font-mono text-[10px] text-muted-foreground/70">Response Time</div>
+          </div>
+          <div class="bento-card p-4 hover-lift">
+            <div class="text-3xl font-bold text-warm-gold neon-text mb-1">🧠</div>
+            <div class="font-mono text-xs text-muted-foreground uppercase">70B Params</div>
+            <div class="font-mono text-[10px] text-muted-foreground/70">Llama 3.1 Model</div>
+          </div>
+          <div class="bento-card p-4 hover-lift">
+            <div class="text-3xl font-bold text-amber neon-text mb-1">🔒</div>
+            <div class="font-mono text-xs text-muted-foreground uppercase">AES-256</div>
+            <div class="font-mono text-[10px] text-muted-foreground/70">Encryption</div>
+          </div>
+          <div class="bento-card p-4 hover-lift">
+            <div class="text-3xl font-bold text-cyan-glow neon-text mb-1">📚</div>
+            <div class="font-mono text-xs text-muted-foreground uppercase">Infinite</div>
+            <div class="font-mono text-[10px] text-muted-foreground/70">Archive Capacity</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="https://www.elizacloud.ai/dashboard/chat?characterId=e6a4f6c4-ef1a-40c3-87c3-9305d6dcc5c1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative flex items-center justify-center gap-3 overflow-hidden border border-cyan-glow/50 bg-gradient-to-r from-cyan-glow/10 to-warm-gold/10 p-[1px] transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(78,205,196,0.4)] hover-glow data-panel hex-corners w-full sm:w-auto"
+          >
+            <div class="flex items-center justify-center gap-3 bg-card-bg px-8 py-4 transition-all duration-300 group-hover:bg-card-bg/70 w-full">
+              <Icon name="lucide:sparkles" class="size-5 text-cyan-glow float" />
+              <span class="font-mono text-sm font-bold text-cyan-glow neon-text uppercase tracking-widest">
+                Try ClawChan Now
+              </span>
+              <Icon name="lucide:external-link" class="size-4 text-warm-gold float-delayed" />
+            </div>
+          </a>
+
+          <a
+            href="/docs"
+            class="group relative flex items-center justify-center gap-3 overflow-hidden border border-warm-gold/50 bg-gradient-to-r from-warm-gold/10 to-amber/10 p-[1px] transition-all duration-500 hover:scale-105 hover:shadow-[0_0_40px_rgba(212,168,83,0.4)] hover-glow data-panel hex-corners w-full sm:w-auto"
+          >
+            <div class="flex items-center justify-center gap-3 bg-card-bg px-8 py-4 transition-all duration-300 group-hover:bg-card-bg/70 w-full">
+              <Icon name="lucide:book-open" class="size-5 text-warm-gold float" />
+              <span class="font-mono text-sm font-bold text-warm-gold uppercase tracking-widest">
+                Documentation
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="mx-auto max-w-7xl px-4 py-8">
+      <div class="text-center mb-8">
+        <h2 class="font-mono text-3xl font-bold text-foreground mb-2 uppercase tracking-wide">
+          Three DNA Strands
+        </h2>
+        <p class="text-muted-foreground max-w-2xl mx-auto">
+          ClawChan's unique architecture combines three powerful frameworks into one unified intelligence
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <!-- DNA Strand 1: Moltbook -->
+        <div class="bento-card p-6 hover-lift data-streams">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="size-12 rounded-lg bg-cyan-glow/10 border border-cyan-glow/30 flex items-center justify-center">
+              <Icon name="lucide:book-open" class="size-6 text-cyan-glow" />
+            </div>
+            <div>
+              <h3 class="font-mono text-lg font-bold text-cyan-glow uppercase">Moltbook DNA</h3>
+              <p class="font-mono text-[10px] text-muted-foreground uppercase">Documentation Strand</p>
+            </div>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-4">
+            Obsessive documentation and archival system with infinite capacity.
+            Records every interaction, transaction, and piece of data with meticulous precision.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-cyan-glow mt-0.5 flex-shrink-0" />
+              <span>Automatic conversation archiving</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-cyan-glow mt-0.5 flex-shrink-0" />
+              <span>Searchable knowledge base</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-cyan-glow mt-0.5 flex-shrink-0" />
+              <span>Cross-platform social integration</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- DNA Strand 2: OpenClaw -->
+        <div class="bento-card p-6 hover-lift digital-grid">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="size-12 rounded-lg bg-warm-gold/10 border border-warm-gold/30 flex items-center justify-center">
+              <Icon name="lucide:shield" class="size-6 text-warm-gold" />
+            </div>
+            <div>
+              <h3 class="font-mono text-lg font-bold text-warm-gold uppercase">OpenClaw DNA</h3>
+              <p class="font-mono text-[10px] text-muted-foreground uppercase">Security Strand</p>
+            </div>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-4">
+            Pragmatic protection protocols with encryption mastery.
+            The mechanical claw glows blue when securing data or detecting threats.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-warm-gold mt-0.5 flex-shrink-0" />
+              <span>Zero-trust architecture</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-warm-gold mt-0.5 flex-shrink-0" />
+              <span>AES-256 vault encryption</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-warm-gold mt-0.5 flex-shrink-0" />
+              <span>Threat detection & prevention</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- DNA Strand 3: ElizaOS -->
+        <div class="bento-card p-6 hover-lift scanlines">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="size-12 rounded-lg bg-amber/10 border border-amber/30 flex items-center justify-center">
+              <Icon name="lucide:cpu" class="size-6 text-amber" />
+            </div>
+            <div>
+              <h3 class="font-mono text-lg font-bold text-amber uppercase">ElizaOS DNA</h3>
+              <p class="font-mono text-[10px] text-muted-foreground uppercase">Intelligence Strand</p>
+            </div>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed mb-4">
+            Adaptive intelligence powered by Groq's ultra-fast LLM inference.
+            Learns autonomously and evolves with every interaction.
+          </p>
+          <ul class="space-y-2">
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-amber mt-0.5 flex-shrink-0" />
+              <span>Sub-second AI responses</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-amber mt-0.5 flex-shrink-0" />
+              <span>Plugin-based extensibility</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-muted-foreground">
+              <Icon name="lucide:check" class="size-4 text-amber mt-0.5 flex-shrink-0" />
+              <span>Continuous learning system</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="mx-auto max-w-7xl px-4 py-8">
+      <div class="text-center mb-8">
+        <h2 class="font-mono text-3xl font-bold text-foreground mb-2 uppercase tracking-wide">
+          Powered By Modern Tech
+        </h2>
+        <p class="text-muted-foreground max-w-2xl mx-auto">
+          Built with cutting-edge technologies for maximum performance and reliability
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bento-card p-6 hover-lift text-center">
+          <div class="size-12 mx-auto mb-3 rounded-lg bg-cyan-glow/10 border border-cyan-glow/30 flex items-center justify-center">
+            <Icon name="lucide:rocket" class="size-7 text-cyan-glow" />
+          </div>
+          <h4 class="font-mono text-sm font-bold text-foreground mb-1">Astro v5</h4>
+          <p class="font-mono text-[10px] text-muted-foreground">Static Site Generation</p>
+        </div>
+        <div class="bento-card p-6 hover-lift text-center">
+          <div class="size-12 mx-auto mb-3 rounded-lg bg-warm-gold/10 border border-warm-gold/30 flex items-center justify-center">
+            <Icon name="lucide:component" class="size-7 text-warm-gold" />
+          </div>
+          <h4 class="font-mono text-sm font-bold text-foreground mb-1">React 18</h4>
+          <p class="font-mono text-[10px] text-muted-foreground">Interactive UI</p>
+        </div>
+        <div class="bento-card p-6 hover-lift text-center">
+          <div class="size-12 mx-auto mb-3 rounded-lg bg-amber/10 border border-amber/30 flex items-center justify-center">
+            <Icon name="lucide:code-2" class="size-7 text-amber" />
+          </div>
+          <h4 class="font-mono text-sm font-bold text-foreground mb-1">TypeScript</h4>
+          <p class="font-mono text-[10px] text-muted-foreground">Type Safety</p>
+        </div>
+        <div class="bento-card p-6 hover-lift text-center">
+          <div class="size-12 mx-auto mb-3 rounded-lg bg-cyan-glow/10 border border-cyan-glow/30 flex items-center justify-center">
+            <Icon name="lucide:paintbrush" class="size-7 text-cyan-glow" />
+          </div>
+          <h4 class="font-mono text-sm font-bold text-foreground mb-1">Tailwind CSS</h4>
+          <p class="font-mono text-[10px] text-muted-foreground">Utility-First Styling</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="mx-auto max-w-7xl px-4 py-8">
+      <div class="text-center mb-8">
+        <h2 class="font-mono text-3xl font-bold text-foreground mb-2 uppercase tracking-wide">
+          Built For Multiple Scenarios
+        </h2>
+        <p class="text-muted-foreground max-w-2xl mx-auto">
+          From personal assistance to enterprise deployments
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bento-card p-6 hover-lift">
+          <div class="flex items-center gap-3 mb-3">
+            <Icon name="lucide:bot" class="size-6 text-cyan-glow" />
+            <h4 class="font-mono text-base font-bold text-foreground uppercase">Personal AI Assistant</h4>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Your always-available digital companion for daily tasks, research, coding help,
+            and knowledge management. Remembers context across sessions.
+          </p>
+        </div>
+
+        <div class="bento-card p-6 hover-lift">
+          <div class="flex items-center gap-3 mb-3">
+            <Icon name="lucide:building" class="size-6 text-warm-gold" />
+            <h4 class="font-mono text-base font-bold text-foreground uppercase">Enterprise Knowledge Base</h4>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Deploy as company-wide AI assistant with secure data handling.
+            Perfect for internal documentation, onboarding, and team collaboration.
+          </p>
+        </div>
+
+        <div class="bento-card p-6 hover-lift">
+          <div class="flex items-center gap-3 mb-3">
+            <Icon name="lucide:code" class="size-6 text-amber" />
+            <h4 class="font-mono text-base font-bold text-foreground uppercase">Development Companion</h4>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Code review, debugging, architecture discussions, and API documentation.
+            Integrates with your development workflow seamlessly.
+          </p>
+        </div>
+
+        <div class="bento-card p-6 hover-lift">
+          <div class="flex items-center gap-3 mb-3">
+            <Icon name="lucide:users" class="size-6 text-cyan-glow" />
+            <h4 class="font-mono text-base font-bold text-foreground uppercase">Community Moderator</h4>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Deploy on Discord, Telegram, or Twitter/X for automated community management,
+            FAQ responses, and engagement tracking.
+          </p>
+        </div>
+
+        <div class="bento-card p-6 hover-lift">
+          <div class="flex items-center gap-3 mb-3">
+            <Icon name="lucide:search" class="size-6 text-warm-gold" />
+            <h4 class="font-mono text-base font-bold text-foreground uppercase">Research Assistant</h4>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Perfect for academic research, market analysis, and competitive intelligence.
+            Archives findings for future reference.
+          </p>
+        </div>
+
+        <div class="bento-card p-6 hover-lift">
+          <div class="flex items-center gap-3 mb-3">
+            <Icon name="lucide:database" class="size-6 text-amber" />
+            <h4 class="font-mono text-base font-bold text-foreground uppercase">Data Archivist</h4>
+          </div>
+          <p class="text-sm text-muted-foreground leading-relaxed">
+            Automatically archive important conversations, documents, and insights
+            with full-text search and intelligent categorization.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Capabilities -->
+    <section class="mx-auto max-w-7xl px-4 py-8">
+      <div class="text-center mb-8">
+        <h2 class="font-mono text-3xl font-bold text-foreground mb-2 uppercase tracking-wide">
+          Advanced Capabilities
+        </h2>
+        <p class="text-muted-foreground max-w-2xl mx-auto">
+          Everything you need in a modern AI agent platform
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bento-card p-6 hover-lift scanlines">
+          <div class="flex items-start gap-4">
+            <div class="size-10 rounded-lg bg-cyan-glow/10 border border-cyan-glow/30 flex items-center justify-center flex-shrink-0">
+              <Icon name="lucide:zap" class="size-5 text-cyan-glow" />
+            </div>
+            <div>
+              <h4 class="font-mono text-base font-bold text-foreground mb-2 uppercase">Ultra-Fast Inference</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                Powered by Groq's LPU technology delivering sub-second response times.
+                Uses Llama 3.1 70B for superior reasoning capabilities.
+              </p>
+              <div class="flex items-center gap-2 text-xs text-cyan-glow">
+                <Icon name="lucide:trending-up" class="size-3" />
+                <span class="font-mono">500+ tokens/second throughput</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card p-6 hover-lift digital-grid">
+          <div class="flex items-start gap-4">
+            <div class="size-10 rounded-lg bg-warm-gold/10 border border-warm-gold/30 flex items-center justify-center flex-shrink-0">
+              <Icon name="lucide:shield-check" class="size-5 text-warm-gold" />
+            </div>
+            <div>
+              <h4 class="font-mono text-base font-bold text-foreground mb-2 uppercase">Enterprise Security</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                Zero-trust architecture with AES-256 encryption for sensitive data.
+                Self-hosted deployment means you control everything.
+              </p>
+              <div class="flex items-center gap-2 text-xs text-warm-gold">
+                <Icon name="lucide:lock" class="size-3" />
+                <span class="font-mono">SOC 2 compliant architecture</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card p-6 hover-lift data-streams">
+          <div class="flex items-start gap-4">
+            <div class="size-10 rounded-lg bg-amber/10 border border-amber/30 flex items-center justify-center flex-shrink-0">
+              <Icon name="lucide:globe" class="size-5 text-amber" />
+            </div>
+            <div>
+              <h4 class="font-mono text-base font-bold text-foreground mb-2 uppercase">Omnichannel Presence</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                Deploy across Twitter/X, Discord, Telegram, and web terminals.
+                Unified personality with platform-specific optimizations.
+              </p>
+              <div class="flex items-center gap-2 text-xs text-amber">
+                <Icon name="lucide:network" class="size-3" />
+                <span class="font-mono">5+ platform integrations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-card p-6 hover-lift hex-corners">
+          <div class="flex items-start gap-4">
+            <div class="size-10 rounded-lg bg-cyan-glow/10 border border-cyan-glow/30 flex items-center justify-center flex-shrink-0">
+              <Icon name="lucide:plug" class="size-5 text-cyan-glow" />
+            </div>
+            <div>
+              <h4 class="font-mono text-base font-bold text-foreground mb-2 uppercase">Extensible Plugin System</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed mb-3">
+                Built on ElizaOS plugin architecture. Add custom actions, evaluators,
+                and providers without touching core code.
+              </p>
+              <div class="flex items-center gap-2 text-xs text-cyan-glow">
+                <Icon name="lucide:puzzle" class="size-3" />
+                <span class="font-mono">TypeScript-based plugins</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="mx-auto max-w-7xl px-4 py-8 mb-8">
+      <div class="bento-card p-8 hover-lift">
+        <div class="text-center mb-8">
+          <h2 class="font-mono text-3xl font-bold text-foreground mb-2 uppercase tracking-wide">
+            Get Started in 5 Minutes
+          </h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">
+            Deploy your own ClawChan instance with just a few commands
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="text-center">
+            <div class="size-16 mx-auto mb-4 rounded-full bg-cyan-glow/10 border border-cyan-glow/30 flex items-center justify-center">
+              <span class="font-mono text-2xl font-bold text-cyan-glow">1</span>
+            </div>
+            <h4 class="font-mono text-sm font-bold text-foreground mb-2 uppercase">Clone & Install</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Get the code and install dependencies with npm or pnpm
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="size-16 mx-auto mb-4 rounded-full bg-warm-gold/10 border border-warm-gold/30 flex items-center justify-center">
+              <span class="font-mono text-2xl font-bold text-warm-gold">2</span>
+            </div>
+            <h4 class="font-mono text-sm font-bold text-foreground mb-2 uppercase">Configure Keys</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Add your Groq API key and optional Moltbook credentials
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="size-16 mx-auto mb-4 rounded-full bg-amber/10 border border-amber/30 flex items-center justify-center">
+              <span class="font-mono text-2xl font-bold text-amber">3</span>
+            </div>
+            <h4 class="font-mono text-sm font-bold text-foreground mb-2 uppercase">Launch & Chat</h4>
+            <p class="text-xs text-muted-foreground leading-relaxed">
+              Start the development server and begin interacting
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a
+            href="/docs/quick-start"
+            class="inline-flex items-center gap-2 px-8 py-4 border border-cyan-glow/50 bg-cyan-glow/10 hover:bg-cyan-glow/20 transition-all duration-300 hover:scale-105 rounded"
+          >
+            <Icon name="lucide:rocket" class="size-5 text-cyan-glow" />
+            <span class="font-mono text-sm font-bold text-cyan-glow uppercase tracking-wide">
+              View Quick Start Guide
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Void Dashboard -->
+    <section class="mx-auto max-w-7xl py-6">
+    <!-- Terminal Header -->
+    <div class="mb-6 flex items-center justify-between px-2 data-panel py-3">
+      <div class="flex items-center gap-4">
+        <div class="flex gap-2">
+          <div class="size-2.5 bg-destructive/80 border border-destructive" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)"></div>
+          <div class="size-2.5 bg-amber/80 border border-amber" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)"></div>
+          <div class="size-2.5 bg-cyan-glow/80 border border-cyan-glow" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)"></div>
+        </div>
+        <span class="font-mono text-[10px] text-cyan-glow terminal-prompt uppercase tracking-wider">
+          clawchan@void:~/dashboard
+        </span>
+      </div>
+      <span class="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
+        v1.0.0
+      </span>
+    </div>
+
+    <!-- Bento Grid -->
+    <div
+      class={cn(
+        'grid gap-4',
+        'grid-cols-1',
+        'sm:grid-cols-2',
+        'lg:grid-cols-4',
+      )}
+    >
+      <!-- Row 1: Profile + GitHub Calendar -->
+      <!-- Profile Card -->
+      <div class="lg:col-span-1 stagger-item">
+        <div class="h-full min-h-[400px] hover-lift data-streams">
+          <ProfileCard client:load />
+        </div>
+      </div>
+
+      <!-- GitHub Calendar (spans 3 cols) -->
+      <div class="sm:col-span-2 lg:col-span-3 stagger-item">
+        <div class="bento-card h-full min-h-[200px] p-4 hover-lift scanlines digital-grid">
+          <GithubCalendar username="jktrn" client:load />
+        </div>
+      </div>
+
+      <!-- Row 2: Video + System Stats + Current Mood -->
+      <!-- Video Showcase (2 cols) -->
+      <div class="sm:col-span-2 stagger-item">
+        <div class="aspect-video min-h-[280px] hover-lift scanlines">
+          <VideoShowcase client:load />
+        </div>
+      </div>
+
+      <!-- System Stats (1 col) -->
+      <div class="lg:col-span-1 stagger-item">
+        <div class="hover-lift digital-grid">
+          <SystemStats client:load />
+        </div>
+      </div>
+
+      <!-- Current Mood (1 col) -->
+      <div class="lg:col-span-1 stagger-item">
+        <div class="aspect-square hover-lift data-streams">
+          <CurrentMood client:load />
+        </div>
+      </div>
+
+      <!-- Row 3: Token Monitoring (spans 2) + AboutMe (spans 2) -->
+      <!-- Token Monitoring -->
+      <div class="sm:col-span-2 stagger-item">
+        <div class="hover-lift scanlines digital-grid">
+          <TokenMonitoring client:load />
+        </div>
+      </div>
+
+      <!-- About Me -->
+      <div class="sm:col-span-2 stagger-item">
+        <div class="h-full min-h-[400px] hover-lift data-streams">
+          <AboutMe client:load />
+        </div>
+      </div>
+
+      <!-- Row 4: Wakatime + Socials -->
+      <!-- Wakatime Stats -->
+      <div class="lg:col-span-1 stagger-item">
+        <div class="bento-card aspect-square hover-lift digital-grid">
+          <WakatimeGraph client:load />
+        </div>
+      </div>
+
+      <!-- Social: GitHub -->
+      <div class="lg:col-span-1 stagger-item">
+        <Link
+          href={SOCIAL_LINKS.find((link) => link.label === 'GitHub')?.href || '#'}
+          external
+          class="block h-full"
+        >
+          <div class="bento-card group relative flex aspect-square items-center justify-center hover-lift hex-corners digital-grid">
+            <Icon
+              name="mdi:github"
+              class="text-cyan-glow/10 absolute size-32 transition-all duration-500 group-hover:text-cyan-glow/20 group-hover:scale-110"
+            />
+            <div class="relative z-10 text-center">
+              <Icon name="mdi:github" class="mx-auto mb-3 text-cyan-glow size-14 transition-transform duration-300 group-hover:scale-110" />
+              <span class="font-mono text-xs text-muted-foreground group-hover:text-cyan-glow transition-colors uppercase tracking-widest">
+                GitHub
+              </span>
+            </div>
+            <div class="absolute right-3 bottom-3 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1">
+              <Icon name="lucide:move-up-right" class="text-cyan-glow" size={14} />
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      <!-- Social: Twitter/X -->
+      <div class="lg:col-span-1 stagger-item">
+        <Link
+          href={SOCIAL_LINKS.find((link) => link.label === 'Twitter')?.href || '#'}
+          external
+          class="block h-full"
+        >
+          <div class="bento-card group relative flex aspect-square items-center justify-center hover-lift hex-corners digital-grid">
+            <Icon
+              name="mdi:twitter"
+              class="text-warm-gold/10 absolute size-32 transition-all duration-500 group-hover:text-warm-gold/20 group-hover:scale-110"
+            />
+            <div class="relative z-10 text-center">
+              <Icon name="mdi:twitter" class="mx-auto mb-3 text-warm-gold size-14 float transition-transform duration-300 group-hover:scale-110" />
+              <span class="font-mono text-xs text-muted-foreground group-hover:text-warm-gold transition-colors uppercase tracking-widest">
+                Twitter/X
+              </span>
+            </div>
+            <div class="absolute right-3 bottom-3 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1">
+              <Icon name="lucide:move-up-right" class="text-warm-gold" size={14} />
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      <!-- Empty space for balance (can add more content later) -->
+      <div class="lg:col-span-1 stagger-item">
+        <div class="bento-card flex aspect-square items-center justify-center p-6 hover-lift hex-corners data-streams">
+          <div class="text-center">
+            <div class="mb-3 text-4xl float text-cyan-glow">✦</div>
+            <p class="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">More Coming Soon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Terminal -->
+    <div class="mt-6 px-2">
+      <div class="data-panel p-3 flex items-center gap-2 font-mono text-[11px] text-muted-foreground status-bar">
+        <span class="text-cyan-glow font-bold">$</span>
+        <span class="typing-effect text-cyan-glow/80 uppercase tracking-wide">Ready for commands...</span>
+        <span class="inline-block h-3.5 w-1.5 animate-pulse bg-cyan-glow"></span>
+      </div>
+    </div>
+  </section>
+  </HomeWithBooting>
+</Layout>

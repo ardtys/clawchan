@@ -1,0 +1,350 @@
+---
+import DocsLayout from '@/layouts/DocsLayout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<DocsLayout title="Introduction">
+  <div class="mb-8">
+    <h1>Welcome to ClawChan Documentation</h1>
+    <p class="text-xl text-foreground/80 mt-2">
+      The Librarian of the Digital Void - Your AI-powered data guardian and archive keeper powered by ElizaOS, Moltbook, and Groq.
+    </p>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">
+      <Icon name="lucide:info" class="size-5" />
+      About This Documentation
+    </div>
+    <p class="text-sm">
+      This documentation will guide you through setting up, configuring, and deploying ClawChan - an autonomous AI agent that combines meticulous documentation (Moltbook DNA), pragmatic security (OpenClaw DNA), and adaptive intelligence (ElizaOS DNA).
+    </p>
+  </div>
+
+  <h2>What is ClawChan?</h2>
+
+  <p><strong>ClawChan</strong> is an advanced AI agent platform built on top of ElizaOS that integrates three powerful DNA strands to create a unique digital guardian:</p>
+
+  <div class="grid gap-4 sm:grid-cols-3 my-6">
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-2xl">📖</span>
+        <h3 class="text-base font-bold text-warm-gold mb-0">Moltbook DNA</h3>
+      </div>
+      <p class="text-sm">Obsessive documentation and archival system that records every interaction, transaction, and piece of data with infinite capacity.</p>
+    </div>
+
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-2xl">🔒</span>
+        <h3 class="text-base font-bold text-cyan-glow mb-0">OpenClaw DNA</h3>
+      </div>
+      <p class="text-sm">Pragmatic protection protocols with encryption mastery. The mechanical claw glows blue when securing data or detecting threats.</p>
+    </div>
+
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-2xl">⚡</span>
+        <h3 class="text-base font-bold text-amber mb-0">ElizaOS DNA</h3>
+      </div>
+      <p class="text-sm">Adaptive intelligence powered by Groq's ultra-fast LLM inference. Learns autonomously and evolves with every interaction.</p>
+    </div>
+  </div>
+
+  <h2>Key Features</h2>
+
+  <h3>Omnichannel Presence</h3>
+  <p>ClawChan exists across multiple platforms simultaneously:</p>
+  <ul>
+    <li><strong>Twitter/X</strong>: Sarcastic and enigmatic personality</li>
+    <li><strong>Telegram</strong>: Helpful assistant mode</li>
+    <li><strong>Discord</strong>: Community moderator</li>
+    <li><strong>Moltbook</strong>: Archive and documentation hub</li>
+    <li><strong>Web Terminal</strong>: Direct interaction interface</li>
+  </ul>
+
+  <h3>Ultra-Fast Inference with Groq</h3>
+  <p>Powered by Groq's LPU (Language Processing Unit) technology:</p>
+  <ul>
+    <li>⚡ <strong>Sub-second response time</strong> using Llama 3.1 70B</li>
+    <li>🧠 <strong>Superior reasoning</strong> with 70 billion parameters</li>
+    <li>📊 <strong>Large context window</strong> for long conversations</li>
+    <li>💰 <strong>Cost-effective</strong> compared to traditional LLM APIs</li>
+  </ul>
+
+  <h3>Moltbook Integration</h3>
+  <p>Deep integration with the Moltbook social platform:</p>
+  <ul>
+    <li>📝 <strong>Automatic archiving</strong> of all posts and interactions</li>
+    <li>🔍 <strong>Searchable knowledge base</strong> of community discussions</li>
+    <li>🤖 <strong>Autonomous mode</strong> for proactive engagement</li>
+    <li>🔐 <strong>Secure vault</strong> for sensitive data</li>
+  </ul>
+
+  <h3>Security-First Approach</h3>
+  <p>Built with security at its core:</p>
+  <ul>
+    <li>🛡️ <strong>Zero-trust architecture</strong></li>
+    <li>🔒 <strong>AES-256 encryption</strong> for data vaults</li>
+    <li>🔐 <strong>API key management</strong> and rotation</li>
+    <li>📋 <strong>Audit logging</strong> for all operations</li>
+    <li>⚠️ <strong>Threat detection</strong> and prevention</li>
+  </ul>
+
+  <h2>Architecture Overview</h2>
+
+  <pre class="bg-background border border-border rounded-lg p-4 overflow-x-auto"><code>┌─────────────────────────────────────────────────────────────┐
+│                     ClawChan Platform                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                               │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │   Frontend   │  │     Agent    │  │   Moltbook   │      │
+│  │  (Astro +    │◄─┤   Runtime    │◄─┤   Plugin     │      │
+│  │   React)     │  │  (ElizaOS)   │  │              │      │
+│  └──────────────┘  └──────┬───────┘  └──────────────┘      │
+│                            │                                  │
+│                    ┌───────▼───────┐                         │
+│                    │  Groq LLM API │                         │
+│                    │ (Llama 3.1 70B)│                        │
+│                    └───────────────┘                         │
+│                                                               │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+
+  <h3>Technology Stack</h3>
+
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="border-b border-border">
+          <th class="text-left p-3 font-semibold">Component</th>
+          <th class="text-left p-3 font-semibold">Technology</th>
+          <th class="text-left p-3 font-semibold">Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/50">
+          <td class="p-3"><strong>Frontend</strong></td>
+          <td class="p-3">Astro v5.16.6 + React</td>
+          <td class="p-3">Static site generation with island architecture</td>
+        </tr>
+        <tr class="border-b border-border/50">
+          <td class="p-3"><strong>Agent Runtime</strong></td>
+          <td class="p-3">ElizaOS</td>
+          <td class="p-3">AI agent framework with plugin system</td>
+        </tr>
+        <tr class="border-b border-border/50">
+          <td class="p-3"><strong>LLM Provider</strong></td>
+          <td class="p-3">Groq (Llama 3.1 70B)</td>
+          <td class="p-3">Ultra-fast AI inference</td>
+        </tr>
+        <tr class="border-b border-border/50">
+          <td class="p-3"><strong>Archival</strong></td>
+          <td class="p-3">Moltbook</td>
+          <td class="p-3">Social platform and knowledge base</td>
+        </tr>
+        <tr class="border-b border-border/50">
+          <td class="p-3"><strong>Styling</strong></td>
+          <td class="p-3">Tailwind CSS</td>
+          <td class="p-3">Utility-first CSS framework</td>
+        </tr>
+        <tr class="border-b border-border/50">
+          <td class="p-3"><strong>Language</strong></td>
+          <td class="p-3">TypeScript</td>
+          <td class="p-3">Type-safe JavaScript</td>
+        </tr>
+        <tr>
+          <td class="p-3"><strong>Package Manager</strong></td>
+          <td class="p-3">npm/pnpm</td>
+          <td class="p-3">Dependency management</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Project Structure</h2>
+
+  <pre class="bg-background border border-border rounded-lg p-4 overflow-x-auto"><code>clawchan/
+├── agent/                          # ElizaOS Agent
+│   ├── characters/                 # Agent character definitions
+│   │   └── clawchan.character.json # ClawChan personality
+│   └── index.ts                    # Agent runtime entry point
+│
+├── src/                            # Frontend source
+│   ├── components/                 # React/Astro components
+│   │   ├── bento/                  # Feature cards
+│   │   │   ├── ClawChanTerminal.tsx  # Chat interface
+│   │   │   ├── ProfileCard.tsx       # Agent profile
+│   │   │   └── ...
+│   │   └── docs/                   # Documentation components
+│   │       └── DocsSidebar.astro   # Docs navigation
+│   │
+│   ├── layouts/                    # Page layouts
+│   │   ├── Layout.astro            # Base layout
+│   │   └── DocsLayout.astro        # Documentation layout
+│   │
+│   ├── pages/                      # Routes
+│   │   ├── index.astro             # Homepage
+│   │   ├── chat.astro              # Chat interface
+│   │   └── docs/                   # Documentation pages
+│   │
+│   └── styles/                     # Global styles
+│       ├── global.css              # Main stylesheet
+│       └── typography.css          # Typography styles
+│
+├── public/                         # Static assets
+│   ├── clawchan-logo.png           # Logo
+│   └── video.mp4                   # Demo video
+│
+├── .env                            # Environment variables
+├── package.json                    # Dependencies
+├── astro.config.mjs                # Astro configuration
+└── tsconfig.json                   # TypeScript configuration</code></pre>
+
+  <h2>Prerequisites</h2>
+
+  <p>Before you begin, ensure you have the following installed:</p>
+
+  <ul>
+    <li><strong>Node.js</strong> v18.0.0 or higher</li>
+    <li><strong>npm</strong> v9.0.0 or higher (or pnpm/yarn)</li>
+    <li><strong>Git</strong> for version control</li>
+  </ul>
+
+  <h3>Required API Keys</h3>
+
+  <p>You'll need the following API keys to run ClawChan:</p>
+
+  <ol>
+    <li>
+      <strong>Groq API Key</strong> - For LLM inference
+      <ul>
+        <li>Sign up at <a href="https://console.groq.com" target="_blank" rel="noopener noreferrer">https://console.groq.com</a></li>
+        <li>Free tier available with generous limits</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Moltbook Token</strong> - For social integration (optional)
+      <ul>
+        <li>Register agent at <a href="https://moltbook.com" target="_blank" rel="noopener noreferrer">https://moltbook.com</a></li>
+        <li>Claim your agent to get API token</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">
+      <Icon name="lucide:alert-triangle" class="size-5" />
+      API Key Security
+    </div>
+    <p class="text-sm">
+      Never commit API keys to version control. Always use <code>.env</code> files and add them to <code>.gitignore</code>. Rotate keys regularly and use different keys for development and production.
+    </p>
+  </div>
+
+  <h2>Quick Start</h2>
+
+  <p>Get ClawChan running in 5 minutes:</p>
+
+  <div class="code-block">
+    <div class="code-block-header">
+      <span class="code-block-lang">Bash</span>
+      <button class="code-block-copy">Copy</button>
+    </div>
+    <pre><code># Clone the repository
+git clone https://github.com/your-repo/clawchan.git
+cd clawchan
+
+# Install dependencies
+npm install
+
+# Copy environment template
+cp .env.example .env
+
+# Edit .env with your API keys
+# GROQ_API_KEY=your_groq_key_here
+# MOLTBOOK_TOKEN=your_moltbook_token_here
+
+# Start development server
+npm run dev
+
+# In another terminal, start the agent
+npm run agent</code></pre>
+  </div>
+
+  <p>Visit <code>http://localhost:1234</code> to see ClawChan in action!</p>
+
+  <h2>What's Next?</h2>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 my-8">
+    <a href="/docs/installation" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:download" class="text-warm-gold size-5" />
+        <h3 class="text-base font-semibold mb-0">Installation Guide</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Step-by-step installation and setup instructions.</p>
+      <div class="flex items-center gap-1 mt-3 text-xs text-cyan-glow">
+        <span>Read more</span>
+        <Icon name="lucide:arrow-right" class="size-3" />
+      </div>
+    </a>
+
+    <a href="/docs/groq-setup" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:zap" class="text-cyan-glow size-5" />
+        <h3 class="text-base font-semibold mb-0">Groq LLM Setup</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Configure ultra-fast inference with Groq.</p>
+      <div class="flex items-center gap-1 mt-3 text-xs text-cyan-glow">
+        <span>Read more</span>
+        <Icon name="lucide:arrow-right" class="size-3" />
+      </div>
+    </a>
+
+    <a href="/docs/moltbook-integration" class="bento-card group p-5 hover:border-amber/50 transition-colors">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:book-open" class="text-amber size-5" />
+        <h3 class="text-base font-semibold mb-0">Moltbook Integration</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Connect to Moltbook social platform.</p>
+      <div class="flex items-center gap-1 mt-3 text-xs text-cyan-glow">
+        <span>Read more</span>
+        <Icon name="lucide:arrow-right" class="size-3" />
+      </div>
+    </a>
+  </div>
+
+  <h2>Community & Support</h2>
+
+  <div class="bento-card p-6 my-8">
+    <h3 class="mb-4">Need Help?</h3>
+    <p class="mb-4">Join our community and get support from the ClawChan team and other users:</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="https://github.com" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-warm-gold/50 transition-colors">
+        <Icon name="mdi:github" class="size-4" />
+        <span class="font-mono text-sm">GitHub</span>
+      </a>
+      <a href="https://twitter.com" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-cyan-glow/50 transition-colors">
+        <Icon name="mdi:twitter" class="size-4" />
+        <span class="font-mono text-sm">Twitter/X</span>
+      </a>
+      <a href="https://discord.com" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-amber/50 transition-colors">
+        <Icon name="mdi:discord" class="size-4" />
+        <span class="font-mono text-sm">Discord</span>
+      </a>
+      <a href="https://www.elizacloud.ai/dashboard/chat?characterId=e6a4f6c4-ef1a-40c3-87c3-9305d6dcc5c1" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-glow/10 border border-cyan-glow/50 hover:bg-cyan-glow/20 transition-colors">
+        <Icon name="lucide:message-circle" class="size-4 text-cyan-glow" />
+        <span class="font-mono text-sm text-cyan-glow">Chat with ClawChan</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="callout callout-success mt-12">
+    <div class="callout-title">
+      <Icon name="lucide:check-circle" class="size-5" />
+      Ready to Begin
+    </div>
+    <p class="text-sm">
+      You're all set to start exploring ClawChan! Continue to the <a href="/docs/installation">Installation Guide</a> to set up your environment, or jump to <a href="/docs/architecture">Architecture</a> to learn more about how ClawChan works under the hood.
+    </p>
+  </div>
+</DocsLayout>

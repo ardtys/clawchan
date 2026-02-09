@@ -1,0 +1,165 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const currentPath = Astro.url.pathname
+
+interface NavItem {
+  title: string
+  href?: string
+  icon?: string
+  items?: NavItem[]
+}
+
+const navigation: NavItem[] = [
+  {
+    title: 'Getting Started',
+    icon: 'lucide:rocket',
+    items: [
+      { title: 'Introduction', href: '/docs' },
+      { title: 'Quick Start', href: '/docs/quick-start' },
+      { title: 'Installation', href: '/docs/installation' },
+    ]
+  },
+  {
+    title: 'Core Concepts',
+    icon: 'lucide:book-open',
+    items: [
+      { title: 'Architecture', href: '/docs/architecture' },
+      { title: 'Three DNA Strands', href: '/docs/dna-strands' },
+      { title: 'Character System', href: '/docs/character-system' },
+    ]
+  },
+  {
+    title: 'Configuration',
+    icon: 'lucide:settings',
+    items: [
+      { title: 'Environment Setup', href: '/docs/environment-setup' },
+      { title: 'Groq LLM Integration', href: '/docs/groq-setup' },
+      { title: 'Moltbook Integration', href: '/docs/moltbook-integration' },
+    ]
+  },
+  {
+    title: 'Development',
+    icon: 'lucide:code-2',
+    items: [
+      { title: 'Agent Development', href: '/docs/agent-development' },
+      { title: 'Frontend Customization', href: '/docs/frontend-customization' },
+      { title: 'API Reference', href: '/docs/api-reference' },
+    ]
+  },
+  {
+    title: 'Deployment',
+    icon: 'lucide:rocket',
+    items: [
+      { title: 'Production Deployment', href: '/docs/production-deployment' },
+      { title: 'Security Best Practices', href: '/docs/security' },
+      { title: 'Troubleshooting', href: '/docs/troubleshooting' },
+    ]
+  },
+  {
+    title: 'Resources',
+    icon: 'lucide:book-open',
+    items: [
+      { title: 'Code Examples', href: '/docs/code-examples' },
+      { title: 'FAQs', href: '/docs/faqs' },
+      { title: 'Contributing', href: '/docs/contributing' },
+    ]
+  },
+]
+
+function isActive(href: string) {
+  return currentPath === href || currentPath.startsWith(href + '/')
+}
+---
+
+<aside class="docs-sidebar sticky top-4 h-[calc(100vh-2rem)] overflow-y-auto pb-8">
+  <!-- Logo -->
+  <div class="mb-6 flex items-center gap-3 px-3">
+    <div class="size-10 overflow-hidden border border-cyan-glow/50 bg-card-bg hex-corners relative">
+      <img
+        src="/clawchan-logo.png"
+        alt="CLAWCHAN"
+        class="size-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-cyan-glow/20 to-transparent" />
+    </div>
+    <div>
+      <div class="font-mono text-sm font-bold text-cyan-glow neon-text uppercase tracking-wider">CLAWCHAN</div>
+      <div class="font-mono text-[10px] text-muted-foreground">Documentation</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="space-y-6">
+    {navigation.map((section) => (
+      <div>
+        <!-- Section Header -->
+        <div class="flex items-center gap-2 px-3 mb-2">
+          {section.icon && (
+            <Icon name={section.icon} class="size-4 text-warm-gold/70" />
+          )}
+          <h3 class="font-mono text-xs font-bold text-muted-foreground uppercase tracking-wider">
+            {section.title}
+          </h3>
+        </div>
+
+        <!-- Section Items -->
+        {section.items && (
+          <ul class="space-y-1">
+            {section.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'block px-3 py-2 rounded-lg text-sm font-mono transition-all',
+                    isActive(item.href!)
+                      ? 'bg-cyan-glow/10 text-cyan-glow border-l-2 border-cyan-glow'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-card-bg/50'
+                  ]}
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    ))}
+  </nav>
+
+  <!-- Version Info -->
+  <div class="mt-8 px-3">
+    <div class="rounded-lg border border-border bg-card-bg/50 p-3">
+      <div class="flex items-center gap-2 mb-1">
+        <div class="size-2 bg-cyan-glow status-online" style="clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)"></div>
+        <span class="font-mono text-[10px] text-cyan-glow uppercase tracking-wide">Version 1.0.0</span>
+      </div>
+      <p class="font-mono text-[9px] text-muted-foreground">
+        Powered by ElizaOS & Groq
+      </p>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .docs-sidebar {
+    width: 280px;
+  }
+
+  .docs-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .docs-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .docs-sidebar::-webkit-scrollbar-thumb {
+    background: hsl(var(--cyan-glow) / 0.3);
+    border-radius: 3px;
+  }
+
+  .docs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--cyan-glow) / 0.5);
+  }
+</style>

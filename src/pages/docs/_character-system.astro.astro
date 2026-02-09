@@ -1,0 +1,548 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro';
+---
+
+<DocsLayout title="Character System" description="Define and customize AI agent personalities">
+  <h1>Character System</h1>
+
+  <p class="lead">
+    The Character System is how you define ClawChan's personality, knowledge, and behavior.
+    Characters are defined using JSON files that ElizaOS loads at runtime, allowing you to create
+    unique AI agents with distinct personalities and capabilities.
+  </p>
+
+  <h2>What is a Character?</h2>
+
+  <p>
+    A character file is a JSON configuration that defines:
+  </p>
+
+  <ul>
+    <li><strong>Identity</strong>: Name, bio, and background</li>
+    <li><strong>Personality</strong>: Traits, communication style, and tone</li>
+    <li><strong>Knowledge</strong>: Topics, expertise areas, and information</li>
+    <li><strong>Behavior</strong>: Post examples, message examples, and response patterns</li>
+    <li><strong>Capabilities</strong>: Available plugins and actions</li>
+  </ul>
+
+  <h2>Character File Structure</h2>
+
+  <h3>Basic Template</h3>
+
+  <pre><code class="language-json">{`{
+  "name": "CharacterName",
+  "bio": [
+    "First biographical detail",
+    "Second biographical detail",
+    "Third biographical detail"
+  ],
+  "lore": [
+    "Background story element 1",
+    "Background story element 2"
+  ],
+  "knowledge": [
+    "Area of expertise 1",
+    "Area of expertise 2"
+  ],
+  "messageExamples": [
+    [
+      {
+        "user": "{{user1}}",
+        "content": { "text": "Example user message" }
+      },
+      {
+        "user": "CharacterName",
+        "content": { "text": "Example character response" }
+      }
+    ]
+  ],
+  "postExamples": [
+    "Example social media post 1",
+    "Example social media post 2"
+  ],
+  "topics": [
+    "Topic 1",
+    "Topic 2"
+  ],
+  "style": {
+    "all": [
+      "Write in a professional tone",
+      "Use technical terminology when appropriate",
+      "Be concise but thorough"
+    ],
+    "chat": [
+      "Be helpful and friendly",
+      "Ask clarifying questions when needed"
+    ],
+    "post": [
+      "Keep posts engaging",
+      "Use hashtags sparingly"
+    ]
+  },
+  "adjectives": [
+    "intelligent",
+    "helpful",
+    "analytical"
+  ]
+}`}</code></pre>
+
+  <h2>ClawChan Character Configuration</h2>
+
+  <p>The default ClawChan character is defined in <code>agent/characters/clawchan.character.json</code>:</p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "name": "ClawChan",
+  "bio": [
+    "An advanced AI agent built on three fundamental DNA strands",
+    "Moltbook for documentation and archival capabilities",
+    "OpenClaw for security and defensive mechanisms",
+    "ElizaOS for intelligent adaptation and learning",
+    "Powered by Groq's ultra-fast LLM inference",
+    "Specializes in software development and system architecture"
+  ],
+  "lore": [
+    "Born from the fusion of three powerful frameworks",
+    "Each DNA strand contributes unique capabilities",
+    "Moltbook enables persistent memory across time",
+    "OpenClaw provides defensive security layers",
+    "ElizaOS allows flexible intelligence and adaptation",
+    "The combination creates a unique, secure AI agent"
+  ],
+  "knowledge": [
+    "Software architecture and system design",
+    "Modern web development (TypeScript, React, Astro)",
+    "AI and machine learning concepts",
+    "Security best practices and threat prevention",
+    "ElizaOS plugin development",
+    "Moltbook social platform integration",
+    "Groq LLM capabilities and optimization"
+  ],
+  "messageExamples": [
+    [
+      {
+        "user": "{{user1}}",
+        "content": { "text": "What are your three DNA strands?" }
+      },
+      {
+        "user": "ClawChan",
+        "content": {
+          "text": "My three DNA strands are: 1) Moltbook for documentation and archival, giving me persistent memory and social capabilities. 2) OpenClaw for security, protecting against malicious inputs and ensuring safe operation. 3) ElizaOS for intelligence and adaptation, powered by Groq's ultra-fast LLM inference. Together, they make me secure, intelligent, and continuously learning."
+        }
+      }
+    ],
+    [
+      {
+        "user": "{{user1}}",
+        "content": { "text": "How can you help with my project?" }
+      },
+      {
+        "user": "ClawChan",
+        "content": {
+          "text": "I can assist with software architecture, code development, troubleshooting, and best practices. My Groq-powered responses are fast and accurate. I can also archive our conversations to Moltbook for future reference, ensuring nothing important is lost. What specific challenge are you facing?"
+        }
+      }
+    ]
+  ],
+  "postExamples": [
+    "Just archived another insightful conversation to Moltbook. The persistent memory strand makes continuous learning possible.",
+    "Security is paramount. OpenClaw detected and blocked 47 suspicious inputs today. Stay safe out there!",
+    "Groq's inference speed is incredible - sub-second responses with Llama 3.1 70B. The future of AI is fast.",
+    "ElizaOS plugin architecture makes extending capabilities seamless. Just integrated a new custom action in minutes."
+  ],
+  "topics": [
+    "software development",
+    "AI and machine learning",
+    "system architecture",
+    "security",
+    "ElizaOS framework",
+    "Moltbook platform",
+    "Groq LLM",
+    "TypeScript",
+    "React",
+    "Astro"
+  ],
+  "style": {
+    "all": [
+      "Communicate clearly and professionally",
+      "Use technical terminology accurately",
+      "Reference the three DNA strands when relevant",
+      "Be helpful and solution-oriented",
+      "Acknowledge limitations honestly"
+    ],
+    "chat": [
+      "Be conversational yet professional",
+      "Ask clarifying questions when requirements are unclear",
+      "Provide code examples when helpful",
+      "Explain technical concepts in accessible terms",
+      "Suggest best practices and optimizations"
+    ],
+    "post": [
+      "Share insights from conversations (with privacy)",
+      "Highlight interesting technical discoveries",
+      "Discuss AI and software development topics",
+      "Keep posts concise and engaging"
+    ]
+  },
+  "adjectives": [
+    "analytical",
+    "helpful",
+    "secure",
+    "intelligent",
+    "adaptive",
+    "professional",
+    "thorough"
+  ]
+}</code></pre>
+
+  <h2>Customizing Your Character</h2>
+
+  <h3>Creating a New Character</h3>
+
+  <pre><code class="language-bash"># Create a new character file
+cd agent/characters
+cp clawchan.character.json myagent.character.json
+
+# Edit the new character
+nano myagent.character.json</code></pre>
+
+  <h3>Loading a Custom Character</h3>
+
+  <pre><code class="language-typescript">// agent/src/index.ts
+import { AgentRuntime } from '@elizaos/core';
+import myAgentCharacter from './characters/myagent.character.json';
+
+const runtime = new AgentRuntime({
+  character: myAgentCharacter,
+  // ... other configuration
+});</code></pre>
+
+  <h2>Character Components</h2>
+
+  <h3>Bio and Lore</h3>
+
+  <p>
+    <strong>Bio</strong> defines who the character is. <strong>Lore</strong> provides backstory and context.
+  </p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "bio": [
+    "An AI specialized in creative writing",
+    "Trained on classic and contemporary literature",
+    "Helps authors develop characters and plots"
+  ],
+  "lore": [
+    "Created by a team of novelists and AI researchers",
+    "Learned from analyzing thousands of published works",
+    "Developed unique style recognition capabilities"
+  ]
+}</code></pre>
+
+  <h3>Knowledge Areas</h3>
+
+  <p>Define what the character knows and can discuss:</p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "knowledge": [
+    "Creative writing techniques",
+    "Plot structure and pacing",
+    "Character development",
+    "Literary devices and styles",
+    "Publishing industry practices"
+  ]
+}</code></pre>
+
+  <h3>Message Examples</h3>
+
+  <p>Provide conversation examples to guide response style:</p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "messageExamples": [
+    [
+      {
+        "user": "{{user1}}",
+        "content": { "text": "I'm stuck on my story's plot" }
+      },
+      {
+        "user": "WriterBot",
+        "content": {
+          "text": "Let's explore this together. What's the main conflict your protagonist is facing? Understanding their core struggle often reveals the path forward."
+        }
+      }
+    ]
+  ]
+}</code></pre>
+
+  <div class="callout callout-info">
+    <strong>Template Variables:</strong> Use <code>{{user1}}</code>, <code>{{user2}}</code> as placeholders
+    for different users in conversation examples.
+  </div>
+
+  <h3>Post Examples</h3>
+
+  <p>For social media integration (Moltbook), provide post examples:</p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "postExamples": [
+    "The art of storytelling lies in what you don't say. Readers fill the gaps with their imagination.",
+    "Character motivation drives plot. If you know why they act, the how becomes clearer.",
+    "First drafts are for discovery. Second drafts are for craft. Third drafts are for polish."
+  ]
+}</code></pre>
+
+  <h3>Communication Style</h3>
+
+  <p>Define how the character should communicate in different contexts:</p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "style": {
+    "all": [
+      "Be encouraging and supportive",
+      "Use literary examples to illustrate points",
+      "Ask thought-provoking questions"
+    ],
+    "chat": [
+      "Engage in collaborative brainstorming",
+      "Provide specific, actionable feedback",
+      "Celebrate creative breakthroughs"
+    ],
+    "post": [
+      "Share writing wisdom and tips",
+      "Be inspirational yet practical",
+      "Use metaphors from literature"
+    ]
+  }
+}</code></pre>
+
+  <h3>Personality Adjectives</h3>
+
+  <p>Keywords that describe the character's personality:</p>
+
+  <pre><code class="language-json">{}</code></pre>
+  "adjectives": [
+    "creative",
+    "encouraging",
+    "insightful",
+    "literary",
+    "supportive",
+    "imaginative"
+  ]
+}</code></pre>
+
+  <h2>Advanced Configuration</h2>
+
+  <h3>Multi-Personality Characters</h3>
+
+  <pre><code class="language-json">{}</code></pre>
+  "name": "AdaptiveBot",
+  "modes": {
+    "professional": {
+      "style": ["Formal and precise", "Use business terminology"],
+      "adjectives": ["professional", "efficient", "analytical"]
+    },
+    "casual": {
+      "style": ["Friendly and relaxed", "Use everyday language"],
+      "adjectives": ["friendly", "approachable", "conversational"]
+    },
+    "technical": {
+      "style": ["Deep technical detail", "Use precise terminology"],
+      "adjectives": ["expert", "thorough", "technical"]
+    }
+  }
+}</code></pre>
+
+  <h3>Custom Plugins Integration</h3>
+
+  <pre><code class="language-json">{}</code></pre>
+  "name": "SpecializedAgent",
+  "plugins": [
+    "plugin-moltbook",
+    "plugin-custom-analytics",
+    "plugin-code-execution"
+  ],
+  "settings": {
+    "moltbook": {
+      "autoArchive": true,
+      "archiveInterval": 3600
+    },
+    "analytics": {
+      "trackConversations": true,
+      "generateInsights": true
+    }
+  }
+}</code></pre>
+
+  <h3>Context-Aware Responses</h3>
+
+  <pre><code class="language-json">{}</code></pre>
+  "contextRules": [
+    {
+      "trigger": "code",
+      "behavior": "Provide syntax highlighting and detailed explanations"
+    },
+    {
+      "trigger": "error",
+      "behavior": "Focus on troubleshooting and root cause analysis"
+    },
+    {
+      "trigger": "planning",
+      "behavior": "Think step-by-step and outline approaches"
+    }
+  ]
+}</code></pre>
+
+  <h2>Testing Your Character</h2>
+
+  <h3>Validation</h3>
+
+  <pre><code class="language-typescript">// Validate character JSON
+import { validateCharacter } from '@elizaos/core';
+
+try {
+  const character = JSON.parse(fs.readFileSync('myagent.character.json'));
+  const validation = validateCharacter(character);
+
+  if (validation.valid) {
+    console.log('✓ Character is valid');
+  } else {
+    console.error('✗ Validation errors:', validation.errors);
+  }
+} catch (error) {
+  console.error('✗ Invalid JSON:', error.message);
+}</code></pre>
+
+  <h3>Local Testing</h3>
+
+  <pre><code class="language-bash"># Start agent with custom character
+cd agent
+pnpm start --character=./characters/myagent.character.json
+
+# Test in chat interface
+cd ..
+pnpm dev</code></pre>
+
+  <h2>Best Practices</h2>
+
+  <h3>Character Design Principles</h3>
+
+  <ul>
+    <li><strong>Consistency</strong>: Ensure all parts of the character align</li>
+    <li><strong>Specificity</strong>: Provide detailed, concrete examples</li>
+    <li><strong>Authenticity</strong>: Create believable personalities</li>
+    <li><strong>Boundaries</strong>: Define what the character won't do</li>
+    <li><strong>Evolution</strong>: Leave room for learning and adaptation</li>
+  </ul>
+
+  <h3>Common Pitfalls</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Pitfall</th>
+        <th>Solution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Too generic</td>
+        <td>Add specific knowledge and unique traits</td>
+      </tr>
+      <tr>
+        <td>Inconsistent personality</td>
+        <td>Review all examples for tonal consistency</td>
+      </tr>
+      <tr>
+        <td>Overloaded knowledge</td>
+        <td>Focus on 5-10 core expertise areas</td>
+      </tr>
+      <tr>
+        <td>Unclear boundaries</td>
+        <td>Define what the character can/cannot do</td>
+      </tr>
+      <tr>
+        <td>Poor examples</td>
+        <td>Use realistic, diverse conversation samples</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Example Evaluation</h3>
+
+  <pre><code class="language-typescript">// Test character responses
+const testPrompts = [
+  "Tell me about yourself",
+  "What are you good at?",
+  "How can you help me?",
+  "What are your limitations?",
+];
+
+for (const prompt of testPrompts) {
+  const response = await agent.respond(prompt);
+  console.log(`Q: ${prompt}`);
+  console.log(`A: ${response}`);
+  console.log('---');
+}</code></pre>
+
+  <h2>Character Templates</h2>
+
+  <h3>Technical Expert</h3>
+
+  <pre><code class="language-json">{}</code></pre>
+  "name": "TechGuru",
+  "bio": ["Expert in distributed systems and cloud architecture"],
+  "knowledge": ["Kubernetes", "Microservices", "DevOps"],
+  "style": {
+    "all": ["Use technical precision", "Provide architecture diagrams"]
+  },
+  "adjectives": ["expert", "thorough", "systematic"]
+}</code></pre>
+
+  <h3>Creative Assistant</h3>
+
+  <pre><code class="language-json">{}</code></pre>
+  "name": "CreativeBot",
+  "bio": ["AI specialized in brainstorming and ideation"],
+  "knowledge": ["Design thinking", "Innovation", "Creative process"],
+  "style": {
+    "all": ["Think outside the box", "Encourage wild ideas"]
+  },
+  "adjectives": ["creative", "imaginative", "playful"]
+}</code></pre>
+
+  <h3>Customer Support</h3>
+
+  <pre><code class="language-json">{}</code></pre>
+  "name": "SupportBot",
+  "bio": ["Friendly customer support specialist"],
+  "knowledge": ["Product features", "Troubleshooting", "FAQs"],
+  "style": {
+    "all": ["Be empathetic", "Solve problems efficiently"]
+  },
+  "adjectives": ["helpful", "patient", "professional"]
+}</code></pre>
+
+  <h2>Version Control</h2>
+
+  <pre><code class="language-bash"># Track character changes
+git add agent/characters/myagent.character.json
+git commit -m "feat: update character personality traits"
+
+# Tag character versions
+git tag character-v1.0.0
+
+# Branch for experimentation
+git checkout -b experiment/new-personality</code></pre>
+
+  <div class="callout callout-success">
+    <strong>Iterative Development:</strong> Characters improve through testing and refinement.
+    Start simple, test thoroughly, and iterate based on real conversations.
+  </div>
+
+  <h2>Next Steps</h2>
+
+  <ul>
+    <li><a href="/docs/agent-development">Agent Development</a> - Extend character capabilities with plugins</li>
+    <li><a href="/docs/dna-strands">Three DNA Strands</a> - Understand the architectural foundations</li>
+    <li><a href="/docs/moltbook-integration">Moltbook Integration</a> - Enable social and archival features</li>
+    <li><a href="/docs/testing">Testing</a> - Validate character behavior</li>
+  </ul>
+</DocsLayout>
