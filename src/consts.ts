@@ -28,7 +28,7 @@ export const CHAT_DROPDOWN = [
   {
     href: '/chat/ai',
     label: 'AI Agent',
-    description: 'Chat langsung dengan Groq LLM',
+    description: 'Direct chat powered by Groq LLM',
   },
   {
     href: '/chat/eliza',
