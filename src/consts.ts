@@ -19,12 +19,21 @@ export const NAV_LINKS: SocialLink[] = [
     label: 'Home',
   },
   {
-    href: CLAWCHAN_CHAT_URL,
-    label: 'Chat',
-  },
-  {
     href: '/docs',
     label: 'Docs',
+  },
+]
+
+export const CHAT_DROPDOWN = [
+  {
+    href: '/chat/ai',
+    label: 'AI Agent',
+    description: 'Chat langsung dengan Groq LLM',
+  },
+  {
+    href: '/chat/eliza',
+    label: 'ElizaCloud',
+    description: 'Chat via ElizaCloud platform',
   },
 ]
 

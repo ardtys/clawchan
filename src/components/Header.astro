@@ -1,6 +1,6 @@
 ---
 import Link from '@/components/Link.astro'
-import { NAV_LINKS } from '@/consts'
+import { NAV_LINKS, CHAT_DROPDOWN } from '@/consts'
 import { cn } from '@/lib/utils'
 ---
 
@@ -47,6 +47,43 @@ import { cn } from '@/lib/utils'
             </Link>
           ))
         }
+
+        <!-- Chat Dropdown -->
+        <div class="relative group">
+          <button
+            class="nav-link text-muted-foreground hover:text-cyan-glow transition-all duration-300 relative terminal-prompt tracking-wide uppercase text-xs font-medium flex items-center gap-1"
+            type="button"
+          >
+            <span class="glitch-on-hover">Chat</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="absolute top-full right-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="bg-void-black/95 border border-cyan-glow/30 backdrop-blur-xl rounded-lg overflow-hidden shadow-lg shadow-cyan-glow/10">
+              {
+                CHAT_DROPDOWN.map((item, index) => (
+                  <a
+                    href={item.href}
+                    class={cn(
+                      'block px-4 py-3 hover:bg-cyan-glow/10 transition-colors',
+                      index !== CHAT_DROPDOWN.length - 1 && 'border-b border-cyan-glow/10'
+                    )}
+                  >
+                    <div class="text-xs font-medium text-cyan-glow uppercase tracking-wide">
+                      {item.label}
+                    </div>
+                    <div class="text-[10px] text-muted-foreground mt-0.5">
+                      {item.description}
+                    </div>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
       </nav>
 
       <!-- Status Indicator -->
