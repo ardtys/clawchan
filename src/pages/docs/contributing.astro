@@ -1,0 +1,162 @@
+---
+import DocsLayout from '@/layouts/DocsLayout.astro'
+import { Icon } from 'astro-icon/components'
+---
+
+<DocsLayout title="Contributing">
+  <h1>Contributing to ClawChan</h1>
+  <p class="text-xl text-foreground/80 mt-2">
+    Thank you for your interest in contributing to ClawChan! This guide will help you get started.
+  </p>
+
+  <div class="callout callout-info mt-6">
+    <div class="callout-title">
+      <Icon name="lucide:heart" class="size-5" />
+      We Welcome Contributions!
+    </div>
+    <p class="text-sm">
+      Whether you're fixing bugs, adding features, improving documentation, or sharing ideas - every contribution matters.
+    </p>
+  </div>
+
+  <h2>Ways to Contribute</h2>
+
+  <div class="grid gap-4 sm:grid-cols-2 my-6">
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:bug" class="text-red-500 size-5" />
+        <h3 class="text-base font-bold mb-0">Report Bugs</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Found a bug? Open an issue on GitHub with detailed reproduction steps.</p>
+    </div>
+
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:lightbulb" class="text-warm-gold size-5" />
+        <h3 class="text-base font-bold mb-0">Suggest Features</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Have an idea? Share it in GitHub Discussions or open a feature request.</p>
+    </div>
+
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:code-2" class="text-cyan-glow size-5" />
+        <h3 class="text-base font-bold mb-0">Submit Code</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Fix bugs, add features, or improve existing code via pull requests.</p>
+    </div>
+
+    <div class="bento-card p-5">
+      <div class="flex items-center gap-2 mb-3">
+        <Icon name="lucide:book-open" class="text-amber size-5" />
+        <h3 class="text-base font-bold mb-0">Improve Docs</h3>
+      </div>
+      <p class="text-sm text-muted-foreground">Help improve documentation, fix typos, or add examples.</p>
+    </div>
+  </div>
+
+  <h2>Getting Started</h2>
+
+  <h3>1. Fork the Repository</h3>
+
+  <div class="code-block">
+    <div class="code-block-header">
+      <span class="code-block-lang">Bash</span>
+    </div>
+    <pre><code># Fork on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/clawchan.git
+cd clawchan
+
+# Add upstream remote
+git remote add upstream https://github.com/ardtys/clawchan.git</code></pre>
+  </div>
+
+  <h3>2. Create a Branch</h3>
+
+  <div class="code-block">
+    <div class="code-block-header">
+      <span class="code-block-lang">Bash</span>
+    </div>
+    <pre><code># Create a new branch for your feature/fix
+git checkout -b feature/your-feature-name
+
+# Or for bug fixes
+git checkout -b fix/bug-description</code></pre>
+  </div>
+
+  <h3>3. Make Your Changes</h3>
+
+  <ul>
+    <li>Write clean, readable code</li>
+    <li>Follow existing code style and conventions</li>
+    <li>Add comments where necessary</li>
+    <li>Update documentation if needed</li>
+  </ul>
+
+  <h3>4. Test Your Changes</h3>
+
+  <div class="code-block">
+    <div class="code-block-header">
+      <span class="code-block-lang">Bash</span>
+    </div>
+    <pre><code># Run development server
+npm run dev
+
+# Build to check for errors
+npm run build</code></pre>
+  </div>
+
+  <h3>5. Submit a Pull Request</h3>
+
+  <div class="code-block">
+    <div class="code-block-header">
+      <span class="code-block-lang">Bash</span>
+    </div>
+    <pre><code># Commit your changes
+git add .
+git commit -m "feat: add your feature description"
+
+# Push to your fork
+git push origin feature/your-feature-name</code></pre>
+  </div>
+
+  <p>Then open a Pull Request on GitHub with:</p>
+  <ul>
+    <li>Clear title describing the change</li>
+    <li>Description of what was changed and why</li>
+    <li>Link to related issues (if any)</li>
+  </ul>
+
+  <h2>Commit Message Guidelines</h2>
+
+  <p>We follow conventional commits:</p>
+
+  <div class="code-block">
+    <pre><code>feat: add new feature
+fix: fix a bug
+docs: update documentation
+style: formatting changes
+refactor: code refactoring
+test: add or update tests
+chore: maintenance tasks</code></pre>
+  </div>
+
+  <h2>Code of Conduct</h2>
+
+  <div class="bento-card p-6 my-6">
+    <p class="text-sm">
+      Be respectful, inclusive, and constructive. We're all here to build something great together.
+      Harassment, discrimination, or disrespectful behavior will not be tolerated.
+    </p>
+  </div>
+
+  <div class="callout callout-success mt-8">
+    <div class="callout-title">
+      <Icon name="lucide:sparkles" class="size-5" />
+      Thank You!
+    </div>
+    <p class="text-sm">
+      Your contributions help make ClawChan better for everyone. Welcome to the Digital Void!
+    </p>
+  </div>
+</DocsLayout>
