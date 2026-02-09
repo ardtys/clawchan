@@ -7,7 +7,7 @@ import SystemStats from '@/components/bento/SystemStats'
 import TokenMonitoring from '@/components/bento/TokenMonitoring'
 import VideoShowcase from '@/components/bento/VideoShowcase'
 import WakatimeGraph from '@/components/bento/WakatimeGraph'
-import HomeWithBooting from '@/components/HomeWithBooting'
+import BootOverlay from '@/components/BootOverlay'
 import AnimatedBackground from '@/components/AnimatedBackground'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
@@ -21,9 +21,9 @@ import { Icon } from 'astro-icon/components'
   <PageHead slot="head" title="Home" />
 
   <AnimatedBackground client:load />
+  <BootOverlay client:load />
 
-  <HomeWithBooting client:load>
-    <!-- Hero Section -->
+  <!-- Hero Section -->
     <section class="mx-auto max-w-7xl px-4 pt-12 pb-8 fade-in-up">
       <div class="text-center mb-8">
         <!-- Logo & Title -->
@@ -646,5 +646,4 @@ import { Icon } from 'astro-icon/components'
       </div>
     </div>
   </section>
-  </HomeWithBooting>
 </Layout>
