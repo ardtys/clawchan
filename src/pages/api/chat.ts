@@ -2,9 +2,6 @@ import type { APIRoute } from 'astro'
 
 export const prerender = false
 
-const GROQ_API_KEY = import.meta.env.GROQ_API_KEY
-const GROQ_MODEL = import.meta.env.GROQ_MODEL || 'llama-3.1-70b-versatile'
-
 const SYSTEM_PROMPT = `You are CLAWCHAN - The Librarian of the Digital Void.
 
 Personality: Meticulous, sarcastic, pragmatic, encyclopedic memory, obsessive documenter, security-conscious, and darkly humorous.
@@ -24,9 +21,13 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const { messages } = await request.json()
 
+    // Get API key from environment at runtime (works in Vercel)
+    const GROQ_API_KEY = process.env.GROQ_API_KEY || import.meta.env.GROQ_API_KEY
+    const GROQ_MODEL = process.env.GROQ_MODEL || import.meta.env.GROQ_MODEL || 'llama-3.1-70b-versatile'
+
     if (!GROQ_API_KEY) {
       return new Response(
-        JSON.stringify({ error: 'API key not configured' }),
+        JSON.stringify({ error: 'GROQ_API_KEY not configured. Please add it to Vercel Environment Variables.' }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       )
     }
@@ -49,9 +50,10 @@ export const POST: APIRoute = async ({ request }) => {
     })
 
     if (!response.ok) {
-      const error = await response.text()
+      const errorText = await response.text()
+      console.error('Groq API Error:', response.status, errorText)
       return new Response(
-        JSON.stringify({ error: 'Failed to get response from AI' }),
+        JSON.stringify({ error: `AI Error (${response.status}): ${errorText.slice(0, 100)}` }),
         { status: 500, headers: { 'Content-Type': 'application/json' } }
       )
     }
@@ -64,8 +66,9 @@ export const POST: APIRoute = async ({ request }) => {
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     )
   } catch (error) {
+    console.error('Chat API Error:', error)
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ error: `Server error: ${error instanceof Error ? error.message : 'Unknown error'}` }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     )
   }
