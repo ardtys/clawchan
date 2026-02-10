@@ -281,14 +281,14 @@ const roadmap = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {roadmap.map((phase, index) => (
-        <div class={`bento-card p-6 hover-lift relative ${phase.status === 'in-progress' ? 'border-2 border-cyan-glow/50' : ''}`}>
+        <div class={`bento-card p-6 hover-lift relative overflow-visible ${phase.status === 'in-progress' ? 'border-2 border-cyan-glow/50' : ''}`}>
           {/* Status Badge */}
-          <div class={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-[10px] font-mono uppercase tracking-wider rounded-full ${
+          <div class={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-[10px] font-mono uppercase tracking-wider rounded-full whitespace-nowrap z-10 ${
             phase.status === 'in-progress'
               ? 'bg-cyan-glow text-background font-bold animate-pulse'
               : 'bg-muted text-muted-foreground'
           }`}>
-            {phase.status === 'in-progress' ? '● In Progress' : 'Upcoming'}
+            {phase.status === 'in-progress' ? 'In Progress' : 'Upcoming'}
           </div>
 
           {/* Quarter Header */}
