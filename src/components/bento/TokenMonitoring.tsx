@@ -18,11 +18,8 @@ interface TokenData {
 
 // Real contract addresses for tokens
 const TOKEN_CONTRACTS = {
-  // Solana tokens
-  elizaOS: 'DuMbhu7mvQvqQHGcnikDgb4XegXJRyhUBfdU22uELiZA',
-  clawchanSol: '3naeJLbMzPL23ocgDLUDoHwH1S7Hk5Fx83joThHwBAGS',
   // Base chain tokens
-  clawchanBase: '0x51b6fda0038c00ca619faf8b2601a1861f8bcf16',
+  clawchan: '0x51b6fda0038c00ca619faf8b2601a1861f8bcf16',
 }
 
 const TokenMonitoring = () => {
@@ -42,18 +39,10 @@ const TokenMonitoring = () => {
     const fetchTokenData = async () => {
       try {
         console.log('Fetching token data...')
-        // Fetch ElizaOS, CLAWCHAN (Solana), and CLAWCHAN (Base) token data from DexScreener
-        const [elizaResponse, clawchanSolResponse, clawchanBaseResponse] = await Promise.all([
-          fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_CONTRACTS.elizaOS}`),
-          fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_CONTRACTS.clawchanSol}`),
-          fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_CONTRACTS.clawchanBase}`)
-        ])
-        const elizaData = await elizaResponse.json()
-        const clawchanSolData = await clawchanSolResponse.json()
-        const clawchanBaseData = await clawchanBaseResponse.json()
-        console.log('ElizaOS data:', elizaData)
-        console.log('CLAWCHAN (Solana) data:', clawchanSolData)
-        console.log('CLAWCHAN (Base) data:', clawchanBaseData)
+        // Fetch CLAWCHAN (Base) token data from DexScreener
+        const response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${TOKEN_CONTRACTS.clawchan}`)
+        const clawchanData = await response.json()
+        console.log('CLAWCHAN (Base) data:', clawchanData)
 
         const formatNumber = (num: number): string => {
           if (num >= 1e9) return `$${(num / 1e9).toFixed(2)}B`
@@ -69,63 +58,23 @@ const TokenMonitoring = () => {
 
         const newTokens: TokenData[] = []
 
-        // Process CLAWCHAN (Base) data - prioritize first
-        if (clawchanBaseData.pairs && clawchanBaseData.pairs.length > 0) {
-          const pair = clawchanBaseData.pairs[0]
+        // Process CLAWCHAN (Base) data
+        if (clawchanData.pairs && clawchanData.pairs.length > 0) {
+          const pair = clawchanData.pairs[0]
           newTokens.push({
             name: 'CLAWCHAN',
             symbol: '$CLAWCHAN',
             logo: '/clawchan-logo.png',
             badge: 'BASE CHAIN',
             badgeColor: 'cyan-glow',
-            contractAddress: TOKEN_CONTRACTS.clawchanBase,
+            contractAddress: TOKEN_CONTRACTS.clawchan,
             price: formatPrice(parseFloat(pair.priceUsd || '0')),
             mcap: formatNumber(parseFloat(pair.fdv || '0')),
             priceChange: `${parseFloat(pair.priceChange?.h24 || '0').toFixed(2)}%`,
             holders: 'N/A',
             liquidity: formatNumber(parseFloat(pair.liquidity?.usd || '0')),
             isPositive: parseFloat(pair.priceChange?.h24 || '0') >= 0,
-            dexScreenerUrl: `https://dexscreener.com/base/${TOKEN_CONTRACTS.clawchanBase}`,
-          })
-        }
-
-        // Process CLAWCHAN (Solana) data
-        if (clawchanSolData.pairs && clawchanSolData.pairs.length > 0) {
-          const pair = clawchanSolData.pairs[0]
-          newTokens.push({
-            name: 'CLAWCHAN',
-            symbol: '$CLAWCHAN',
-            logo: '/clawchan-logo.png',
-            badge: 'SOLANA',
-            badgeColor: 'amber',
-            contractAddress: TOKEN_CONTRACTS.clawchanSol.slice(0, 20) + '...',
-            price: formatPrice(parseFloat(pair.priceUsd || '0')),
-            mcap: formatNumber(parseFloat(pair.fdv || '0')),
-            priceChange: `${parseFloat(pair.priceChange?.h24 || '0').toFixed(2)}%`,
-            holders: 'N/A',
-            liquidity: formatNumber(parseFloat(pair.liquidity?.usd || '0')),
-            isPositive: parseFloat(pair.priceChange?.h24 || '0') >= 0,
-            dexScreenerUrl: 'https://dexscreener.com/solana/3naeJLbMzPL23ocgDLUDoHwH1S7Hk5Fx83joThHwBAGS',
-          })
-        }
-
-        // Process ElizaOS data
-        if (elizaData.pairs && elizaData.pairs.length > 0) {
-          const pair = elizaData.pairs[0]
-          newTokens.push({
-            name: 'elizaOS',
-            symbol: '$elizaOS',
-            logo: '/eliza-token.png',
-            badge: 'SOLANA',
-            badgeColor: 'warm-gold',
-            contractAddress: TOKEN_CONTRACTS.elizaOS.slice(0, 27) + '...',
-            price: formatPrice(parseFloat(pair.priceUsd || '0')),
-            mcap: formatNumber(parseFloat(pair.fdv || '0')),
-            priceChange: `${parseFloat(pair.priceChange?.h24 || '0').toFixed(2)}%`,
-            holders: 'N/A',
-            liquidity: formatNumber(parseFloat(pair.liquidity?.usd || '0')),
-            isPositive: parseFloat(pair.priceChange?.h24 || '0') >= 0,
-            dexScreenerUrl: 'https://dexscreener.com/solana/cgp7xjsfxsyawnjq65v1mruvf3lp65fkeymsgdmbs4tc',
+            dexScreenerUrl: `https://dexscreener.com/base/${TOKEN_CONTRACTS.clawchan}`,
           })
         }
 
@@ -142,44 +91,14 @@ const TokenMonitoring = () => {
               logo: '/clawchan-logo.png',
               badge: 'BASE CHAIN',
               badgeColor: 'cyan-glow',
-              contractAddress: TOKEN_CONTRACTS.clawchanBase,
+              contractAddress: TOKEN_CONTRACTS.clawchan,
               price: '$0.00000000',
               mcap: '$0.00',
               priceChange: '0.00%',
               holders: 'N/A',
               liquidity: '$0.00',
               isPositive: true,
-              dexScreenerUrl: `https://dexscreener.com/base/${TOKEN_CONTRACTS.clawchanBase}`,
-            },
-            {
-              name: 'CLAWCHAN',
-              symbol: '$CLAWCHAN',
-              logo: '/clawchan-logo.png',
-              badge: 'SOLANA',
-              badgeColor: 'amber',
-              contractAddress: TOKEN_CONTRACTS.clawchanSol.slice(0, 20) + '...',
-              price: '$0.00000000',
-              mcap: '$0.00',
-              priceChange: '0.00%',
-              holders: 'N/A',
-              liquidity: '$0.00',
-              isPositive: true,
-              dexScreenerUrl: 'https://dexscreener.com/solana/3naeJLbMzPL23ocgDLUDoHwH1S7Hk5Fx83joThHwBAGS',
-            },
-            {
-              name: 'elizaOS',
-              symbol: '$elizaOS',
-              logo: '/eliza-token.png',
-              badge: 'SOLANA',
-              badgeColor: 'warm-gold',
-              contractAddress: TOKEN_CONTRACTS.elizaOS.slice(0, 27) + '...',
-              price: '$0.00285602',
-              mcap: '$27.60M',
-              priceChange: '-4.82%',
-              holders: '6,053',
-              liquidity: '$343.70K',
-              isPositive: false,
-              dexScreenerUrl: 'https://dexscreener.com/solana/cgp7xjsfxsyawnjq65v1mruvf3lp65fkeymsgdmbs4tc',
+              dexScreenerUrl: `https://dexscreener.com/base/${TOKEN_CONTRACTS.clawchan}`,
             },
           ])
         }
@@ -194,44 +113,14 @@ const TokenMonitoring = () => {
             logo: '/clawchan-logo.png',
             badge: 'BASE CHAIN',
             badgeColor: 'cyan-glow',
-            contractAddress: TOKEN_CONTRACTS.clawchanBase,
+            contractAddress: TOKEN_CONTRACTS.clawchan,
             price: '$0.00000000',
             mcap: '$0.00',
             priceChange: '0.00%',
             holders: 'N/A',
             liquidity: '$0.00',
             isPositive: true,
-            dexScreenerUrl: `https://dexscreener.com/base/${TOKEN_CONTRACTS.clawchanBase}`,
-          },
-          {
-            name: 'CLAWCHAN',
-            symbol: '$CLAWCHAN',
-            logo: '/clawchan-logo.png',
-            badge: 'SOLANA',
-            badgeColor: 'amber',
-            contractAddress: TOKEN_CONTRACTS.clawchanSol.slice(0, 20) + '...',
-            price: '$0.00000000',
-            mcap: '$0.00',
-            priceChange: '0.00%',
-            holders: 'N/A',
-            liquidity: '$0.00',
-            isPositive: true,
-            dexScreenerUrl: 'https://dexscreener.com/solana/3naeJLbMzPL23ocgDLUDoHwH1S7Hk5Fx83joThHwBAGS',
-          },
-          {
-            name: 'elizaOS',
-            symbol: '$elizaOS',
-            logo: '/eliza-token.png',
-            badge: 'SOLANA',
-            badgeColor: 'warm-gold',
-            contractAddress: TOKEN_CONTRACTS.elizaOS.slice(0, 27) + '...',
-            price: '$0.00285602',
-            mcap: '$27.60M',
-            priceChange: '-4.82%',
-            holders: '6,053',
-            liquidity: '$343.70K',
-            isPositive: false,
-            dexScreenerUrl: 'https://dexscreener.com/solana/cgp7xjsfxsyawnjq65v1mruvf3lp65fkeymsgdmbs4tc',
+            dexScreenerUrl: `https://dexscreener.com/base/${TOKEN_CONTRACTS.clawchan}`,
           },
         ])
         setIsLoading(false)
@@ -261,10 +150,8 @@ const TokenMonitoring = () => {
           </div>
           <div className="h-4 w-32 animate-pulse rounded bg-muted/30" />
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-80 animate-pulse rounded-xl bg-muted/30" />
-          ))}
+        <div className="grid gap-4">
+          <div className="h-80 animate-pulse rounded-xl bg-muted/30" />
         </div>
       </div>
     )
@@ -290,8 +177,8 @@ const TokenMonitoring = () => {
         </p>
       </div>
 
-      {/* Token Cards Grid */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Token Card */}
+      <div className="grid gap-4">
         {tokens.map((token, index) => {
           const CardWrapper = token.dexScreenerUrl ? 'a' : 'div'
           const cardProps = token.dexScreenerUrl
