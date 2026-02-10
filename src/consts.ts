@@ -39,16 +39,8 @@ export const CHAT_DROPDOWN = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: 'https://x.com/clawchan',
+    href: 'https://x.com/ai16zclawchan',
     label: 'Twitter',
-  },
-  {
-    href: 'https://bags.fm/clawchan',
-    label: 'Bags',
-  },
-  {
-    href: 'https://github.com/clawchan',
-    label: 'GitHub',
   },
 ]
 
