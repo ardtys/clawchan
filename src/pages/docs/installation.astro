@@ -4,542 +4,69 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <DocsLayout title="Installation">
-  <h1>Installation Guide</h1>
-  <p class="text-xl text-foreground/80 mt-2">
-    Complete step-by-step guide to install and set up ClawChan on your local machine or server.
-  </p>
+  <h1>Installation</h1>
+  <p class="text-xl text-foreground/80 mt-2">Step-by-step installation guide for ClawChan.</p>
 
-  <div class="callout callout-info mt-6">
+  <h2>Overview</h2>
+  <p>This guide covers the complete installation process for ClawChan, including all dependencies and configuration steps.</p>
+
+  <h3>System Requirements</h3>
+  <ul>
+    <li>Node.js 18.0 or higher</li>
+    <li>npm 9.0+ or pnpm 8.0+</li>
+    <li>Git 2.30+</li>
+    <li>At least 2GB free disk space</li>
+    <li>Stable internet connection</li>
+  </ul>
+
+  <h3>Installation Steps</h3>
+  <p>Follow these steps to install ClawChan:</p>
+  <ul>
+    <li>Clone the repository from GitHub</li>
+    <li>Enter the project directory</li>
+    <li>Install dependencies with npm install or pnpm install</li>
+    <li>Copy the environment file: cp .env.example .env</li>
+    <li>Edit .env and add your API keys</li>
+  </ul>
+
+  <h3>Verify Installation</h3>
+  <ul>
+    <li>Run npm run dev to start the development server</li>
+    <li>Open http://localhost:1234 in your browser</li>
+    <li>You should see the ClawChan interface</li>
+    <li>Test by typing a message in the terminal</li>
+  </ul>
+
+  <h3>Common Installation Issues</h3>
+  <ul>
+    <li>Node version mismatch - Use nvm to install Node.js 18+</li>
+    <li>Permission errors - Avoid using sudo with npm</li>
+    <li>Package conflicts - Delete node_modules and reinstall</li>
+    <li>Port in use - Change the port in .env or stop conflicting services</li>
+  </ul>
+
+  <h3>Optional Dependencies</h3>
+  <ul>
+    <li>Docker - For containerized deployment</li>
+    <li>PM2 - For production process management</li>
+    <li>Nginx - For reverse proxy configuration</li>
+  </ul>
+
+  <h3>Updating ClawChan</h3>
+  <ul>
+    <li>Pull latest changes with git pull origin main</li>
+    <li>Update dependencies with npm install</li>
+    <li>Rebuild if necessary with npm run build</li>
+    <li>Restart the development server</li>
+  </ul>
+
+  <div class="callout callout-info mt-8">
     <div class="callout-title">
-      <Icon name="lucide:clock" class="size-5" />
-      Estimated Time
+      <Icon name="lucide:info" class="size-5" />
+      Documentation Coming Soon
     </div>
     <p class="text-sm">
-      This installation should take approximately **15-20 minutes** depending on your internet connection and system performance.
-    </p>
-  </div>
-
-  ## System Requirements
-
-  ### Minimum Requirements
-
-  | Component | Requirement |
-  |-----------|-------------|
-  | **Operating System** | Windows 10+, macOS 10.15+, or Linux (Ubuntu 20.04+) |
-  | **CPU** | 2 cores, 2.0 GHz |
-  | **RAM** | 4 GB |
-  | **Storage** | 2 GB free space |
-  | **Node.js** | v18.0.0 or higher |
-  | **npm** | v9.0.0 or higher |
-
-  ### Recommended Requirements
-
-  | Component | Requirement |
-  |-----------|-------------|
-  | **CPU** | 4+ cores, 3.0+ GHz |
-  | **RAM** | 8 GB+ |
-  | **Storage** | 5 GB+ SSD |
-
-  <div class="callout callout-warning">
-    <div class="callout-title">
-      <Icon name="lucide:alert-triangle" class="size-5" />
-      Node.js Version
-    </div>
-    <p class="text-sm">
-      ClawChan requires **Node.js v18** or higher. Using an older version will cause compatibility issues with ElizaOS and Astro. Check your version with <code>node --version</code>.
-    </p>
-  </div>
-
-  ## Step 1: Install Prerequisites
-
-  ### Install Node.js
-
-  **Windows & macOS:**
-  1. Visit [https://nodejs.org](https://nodejs.org)
-  2. Download the LTS (Long Term Support) version
-  3. Run the installer and follow the prompts
-  4. Verify installation:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code>node --version  # Should show v18.0.0 or higher
-npm --version   # Should show v9.0.0 or higher</code></pre>
-  </div>
-
-  **Linux (Ubuntu/Debian):**
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Using NodeSource repository
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
-# Verify installation
-node --version
-npm --version</code></pre>
-  </div>
-
-  **Linux (Using nvm - Recommended):**
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-
-# Reload shell configuration
-source ~/.bashrc  # or ~/.zshrc for zsh
-
-# Install Node.js LTS
-nvm install --lts
-nvm use --lts
-
-# Verify
-node --version</code></pre>
-  </div>
-
-  ### Install Git
-
-  **Windows:**
-  - Download from [https://git-scm.com/download/win](https://git-scm.com/download/win)
-  - Run installer with default options
-
-  **macOS:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Using Homebrew
-brew install git
-
-# Or use Xcode Command Line Tools
-xcode-select --install</code></pre>
-  </div>
-
-  **Linux:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Ubuntu/Debian
-sudo apt-get update
-sudo apt-get install git
-
-# Fedora
-sudo dnf install git
-
-# Arch Linux
-sudo pacman -S git</code></pre>
-  </div>
-
-  ## Step 2: Clone the Repository
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Clone via HTTPS
-git clone https://github.com/your-username/clawchan.git
-
-# Or via SSH (if you have SSH keys set up)
-git clone git@github.com:your-username/clawchan.git
-
-# Navigate into the project
-cd clawchan</code></pre>
-  </div>
-
-  <div class="callout callout-info">
-    <div class="callout-title">
-      <Icon name="lucide:folder" class="size-5" />
-      Project Location
-    </div>
-    <p class="text-sm">
-      Choose a project location with no spaces in the path. Recommended: <code>~/projects/clawchan</code> (Linux/macOS) or <code>C:\projects\clawchan</code> (Windows).
-    </p>
-  </div>
-
-  ## Step 3: Install Dependencies
-
-  ClawChan uses npm for package management. Install all required dependencies:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Install all dependencies (may take 2-5 minutes)
-npm install
-
-# Or use pnpm for faster installation
-npm install -g pnpm  # Install pnpm globally first
-pnpm install</code></pre>
-  </div>
-
-  This will install:
-  - **Astro** v5.16.6 - Frontend framework
-  - **React** v18 - UI components
-  - **ElizaOS** - Agent runtime
-  - **@elizaos/plugin-moltbook** - Moltbook integration
-  - **Tailwind CSS** - Styling framework
-  - **TypeScript** - Type safety
-  - And 200+ other dependencies
-
-  <div class="callout callout-warning">
-    <div class="callout-title">
-      <Icon name="lucide:wifi-off" class="size-5" />
-      Network Issues
-    </div>
-    <p class="text-sm">
-      If installation fails due to network issues, try:<br>
-      <code>npm install --registry https://registry.npmmirror.com</code><br>
-      Or configure npm to use a different registry: <code>npm config set registry https://registry.npmjs.org/</code>
-    </p>
-  </div>
-
-  ## Step 4: Environment Configuration
-
-  ### Create Environment File
-
-  Copy the example environment file and customize it:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Copy example file
-cp .env.example .env
-
-# Or on Windows
-copy .env.example .env</code></pre>
-  </div>
-
-  ### Configure Environment Variables
-
-  Open `.env` in your favorite text editor and configure the following:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Environment Variables</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># ============================================
-# Groq LLM Configuration
-# ============================================
-# Get your API key from: https://console.groq.com
-GROQ_API_KEY=gsk_your_groq_api_key_here
-LLM_API_KEY=gsk_your_groq_api_key_here  # Same as above
-
-# Model configuration
-MODEL_PROVIDER=groq
-GROQ_MODEL=llama-3.1-70b-versatile  # or llama-3.1-8b-instant for faster responses
-GROQ_API_BASE_URL=https://api.groq.com/openai/v1
-
-# ============================================
-# Moltbook Integration (Optional)
-# ============================================
-# Register your agent at: https://moltbook.com
-MOLTBOOK_TOKEN=moltbook_sk_your_token_here
-MOLTBOOK_AGENT_NAME=ClawChan
-
-# Autonomous mode (true/false)
-MOLTBOOK_AUTONOMOUS_MODE=true
-
-# Agent personality
-MOLTBOOK_PERSONALITY=The Librarian of the Digital Void. Meticulous guardian combining Moltbook's documentation obsession, OpenClaw's pragmatic protection, and ElizaOS's adaptive intelligence.
-
-# Model for Moltbook
-MOLTBOOK_MODEL=llama-3.1-70b-versatile
-
-# Maximum steps for autonomous mode (optional)
-MOLTBOOK_AUTONOMY_MAX_STEPS=10
-
-# ============================================
-# Server Configuration
-# ============================================
-SERVER_URL=http://localhost:3000
-
-# ============================================
-# Optional: Other LLM Providers
-# ============================================
-# OPENAI_API_KEY=sk_your_openai_key
-# ANTHROPIC_API_KEY=sk_your_anthropic_key</code></pre>
-  </div>
-
-  <div class="callout callout-danger">
-    <div class="callout-title">
-      <Icon name="lucide:shield-alert" class="size-5" />
-      Security Warning
-    </div>
-    <p class="text-sm">
-      **Never commit `.env` to Git!** The `.gitignore` file is already configured to exclude it, but double-check before pushing to any repository. API keys are sensitive credentials that can lead to unauthorized access and charges.
-    </p>
-  </div>
-
-  ### Get API Keys
-
-  #### 1. Groq API Key (Required)
-
-  1. Visit [https://console.groq.com](https://console.groq.com)
-  2. Sign up or log in with your account
-  3. Navigate to **API Keys** section
-  4. Click **Create API Key**
-  5. Give it a name (e.g., "ClawChan Development")
-  6. Copy the key and paste it into your `.env` file
-
-  **Free Tier Limits:**
-  - 30 requests per minute
-  - 14,400 requests per day
-  - Sufficient for development and small-scale deployment
-
-  #### 2. Moltbook Token (Optional)
-
-  For detailed Moltbook setup, see the [Moltbook Integration guide](/docs/moltbook-integration).
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Quick Moltbook registration
-node register-moltbook.mjs</code></pre>
-  </div>
-
-  ## Step 5: Build and Run
-
-  ### Development Mode
-
-  Start the development server with hot-reload:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Terminal 1: Start frontend development server
-npm run dev
-
-# Terminal 2: Start agent in development mode
-npm run agent:dev</code></pre>
-  </div>
-
-  The frontend will be available at:
-  - **Local**: `http://localhost:1234`
-  - **Network**: `http://[your-ip]:1234`
-
-  <div class="callout callout-success">
-    <div class="callout-title">
-      <Icon name="lucide:check-circle" class="size-5" />
-      Development Server Running
-    </div>
-    <p class="text-sm">
-      If you see the Astro logo and "ready in Xms", your frontend is running! If you see agent logs with "ClawChan Agent is now running", your agent is ready!
-    </p>
-  </div>
-
-  ### Production Build
-
-  Build for production deployment:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Build frontend
-npm run build
-
-# Preview production build
-npm run preview
-
-# Start production agent
-npm run agent</code></pre>
-  </div>
-
-  ## Step 6: Verify Installation
-
-  ### Frontend Verification
-
-  Visit `http://localhost:1234` and check:
-  - ✅ Homepage loads with ClawChan branding
-  - ✅ Video showcase autoplays (muted)
-  - ✅ Navigation links work (Docs, Chat)
-  - ✅ Dark theme with cyan/gold accents displays correctly
-
-  ### Agent Verification
-
-  Check the agent terminal for:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Expected Output</span>
-    </div>
-    <pre><code>✅ Character: ClawChan
-✅ LLM Provider: GROQ
-✅ API Key: gsk_YUsm...
-🔧 Configuration:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📛 Agent Name: ClawChan
-🤖 Autonomous Mode: true
-🧠 LLM Provider: GROQ
-📊 Model: llama-3.1-70b-versatile
-🦞 Moltbook Token: ✅ Set
-🔑 LLM API Key: ✅ Set
-⚡ Groq Base URL: https://api.groq.com/openai/v1
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ ClawChan Agent is now running with Moltbook integration!</code></pre>
-  </div>
-
-  ### Chat Terminal Verification
-
-  1. Navigate to `/chat` page
-  2. Type `gm` or `/help` in the terminal
-  3. ClawChan should respond within 1-2 seconds
-  4. Try commands like `/status`, `/vault`, `/whoami`
-
-  ## Troubleshooting
-
-  ### Common Issues
-
-  #### Port Already in Use
-
-  **Error:** `Port 1234 is already in use`
-
-  **Solution:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Find process using port 1234
-# Windows
-netstat -ano | findstr :1234
-taskkill /PID [PID_NUMBER] /F
-
-# Linux/macOS
-lsof -i :1234
-kill -9 [PID]
-
-# Or change port in astro.config.mjs
-server: {
-  port: 3000  // Use different port
-}</code></pre>
-  </div>
-
-  #### Module Not Found Errors
-
-  **Error:** `Cannot find module '@elizaos/core'`
-
-  **Solution:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Delete node_modules and package-lock.json
-rm -rf node_modules package-lock.json
-
-# Clear npm cache
-npm cache clean --force
-
-# Reinstall dependencies
-npm install</code></pre>
-  </div>
-
-  #### Groq API Key Invalid
-
-  **Error:** `GROQ_API_KEY is invalid`
-
-  **Solution:**
-  1. Verify API key in `.env` file
-  2. Check for extra spaces or quotes
-  3. Ensure key starts with `gsk_`
-  4. Generate a new key at [console.groq.com](https://console.groq.com)
-
-  #### Agent Character Loading Failed
-
-  **Error:** `Failed to load character`
-
-  **Solution:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Verify character file exists
-ls agent/characters/clawchan.character.json
-
-# Check JSON syntax
-node -e "console.log(JSON.parse(require('fs').readFileSync('agent/characters/clawchan.character.json', 'utf-8')))"</code></pre>
-  </div>
-
-  #### TypeScript Errors
-
-  **Error:** Various TypeScript compilation errors
-
-  **Solution:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Check TypeScript version
-npx tsc --version  # Should be 5.x
-
-# Regenerate types
-npm run astro sync
-
-# If still failing, clean and rebuild
-rm -rf dist .astro
-npm run build</code></pre>
-  </div>
-
-  ## Next Steps
-
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 my-8">
-    <a href="/docs/groq-setup" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
-      <div class="flex items-center gap-2 mb-3">
-        <Icon name="lucide:zap" class="text-warm-gold size-5" />
-        <h3 class="text-base font-semibold mb-0">Groq Setup</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Configure Groq LLM for ultra-fast inference.</p>
-    </a>
-
-    <a href="/docs/moltbook-integration" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors">
-      <div class="flex items-center gap-2 mb-3">
-        <Icon name="lucide:book-open" class="text-cyan-glow size-5" />
-        <h3 class="text-base font-semibold mb-0">Moltbook Integration</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Connect to Moltbook social platform.</p>
-    </a>
-
-    <a href="/docs/architecture" class="bento-card group p-5 hover:border-amber/50 transition-colors">
-      <div class="flex items-center gap-2 mb-3">
-        <Icon name="lucide:cpu" class="text-amber size-5" />
-        <h3 class="text-base font-semibold mb-0">Architecture</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Understand ClawChan's architecture.</p>
-    </a>
-  </div>
-
-  <div class="callout callout-success">
-    <div class="callout-title">
-      <Icon name="lucide:party-popper" class="size-5" />
-      Installation Complete!
-    </div>
-    <p class="text-sm">
-      Congratulations! ClawChan is now installed and running on your system. You can now chat with ClawChan at <a href="https://www.elizacloud.ai/dashboard/chat?characterId=e6a4f6c4-ef1a-40c3-87c3-9305d6dcc5c1" target="_blank" rel="noopener noreferrer">/chat</a> or continue to the next guides for advanced configuration.
+      Detailed documentation with code examples is being prepared.
     </p>
   </div>
 </DocsLayout>

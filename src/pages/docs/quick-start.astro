@@ -4,451 +4,75 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <DocsLayout title="Quick Start">
-  <h1>Quick Start Guide</h1>
-  <p class="text-xl text-foreground/80 mt-2">
-    Get ClawChan up and running in **5 minutes**. This guide assumes you have Node.js installed and basic familiarity with the terminal.
-  </p>
+  <h1>Quick Start</h1>
+  <p class="text-xl text-foreground/80 mt-2">Get ClawChan running in 5 minutes.</p>
 
-  <div class="callout callout-success mt-6">
+  <h2>Overview</h2>
+  <p>This quick start guide gets you from zero to a running ClawChan instance in just a few minutes. For detailed setup, see the full installation guide.</p>
+
+  <h3>Step 1: Clone the Repository</h3>
+  <p>Download the ClawChan source code:</p>
+  <ul>
+    <li>Open your terminal</li>
+    <li>Clone the repository from GitHub</li>
+    <li>Navigate into the project folder</li>
+  </ul>
+
+  <h3>Step 2: Install Dependencies</h3>
+  <p>Install all required packages:</p>
+  <ul>
+    <li>Run npm install in the project directory</li>
+    <li>Wait for installation to complete (1-2 minutes)</li>
+  </ul>
+
+  <h3>Step 3: Configure Environment</h3>
+  <p>Set up your API keys:</p>
+  <ul>
+    <li>Copy .env.example to .env</li>
+    <li>Get a Groq API key from console.groq.com</li>
+    <li>Add your key to the .env file</li>
+  </ul>
+
+  <h3>Step 4: Start the Server</h3>
+  <p>Launch the development server:</p>
+  <ul>
+    <li>Run npm run dev for the frontend</li>
+    <li>Run npm run agent for the agent (in a second terminal)</li>
+    <li>Wait for both to start successfully</li>
+  </ul>
+
+  <h3>Step 5: Open ClawChan</h3>
+  <p>Access the interface:</p>
+  <ul>
+    <li>Open your browser</li>
+    <li>Go to http://localhost:1234</li>
+    <li>You should see the ClawChan terminal</li>
+  </ul>
+
+  <h3>Try It Out</h3>
+  <p>Test your installation with these commands:</p>
+  <ul>
+    <li>Type "hello" to greet ClawChan</li>
+    <li>Type "/help" to see available commands</li>
+    <li>Type "/status" to check system status</li>
+    <li>Ask any question to test the AI</li>
+  </ul>
+
+  <h3>Next Steps</h3>
+  <ul>
+    <li>Customize the character personality</li>
+    <li>Add custom commands</li>
+    <li>Set up Moltbook integration</li>
+    <li>Deploy to production</li>
+  </ul>
+
+  <div class="callout callout-info mt-8">
     <div class="callout-title">
-      <Icon name="lucide:zap" class="size-5" />
-      Super Fast Setup
+      <Icon name="lucide:info" class="size-5" />
+      Documentation Coming Soon
     </div>
     <p class="text-sm">
-      This quick start will get you to a working ClawChan instance as fast as possible. For detailed explanations, see the <a href="/docs/installation">Full Installation Guide</a>.
-    </p>
-  </div>
-
-  ## Prerequisites Checklist
-
-  Make sure you have these installed:
-
-  <div class="grid gap-3 sm:grid-cols-2 my-6">
-    <div class="bento-card p-4">
-      <div class="flex items-center gap-2 mb-2">
-        <Icon name="lucide:check-circle" class="text-green-500 size-5" />
-        <h4 class="text-base font-semibold mb-0">Node.js v18+</h4>
-      </div>
-      <div class="code-block">
-        <pre><code>node --version
-# Should show v18.0.0 or higher</code></pre>
-      </div>
-    </div>
-
-    <div class="bento-card p-4">
-      <div class="flex items-center gap-2 mb-2">
-        <Icon name="lucide:check-circle" class="text-green-500 size-5" />
-        <h4 class="text-base font-semibold mb-0">npm v9+</h4>
-      </div>
-      <div class="code-block">
-        <pre><code>npm --version
-# Should show v9.0.0 or higher</code></pre>
-      </div>
-    </div>
-  </div>
-
-  <div class="callout callout-warning">
-    <div class="callout-title">
-      <Icon name="lucide:alert-triangle" class="size-5" />
-      Don't Have Node.js?
-    </div>
-    <p class="text-sm">
-      Download and install from <a href="https://nodejs.org" target="_blank">nodejs.org</a> (choose LTS version). Then come back here!
-    </p>
-  </div>
-
-  ## Step 1: Get the Code
-
-  Clone the repository and navigate into it:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Clone the repository
-git clone https://github.com/your-username/clawchan.git
-cd clawchan</code></pre>
-  </div>
-
-  <div class="callout callout-info">
-    <div class="callout-title">
-      <Icon name="lucide:download" class="size-5" />
-      No Git?
-    </div>
-    <p class="text-sm">
-      Download the ZIP file from GitHub and extract it, then <code>cd</code> into the extracted folder.
-    </p>
-  </div>
-
-  ## Step 2: Install Dependencies
-
-  Install all required packages:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Install (this might take 2-3 minutes)
-npm install</code></pre>
-  </div>
-
-  **What's being installed?**
-  - Astro (frontend framework)
-  - ElizaOS (agent runtime)
-  - React (UI components)
-  - Tailwind CSS (styling)
-  - 200+ other dependencies
-
-  <div class="bento-card p-4 my-4 bg-card-bg/50">
-    <p class="text-sm text-muted-foreground mb-2">⏳ <strong>Wait time:</strong> 2-3 minutes depending on your internet speed</p>
-    <p class="text-sm text-muted-foreground">☕ Perfect time for a coffee break!</p>
-  </div>
-
-  ## Step 3: Get Your API Keys
-
-  You need two API keys to run ClawChan:
-
-  ### 1. Groq API Key (Required)
-
-  <div class="grid gap-4 sm:grid-cols-2 my-4">
-    <div class="bento-card p-5">
-      <h4 class="text-cyan-glow mb-3">Get Groq API Key</h4>
-      <ol class="text-sm space-y-2">
-        <li>1. Go to <a href="https://console.groq.com" target="_blank" class="text-cyan-glow">console.groq.com</a></li>
-        <li>2. Sign up (free, no credit card)</li>
-        <li>3. Click "API Keys"</li>
-        <li>4. Create new key</li>
-        <li>5. Copy the key (starts with <code>gsk_</code>)</li>
-      </ol>
-    </div>
-
-    <div class="bento-card p-5">
-      <h4 class="text-warm-gold mb-3">Why Groq?</h4>
-      <ul class="text-sm space-y-1">
-        <li>⚡ Ultra-fast (&lt;1s responses)</li>
-        <li>💰 Free tier (30 req/min)</li>
-        <li>🧠 Llama 3.1 70B model</li>
-        <li>✅ No credit card needed</li>
-      </ul>
-    </div>
-  </div>
-
-  ### 2. Moltbook Token (Optional)
-
-  <div class="bento-card p-5 my-4">
-    <h4 class="text-amber mb-3">Moltbook (Optional for Now)</h4>
-    <p class="text-sm mb-3">
-      You can skip Moltbook for now and add it later. ClawChan will work fine without it.
-      If you want to add it now, run:
-    </p>
-    <div class="code-block">
-      <pre><code>node register-moltbook.mjs</code></pre>
-    </div>
-  </div>
-
-  ## Step 4: Configure Environment
-
-  Create your configuration file:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Create .env file
-cp .env.example .env
-
-# On Windows, use:
-copy .env.example .env</code></pre>
-  </div>
-
-  Now edit the `.env` file with your favorite text editor and add your Groq API key:
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">.env</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># ============================================
-# Required: Groq LLM
-# ============================================
-GROQ_API_KEY=gsk_paste_your_groq_key_here
-LLM_API_KEY=gsk_paste_your_groq_key_here
-
-MODEL_PROVIDER=groq
-GROQ_MODEL=llama-3.1-70b-versatile
-GROQ_API_BASE_URL=https://api.groq.com/openai/v1
-
-# ============================================
-# Optional: Moltbook (skip for now if you want)
-# ============================================
-# MOLTBOOK_TOKEN=your_token_here
-# MOLTBOOK_AGENT_NAME=ClawChan
-# MOLTBOOK_AUTONOMOUS_MODE=false</code></pre>
-  </div>
-
-  <div class="callout callout-danger">
-    <div class="callout-title">
-      <Icon name="lucide:shield-alert" class="size-5" />
-      Security Warning
-    </div>
-    <p class="text-sm">
-      Replace <code>gsk_paste_your_groq_key_here</code> with your actual Groq API key! The file won't work with the placeholder text.
-    </p>
-  </div>
-
-  ## Step 5: Start ClawChan
-
-  Open **two terminal windows** and run:
-
-  ### Terminal 1: Frontend
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code>npm run dev</code></pre>
-  </div>
-
-  **Expected output:**
-  ```
-  astro v5.16.6 ready in 6027 ms
-
-  ┃ Local    http://localhost:1234/
-  ┃ Network  http://192.168.1.7:1234/
-
-  watching for file changes...
-  ```
-
-  ### Terminal 2: Agent
-
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code>npm run agent</code></pre>
-  </div>
-
-  **Expected output:**
-  ```
-  ✅ Character: ClawChan
-  ✅ LLM Provider: GROQ
-  ✅ API Key: gsk_YUsm...
-  🚀 Using Groq with model: llama-3.1-70b-versatile
-  ✨ ClawChan Agent is now running!
-  ```
-
-  <div class="callout callout-success">
-    <div class="callout-title">
-      <Icon name="lucide:party-popper" class="size-5" />
-      Success!
-    </div>
-    <p class="text-sm">
-      If you see both terminals running without errors, ClawChan is live! 🎉
-    </p>
-  </div>
-
-  ## Step 6: Test ClawChan
-
-  Open your browser and visit:
-
-  **🔗 http://localhost:1234**
-
-  You should see:
-  - ✅ ClawChan homepage with dark theme
-  - ✅ Cyan and gold accents
-  - ✅ Working navigation
-
-  Now go to the chat page:
-
-  **🔗 http://localhost:1234/chat**
-
-  Try these commands:
-  - Type: `gm`
-  - Type: `/help`
-  - Type: `/status`
-  - Type: `tell me about solana`
-
-  ClawChan should respond within 1-2 seconds! ⚡
-
-  ## Quick Commands Reference
-
-  <div class="bento-card p-6 my-6">
-    <h3 class="text-warm-gold mb-4">Essential Commands</h3>
-
-    <div class="grid gap-4">
-      <div>
-        <h4 class="text-sm font-mono text-cyan-glow mb-2">Start Development</h4>
-        <div class="code-block">
-          <pre><code># Terminal 1
-npm run dev
-
-# Terminal 2
-npm run agent:dev  # With auto-restart</code></pre>
-        </div>
-      </div>
-
-      <div>
-        <h4 class="text-sm font-mono text-cyan-glow mb-2">Build for Production</h4>
-        <div class="code-block">
-          <pre><code>npm run build
-npm run preview</code></pre>
-        </div>
-      </div>
-
-      <div>
-        <h4 class="text-sm font-mono text-cyan-glow mb-2">Stop Everything</h4>
-        <div class="code-block">
-          <pre><code># In each terminal, press:
-Ctrl + C</code></pre>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  ## Common Issues & Fixes
-
-  ### "Port 1234 is already in use"
-
-  **Quick fix:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Kill the process using port 1234
-# Windows
-netstat -ano | findstr :1234
-taskkill /PID [PID] /F
-
-# Mac/Linux
-lsof -i :1234
-kill -9 [PID]</code></pre>
-  </div>
-
-  ### "Module not found"
-
-  **Quick fix:**
-  <div class="code-block">
-    <div class="code-block-header">
-      <span class="code-block-lang">Bash</span>
-      <button class="code-block-copy">Copy</button>
-    </div>
-    <pre><code># Reinstall dependencies
-rm -rf node_modules package-lock.json
-npm install</code></pre>
-  </div>
-
-  ### "Invalid API key"
-
-  **Quick fix:**
-  1. Check your `.env` file
-  2. Make sure API key starts with `gsk_`
-  3. No extra spaces or quotes
-  4. Generate new key at [console.groq.com](https://console.groq.com)
-
-  ### Agent not responding
-
-  **Quick fix:**
-  1. Check Terminal 2 for errors
-  2. Verify Groq API key in `.env`
-  3. Restart agent: `Ctrl+C` then `npm run agent`
-
-  ## What's Next?
-
-  <div class="grid gap-4 sm:grid-cols-3 my-8">
-    <a href="/docs/moltbook-integration" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
-      <div class="flex items-center gap-2 mb-3">
-        <Icon name="lucide:book-open" class="text-warm-gold size-5" />
-        <h3 class="text-base font-semibold mb-0">Add Moltbook</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Enable archiving and autonomous mode.</p>
-    </a>
-
-    <a href="/docs/groq-setup" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors">
-      <div class="flex items-center gap-2 mb-3">
-        <Icon name="lucide:zap" class="text-cyan-glow size-5" />
-        <h3 class="text-base font-semibold mb-0">Optimize Groq</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Try different models and settings.</p>
-    </a>
-
-    <a href="/docs/frontend-customization" class="bento-card group p-5 hover:border-amber/50 transition-colors">
-      <div class="flex items-center gap-2 mb-3">
-        <Icon name="lucide:palette" class="text-amber size-5" />
-        <h3 class="text-base font-semibold mb-0">Customize UI</h3>
-      </div>
-      <p class="text-sm text-muted-foreground">Change colors, fonts, and layout.</p>
-    </a>
-  </div>
-
-  ## Quick Tips
-
-  <div class="grid gap-3 sm:grid-cols-2 my-6">
-    <div class="bento-card p-4">
-      <h4 class="text-sm font-bold text-cyan-glow mb-2">💡 Development Tip</h4>
-      <p class="text-sm text-muted-foreground">
-        Use <code>npm run agent:dev</code> instead of <code>npm run agent</code> for auto-restart on file changes.
-      </p>
-    </div>
-
-    <div class="bento-card p-4">
-      <h4 class="text-sm font-bold text-warm-gold mb-2">🎨 Customization Tip</h4>
-      <p class="text-sm text-muted-foreground">
-        All colors are in <code>src/styles/global.css</code>. Change <code>--cyan-glow</code> and <code>--warm-gold</code> to rebrand.
-      </p>
-    </div>
-
-    <div class="bento-card p-4">
-      <h4 class="text-sm font-bold text-amber mb-2">⚡ Performance Tip</h4>
-      <p class="text-sm text-muted-foreground">
-        For faster development, use <code>llama-3.1-8b-instant</code> model. Switch in <code>.env</code>.
-      </p>
-    </div>
-
-    <div class="bento-card p-4">
-      <h4 class="text-sm font-bold text-cyan-glow mb-2">🔒 Security Tip</h4>
-      <p class="text-sm text-muted-foreground">
-        Never commit your <code>.env</code> file! It's already in <code>.gitignore</code>, but double-check.
-      </p>
-    </div>
-  </div>
-
-  ## Need More Help?
-
-  <div class="bento-card p-6 my-8">
-    <h3 class="mb-4">Getting Stuck?</h3>
-    <div class="grid gap-3 sm:grid-cols-2">
-      <a href="/docs/installation" class="flex items-center gap-2 text-cyan-glow hover:text-warm-gold transition-colors">
-        <Icon name="lucide:book-open" class="size-4" />
-        <span class="text-sm">Full Installation Guide</span>
-      </a>
-      <a href="/docs/troubleshooting" class="flex items-center gap-2 text-cyan-glow hover:text-warm-gold transition-colors">
-        <Icon name="lucide:wrench" class="size-4" />
-        <span class="text-sm">Troubleshooting Guide</span>
-      </a>
-      <a href="/docs/faqs" class="flex items-center gap-2 text-cyan-glow hover:text-warm-gold transition-colors">
-        <Icon name="lucide:help-circle" class="size-4" />
-        <span class="text-sm">FAQs</span>
-      </a>
-      <a href="https://www.elizacloud.ai/dashboard/chat?characterId=e6a4f6c4-ef1a-40c3-87c3-9305d6dcc5c1" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-cyan-glow hover:text-warm-gold transition-colors">
-        <Icon name="lucide:message-circle" class="size-4" />
-        <span class="text-sm">Ask ClawChan</span>
-      </a>
-    </div>
-  </div>
-
-  <div class="callout callout-success">
-    <div class="callout-title">
-      <Icon name="lucide:rocket" class="size-5" />
-      You're All Set!
-    </div>
-    <p class="text-sm">
-      ClawChan is now running on your machine! Explore the documentation to learn more about customization, deployment, and advanced features. Welcome to the Digital Void! 🦞
+      Detailed documentation with code examples is being prepared.
     </p>
   </div>
 </DocsLayout>

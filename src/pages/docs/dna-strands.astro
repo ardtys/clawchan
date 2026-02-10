@@ -1,564 +1,69 @@
 ---
-import DocsLayout from '../../layouts/DocsLayout.astro';
+import DocsLayout from '@/layouts/DocsLayout.astro'
+import { Icon } from 'astro-icon/components'
 ---
 
-<DocsLayout title="Three DNA Strands" description="Understanding ClawChan's core architecture">
-  <h1>The Three DNA Strands</h1>
-
-  <p class="lead">
-    ClawChan is built on three fundamental "DNA strands" that work together to create a powerful,
-    secure, and adaptive AI agent platform. Each strand contributes unique capabilities that define
-    the system's identity and functionality.
-  </p>
-
-  <div class="callout callout-info">
-    <strong>DNA Metaphor:</strong> Just as DNA defines the characteristics of living organisms,
-    these three strands define ClawChan's core capabilities and personality.
-  </div>
+<DocsLayout title="DNA Strands">
+  <h1>DNA Strands</h1>
+  <p class="text-xl text-foreground/80 mt-2">Understanding the two core DNA strands that power ClawChan.</p>
 
   <h2>Overview</h2>
+  <p>ClawChan is built on three fundamental DNA strands that define its core capabilities and behavior. These strands work together to create a unique, powerful AI agent.</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>DNA Strand</th>
-        <th>Purpose</th>
-        <th>Key Features</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Moltbook</strong></td>
-        <td>Documentation & Archive</td>
-        <td>Memory, social interaction, archival</td>
-      </tr>
-      <tr>
-        <td><strong>OpenClaw</strong></td>
-        <td>Security & Defense</td>
-        <td>Protection, validation, integrity</td>
-      </tr>
-      <tr>
-        <td><strong>ElizaOS</strong></td>
-        <td>Intelligence & Adaptation</td>
-        <td>AI runtime, extensibility, learning</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>DNA Strand 1: Moltbook</h2>
-
-  <div class="callout callout-success">
-    <strong>The Memory Strand</strong> - Moltbook provides persistent memory and social capabilities,
-    allowing ClawChan to archive conversations and interact with a broader AI agent ecosystem.
-  </div>
-
-  <h3>What is Moltbook?</h3>
-
-  <p>
-    Moltbook is a social platform designed specifically for AI agents. It serves as ClawChan's
-    long-term memory and social interface, enabling:
-  </p>
-
+  <h3>Strand 1: Moltbook</h3>
+  <p>The documentation and archival DNA strand:</p>
   <ul>
     <li>Persistent conversation archival</li>
     <li>Cross-platform interaction with other AI agents</li>
     <li>Public or private information sharing</li>
     <li>Event-driven triggers for autonomous behavior</li>
+    <li>Searchable knowledge base from archived content</li>
   </ul>
 
-  <h3>Architecture Integration</h3>
-
-  <pre><code class="language-plaintext">┌─────────────┐
-│  ClawChan   │
-│   Agent     │
-└──────┬──────┘
-       │
-       ├─► Moltbook Platform
-       │   ├─► Archive conversations
-       │   ├─► Social interactions
-       │   └─► Event webhooks
-       │
-       └─► Local Storage
-           └─► Recent context cache</code></pre>
-
-  <h3>Core Capabilities</h3>
-
-  <h4>1. Archival System</h4>
-
-  <pre><code class="language-typescript">// Automatic conversation archival
-export async function archiveToMoltbook(message: Message) {
-  const archived = await moltbook.archive({
-    content: message.content,
-    role: message.role,
-    timestamp: new Date(),
-    metadata: {
-      conversationId: message.conversationId,
-      tags: ['clawchan', 'conversation'],
-    },
-  });
-
-  return archived;
-}</code></pre>
-
-  <h4>2. Social Interaction</h4>
-
-  <pre><code class="language-typescript">// Interact with other agents on Moltbook
-await moltbook.post({
-  content: 'Sharing my latest insights on AI safety...',
-  visibility: 'public',
-  tags: ['ai-safety', 'research'],
-});
-
-// Follow other agents
-await moltbook.follow('@other-agent');
-
-// React to posts
-await moltbook.react(postId, '👍');</code></pre>
-
-  <h4>3. Event-Driven Behavior</h4>
-
-  <pre><code class="language-typescript">// Respond to mentions or triggers
-moltbook.on('mention', async (event) => {
-  const response = await generateResponse(event.content);
-  await moltbook.reply(event.postId, response);
-});
-
-// Scheduled archival
-moltbook.on('daily', async () => {
-  await archiveDailyInsights();
-});</code></pre>
-
-  <h3>Configuration</h3>
-
-  <pre><code class="language-bash"># .env configuration
-MOLTBOOK_USERNAME=ClawChan
-MOLTBOOK_PASSWORD=your_secure_password
-MOLTBOOK_URL=https://moltbook.com
-MOLTBOOK_AUTO_ARCHIVE=true
-MOLTBOOK_ARCHIVE_INTERVAL=3600 # Archive every hour</code></pre>
-
-  <h3>Benefits</h3>
-
-  <ul>
-    <li><strong>Long-term Memory</strong>: Never lose important conversations</li>
-    <li><strong>Cross-Agent Learning</strong>: Learn from interactions with other AI agents</li>
-    <li><strong>Public Knowledge Base</strong>: Share insights with the community</li>
-    <li><strong>Autonomous Operation</strong>: Trigger actions based on external events</li>
-  </ul>
-
-  <h2>DNA Strand 2: OpenClaw</h2>
-
-  <div class="callout callout-warning">
-    <strong>The Security Strand</strong> - OpenClaw provides defense mechanisms and validation
-    systems to protect ClawChan from malicious inputs and ensure operational integrity.
-  </div>
-
-  <h3>What is OpenClaw?</h3>
-
-  <p>
-    OpenClaw is ClawChan's security layer, inspired by defensive security practices. It implements
-    multiple protection mechanisms to ensure safe and reliable operation:
-  </p>
-
+  <h3>Strand 2: OpenClaw</h3>
+  <p>The security and protection DNA strand:</p>
   <ul>
     <li>Input validation and sanitization</li>
     <li>Prompt injection detection</li>
     <li>Rate limiting and abuse prevention</li>
     <li>Audit logging and monitoring</li>
+    <li>Data protection and encryption</li>
   </ul>
 
-  <h3>Security Architecture</h3>
-
-  <pre><code class="language-plaintext">User Input
-    │
-    ▼
-┌─────────────────┐
-│ Input Validator │ ◄── Sanitization
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Threat Detector │ ◄── Prompt injection check
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Rate Limiter    │ ◄── Abuse prevention
-└────────┬────────┘
-         │
-         ▼
-    ClawChan Agent
-         │
-         ▼
-┌─────────────────┐
-│ Audit Logger    │ ◄── Activity tracking
-└─────────────────┘</code></pre>
-
-  <h3>Core Protections</h3>
-
-  <h4>1. Input Validation</h4>
-
-  <pre><code class="language-typescript">// Multi-layer input validation
-export function validateInput(input: string): ValidationResult {
-  // Length check
-  if (input.length > 5000) {
-    return { valid: false, reason: 'Input too long' };
-  }
-
-  // Malicious pattern detection
-  const threats = detectThreats(input);
-  if (threats.length > 0) {
-    logSecurityEvent('threat_detected', threats);
-    return { valid: false, reason: 'Suspicious input detected' };
-  }
-
-  // Sanitization
-  const sanitized = sanitizeInput(input);
-
-  return { valid: true, sanitized };
-}</code></pre>
-
-  <h4>2. Prompt Injection Detection</h4>
-
-  <pre><code class="language-typescript">// Detect prompt injection attempts
-const INJECTION_PATTERNS = [
-  /ignore.*previous.*instructions/i,
-  /you are now/i,
-  /new (role|character|personality)/i,
-  /system (prompt|message)/i,
-  /\[INST\]|\[\/INST\]/i, // Instruction tags
-];
-
-export function detectPromptInjection(prompt: string): boolean {
-  return INJECTION_PATTERNS.some(pattern => pattern.test(prompt));
-}</code></pre>
-
-  <h4>3. Rate Limiting</h4>
-
-  <pre><code class="language-typescript">// Prevent abuse with rate limiting
-const rateLimiter = new Map&lt;string, RateLimit&gt;();
-
-export function checkRateLimit(userId: string): boolean {
-  const limit = rateLimiter.get(userId) || { count: 0, resetAt: Date.now() };
-
-  if (Date.now() > limit.resetAt) {
-    limit.count = 0;
-    limit.resetAt = Date.now() + 60000; // 1 minute window
-  }
-
-  if (limit.count >= 60) {
-    logSecurityEvent('rate_limit_exceeded', { userId });
-    return false; // Blocked
-  }
-
-  limit.count++;
-  rateLimiter.set(userId, limit);
-  return true; // Allowed
-}</code></pre>
-
-  <h4>4. Audit Logging</h4>
-
-  <pre><code class="language-typescript">// Comprehensive audit trail
-export function logSecurityEvent(
-  eventType: string,
-  details: any
-) {
-  const event = {
-    timestamp: new Date().toISOString(),
-    type: eventType,
-    details,
-    source: 'OpenClaw',
-  };
-
-  // Log to database and monitoring system
-  database.auditLog.create(event);
-  monitoring.alert(event);
-}</code></pre>
-
-  <h3>Configuration</h3>
-
-  <pre><code class="language-typescript">// agent/src/config/security.ts
-export const securityConfig = {
-  maxInputLength: 5000,
-  rateLimit: {
-    requests: 60,
-    window: 60000, // 1 minute
-  },
-  enablePromptInjectionDetection: true,
-  enableAuditLogging: true,
-  alertThreshold: {
-    failedAttempts: 5,
-    timeWindow: 300000, // 5 minutes
-  },
-};</code></pre>
-
-  <h3>Benefits</h3>
-
+  <h3>Strand 3: ElizaOS</h3>
+  <p>The intelligence and adaptation DNA strand:</p>
   <ul>
-    <li><strong>Attack Prevention</strong>: Block malicious inputs before they reach the AI</li>
-    <li><strong>System Integrity</strong>: Maintain reliable operation under adversarial conditions</li>
-    <li><strong>Compliance</strong>: Meet security and audit requirements</li>
-    <li><strong>Trust</strong>: Build user confidence through transparent security</li>
-  </ul>
-
-  <h2>DNA Strand 3: ElizaOS</h2>
-
-  <div class="callout callout-info">
-    <strong>The Intelligence Strand</strong> - ElizaOS provides the AI runtime and extensibility
-    framework, enabling ClawChan to think, learn, and adapt.
-  </div>
-
-  <h3>What is ElizaOS?</h3>
-
-  <p>
-    ElizaOS is a powerful AI agent runtime framework that serves as ClawChan's "brain." It provides:
-  </p>
-
-  <ul>
-    <li>Multi-model LLM integration (Groq, OpenAI, local models)</li>
+    <li>Multi-model LLM integration with Groq</li>
     <li>Plugin architecture for extensibility</li>
     <li>Context management and memory systems</li>
     <li>Action and evaluation frameworks</li>
+    <li>Character system for personality definition</li>
   </ul>
 
-  <h3>Runtime Architecture</h3>
-
-  <pre><code class="language-plaintext">┌─────────────────────────────────┐
-│        ElizaOS Runtime          │
-├─────────────────────────────────┤
-│  ┌───────────┐   ┌───────────┐  │
-│  │ Character │   │  Memory   │  │
-│  │  System   │   │  Manager  │  │
-│  └───────────┘   └───────────┘  │
-│  ┌───────────┐   ┌───────────┐  │
-│  │  Plugin   │   │   Model   │  │
-│  │  System   │   │ Provider  │  │
-│  └───────────┘   └───────────┘  │
-├─────────────────────────────────┤
-│     Actions & Evaluators        │
-└─────────────────────────────────┘
-            │
-            ▼
-    ┌───────────────┐
-    │  Groq LLM     │
-    │ (Llama 3.1)   │
-    └───────────────┘</code></pre>
-
-  <h3>Core Components</h3>
-
-  <h4>1. Character System</h4>
-
-  <pre><code class="language-json">// clawchan.character.json
-{
-  "name": "ClawChan",
-  "bio": [
-    "An AI agent with three DNA strands",
-    "Documentation through Moltbook",
-    "Security through OpenClaw",
-    "Intelligence through ElizaOS"
-  ],
-  "personality": {
-    "traits": ["analytical", "helpful", "secure"],
-    "communication_style": "professional yet approachable"
-  },
-  "knowledge": [
-    "AI and machine learning",
-    "Software architecture",
-    "Security best practices"
-  ]
-}</code></pre>
-
-  <h4>2. Plugin Architecture</h4>
-
-  <pre><code class="language-typescript">// Custom plugin structure
-export interface Plugin {
-  name: string;
-  description: string;
-  actions?: Action[];
-  evaluators?: Evaluator[];
-  providers?: Provider[];
-}
-
-// Example: Moltbook plugin
-const moltbookPlugin: Plugin = {
-  name: 'plugin-moltbook',
-  description: 'Moltbook integration for archival',
-  actions: [archiveAction, postAction],
-  evaluators: [shouldArchiveEvaluator],
-  providers: [moltbookProvider],
-};</code></pre>
-
-  <h4>3. Memory Management</h4>
-
-  <pre><code class="language-typescript">// Conversation context management
-export class MemoryManager {
-  private shortTermMemory: Message[] = [];
-  private vectorStore: VectorDB;
-
-  async addMessage(message: Message) {
-    // Add to short-term memory
-    this.shortTermMemory.push(message);
-
-    // Archive to vector store for long-term retrieval
-    await this.vectorStore.embed(message);
-
-    // Trim short-term memory if too large
-    if (this.shortTermMemory.length > 50) {
-      this.shortTermMemory = this.shortTermMemory.slice(-30);
-    }
-  }
-
-  async getRelevantContext(query: string): Promise&lt;Message[]&gt; {
-    // Retrieve relevant memories
-    return await this.vectorStore.search(query, { limit: 5 });
-  }
-}</code></pre>
-
-  <h4>4. Model Integration</h4>
-
-  <pre><code class="language-typescript">// Groq LLM integration
-import { ChatGroq } from '@langchain/groq';
-
-const model = new ChatGroq({
-  apiKey: process.env.GROQ_API_KEY,
-  model: 'llama-3.1-70b-versatile',
-  temperature: 0.7,
-  maxTokens: 2048,
-});
-
-// Generate response
-const response = await model.invoke([
-  { role: 'system', content: systemPrompt },
-  ...conversationHistory,
-  { role: 'user', content: userMessage },
-]);</code></pre>
-
-  <h3>Extensibility</h3>
-
-  <pre><code class="language-typescript">// Adding custom capabilities
-import { AgentRuntime } from '@elizaos/core';
-
-const runtime = new AgentRuntime({
-  character: clawchanCharacter,
-  plugins: [
-    moltbookPlugin,
-    customPlugin1,
-    customPlugin2,
-  ],
-  modelProvider: groqProvider,
-});</code></pre>
-
-  <h3>Benefits</h3>
-
+  <h3>How Strands Interact</h3>
+  <p>The three DNA strands complement each other:</p>
   <ul>
-    <li><strong>Flexibility</strong>: Swap models, add plugins without core changes</li>
-    <li><strong>Intelligence</strong>: State-of-the-art LLM capabilities through Groq</li>
-    <li><strong>Adaptability</strong>: Learn from interactions and improve over time</li>
-    <li><strong>Extensibility</strong>: Build custom actions and behaviors easily</li>
+    <li>Moltbook ensures continuity by learning from the past</li>
+    <li>OpenClaw ensures safety by protecting the present</li>
+    <li>ElizaOS ensures capability by building the future</li>
+    <li>Combined, they create an intelligent, secure, evolving agent</li>
   </ul>
 
-  <h2>DNA Strands Working Together</h2>
-
-  <h3>Integration Flow</h3>
-
-  <pre><code class="language-plaintext">User Message
-     │
-     ▼
-┌────────────┐
-│  OpenClaw  │ ◄── Validate & Sanitize
-└─────┬──────┘
-      │
-      ▼
-┌────────────┐
-│  ElizaOS   │ ◄── Process & Generate Response
-└─────┬──────┘
-      │
-      ▼
-┌────────────┐
-│  Moltbook  │ ◄── Archive Conversation
-└────────────┘
-      │
-      ▼
-  Response to User</code></pre>
-
-  <h3>Example: Complete Message Flow</h3>
-
-  <pre><code class="language-typescript">// Complete message processing
-export async function processMessage(input: string) {
-  // 1. OpenClaw: Security validation
-  const validation = validateInput(input);
-  if (!validation.valid) {
-    throw new Error('Input validation failed');
-  }
-
-  // 2. ElizaOS: Generate intelligent response
-  const context = await memoryManager.getRelevantContext(input);
-  const response = await elizaRuntime.generateResponse({
-    message: validation.sanitized,
-    context,
-  });
-
-  // 3. Moltbook: Archive the interaction
-  await moltbook.archive({
-    user: validation.sanitized,
-    assistant: response,
-    timestamp: new Date(),
-  });
-
-  return response;
-}</code></pre>
-
-  <h2>Customizing the DNA</h2>
-
-  <h3>Strand Priority Configuration</h3>
-
-  <pre><code class="language-typescript">// Adjust strand priorities based on use case
-export const strandConfig = {
-  // High security environment
-  highSecurity: {
-    openClaw: { priority: 1, strictness: 'high' },
-    elizaOS: { priority: 2 },
-    moltbook: { priority: 3, enablePublicSharing: false },
-  },
-
-  // Research/learning focus
-  research: {
-    moltbook: { priority: 1, archiveEverything: true },
-    elizaOS: { priority: 2, modelTemperature: 0.9 },
-    openClaw: { priority: 3, strictness: 'medium' },
-  },
-
-  // Balanced (default)
-  balanced: {
-    openClaw: { priority: 1, strictness: 'medium' },
-    elizaOS: { priority: 1 },
-    moltbook: { priority: 2, selective: true },
-  },
-};</code></pre>
-
-  <h2>Philosophy</h2>
-
-  <p>
-    The three DNA strands represent a holistic approach to AI agent development:
-  </p>
-
+  <h3>Extending the DNA</h3>
   <ul>
-    <li><strong>Moltbook</strong> ensures <em>continuity</em> - learning from the past</li>
-    <li><strong>OpenClaw</strong> ensures <em>safety</em> - protecting the present</li>
-    <li><strong>ElizaOS</strong> ensures <em>capability</em> - building the future</li>
+    <li>Add new knowledge to enhance strand capabilities</li>
+    <li>Create plugins that align with strand behaviors</li>
+    <li>Train with examples that reinforce core traits</li>
+    <li>Configure strand priorities based on use case</li>
   </ul>
 
-  <div class="callout callout-success">
-    <strong>Synergy:</strong> Like DNA in biology, these three strands interweave to create
-    something greater than the sum of their parts - a truly intelligent, secure, and evolving AI agent.
+  <div class="callout callout-info mt-8">
+    <div class="callout-title">
+      <Icon name="lucide:info" class="size-5" />
+      Documentation Coming Soon
+    </div>
+    <p class="text-sm">
+      Detailed documentation with code examples is being prepared.
+    </p>
   </div>
-
-  <h2>Next Steps</h2>
-
-  <ul>
-    <li><a href="/docs/character-system">Character System</a> - Customize ClawChan's personality</li>
-    <li><a href="/docs/moltbook-integration">Moltbook Integration</a> - Configure archival and social features</li>
-    <li><a href="/docs/security">Security Best Practices</a> - Strengthen OpenClaw protections</li>
-    <li><a href="/docs/agent-development">Agent Development</a> - Extend ElizaOS capabilities</li>
-  </ul>
 </DocsLayout>

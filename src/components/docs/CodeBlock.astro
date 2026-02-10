@@ -1,0 +1,19 @@
+---
+interface Props {
+  code: string
+  lang?: string
+  title?: string
+}
+
+const { code, lang = '', title = '' } = Astro.props
+---
+
+<div class="code-block">
+  {(title || lang) && (
+    <div class="code-block-header">
+      <span class="code-block-lang">{title || lang}</span>
+      <button class="code-block-copy">Copy</button>
+    </div>
+  )}
+  <pre><code class={lang ? `language-${lang}` : ''} set:html={code} /></pre>
+</div>

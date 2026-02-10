@@ -1,288 +1,62 @@
 ---
-import Breadcrumbs from '@/components/Breadcrumbs.astro'
-import PageHead from '@/components/PageHead.astro'
-import Layout from '@/layouts/Layout.astro'
+import DocsLayout from '@/layouts/DocsLayout.astro'
 import { Icon } from 'astro-icon/components'
 ---
 
-<Layout>
-  <PageHead slot="head" title="API Reference - Documentation" />
+<DocsLayout title="API Reference">
+  <h1>API Reference</h1>
+  <p class="text-xl text-foreground/80 mt-2">Complete reference for the ClawChan SDK and API endpoints.</p>
 
-  <div class="mx-auto w-full max-w-[calc(var(--container-3xl)-2rem)]">
-    <Breadcrumbs
-      items={[
-        { label: 'Docs', href: '/docs', icon: 'lucide:book-open' },
-        { label: 'API Reference', icon: 'lucide:code-2' },
-      ]}
-    />
+  <h2>Overview</h2>
+  <p>The ClawChan API provides programmatic access to the agent's capabilities. This reference documents all available methods, parameters, and response types.</p>
+
+  <h3>Core Methods</h3>
+  <ul>
+    <li>chat(message, options) - Send a message and receive a response from ClawChan</li>
+    <li>getKnowledge(topic) - Retrieve specific knowledge without natural language processing</li>
+    <li>validateAddress(address) - Validate a Solana wallet address and check for known risks</li>
+  </ul>
+
+  <h3>Chat Options</h3>
+  <p>Configure chat behavior with these optional parameters:</p>
+  <ul>
+    <li>temperature - Controls response creativity (0-1, default: 0.7)</li>
+    <li>maxTokens - Maximum response length (default: 500)</li>
+    <li>knowledge - Filter specific knowledge domains</li>
+    <li>includeMetadata - Include response metadata like tokens and latency</li>
+  </ul>
+
+  <h3>Response Properties</h3>
+  <ul>
+    <li>content - The agent's text response</li>
+    <li>confidence - Confidence score between 0 and 1</li>
+    <li>topics - Array of detected topics</li>
+    <li>timestamp - When the response was generated</li>
+    <li>metadata - Optional token count, latency, and sources</li>
+  </ul>
+
+  <h3>Error Codes</h3>
+  <ul>
+    <li>RATE_LIMIT_EXCEEDED - Too many requests, wait before retrying</li>
+    <li>INVALID_API_KEY - API key is missing or invalid</li>
+    <li>NETWORK_ERROR - Failed to connect to servers</li>
+    <li>INVALID_PARAMETERS - Invalid method parameters provided</li>
+  </ul>
+
+  <h3>Rate Limits</h3>
+  <ul>
+    <li>100 requests per minute</li>
+    <li>10,000 requests per day</li>
+    <li>1,000 max tokens per request</li>
+  </ul>
+
+  <div class="callout callout-info mt-8">
+    <div class="callout-title">
+      <Icon name="lucide:info" class="size-5" />
+      Documentation Coming Soon
+    </div>
+    <p class="text-sm">
+      Detailed documentation with code examples is being prepared.
+    </p>
   </div>
-
-  <section class="mx-auto flex max-w-[calc(var(--container-3xl)-2rem)] flex-col gap-6">
-    <!-- Header -->
-    <div>
-      <h1 class="font-mono text-3xl font-bold text-foreground mb-2">API Reference</h1>
-      <p class="font-sans text-muted-foreground">
-        Complete reference for the CLAWCHAN SDK. All methods, parameters, and return values documented.
-      </p>
-    </div>
-
-    <!-- Core Methods -->
-    <div class="bento-card p-6">
-      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">Core Methods</h2>
-
-      <!-- chat() method -->
-      <div class="mb-8 pb-8 border-b border-border">
-        <div class="flex items-start gap-3 mb-4">
-          <div class="code-badge bg-cyan-glow/10 text-cyan-glow">METHOD</div>
-          <div class="flex-1">
-            <h3 class="font-mono text-lg font-semibold text-foreground mb-2">clawchan.chat(message, options?)</h3>
-            <p class="font-sans text-sm text-muted-foreground">
-              Send a message to CLAWCHAN and receive a response based on the knowledge base.
-            </p>
-          </div>
-        </div>
-
-        <div class="space-y-4 pl-3">
-          <div>
-            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Parameters</h4>
-            <div class="rounded-lg bg-void-black border border-border p-4 space-y-2">
-              <div class="font-mono text-sm">
-                <span class="text-cyan-glow">message</span>
-                <span class="text-muted-foreground mx-2">:</span>
-                <span class="text-amber">string</span>
-                <span class="text-muted-foreground ml-2">— The user's query or message</span>
-              </div>
-              <div class="font-mono text-sm">
-                <span class="text-cyan-glow">options?</span>
-                <span class="text-muted-foreground mx-2">:</span>
-                <span class="text-amber">ChatOptions</span>
-                <span class="text-muted-foreground ml-2">— Optional configuration</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Returns</h4>
-            <div class="rounded-lg bg-void-black border border-border p-4">
-              <div class="font-mono text-sm">
-                <span class="text-amber">Promise&lt;ChatResponse&gt;</span>
-                <span class="text-muted-foreground ml-2">— CLAWCHAN's response with metadata</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Example</h4>
-            <div class="rounded-lg bg-void-black border border-border p-4">
-              <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`const response = await clawchan.chat('What is Jito?')
-console.log(response.content)
-// "◈ JITO - MEV INFRASTRUCTURE ◈..."`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- getKnowledge() method -->
-      <div class="mb-8 pb-8 border-b border-border">
-        <div class="flex items-start gap-3 mb-4">
-          <div class="code-badge bg-cyan-glow/10 text-cyan-glow">METHOD</div>
-          <div class="flex-1">
-            <h3 class="font-mono text-lg font-semibold text-foreground mb-2">clawchan.getKnowledge(topic)</h3>
-            <p class="font-sans text-sm text-muted-foreground">
-              Retrieve specific knowledge without natural language processing.
-            </p>
-          </div>
-        </div>
-
-        <div class="space-y-4 pl-3">
-          <div>
-            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Parameters</h4>
-            <div class="rounded-lg bg-void-black border border-border p-4">
-              <div class="font-mono text-sm">
-                <span class="text-cyan-glow">topic</span>
-                <span class="text-muted-foreground mx-2">:</span>
-                <span class="text-amber">KnowledgeTopic</span>
-                <span class="text-muted-foreground ml-2">— Topic identifier</span>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Example</h4>
-            <div class="rounded-lg bg-void-black border border-border p-4">
-              <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`const solanaInfo = await clawchan.getKnowledge('solana')
-const securityTips = await clawchan.getKnowledge('phishing')`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- validateAddress() method -->
-      <div>
-        <div class="flex items-start gap-3 mb-4">
-          <div class="code-badge bg-cyan-glow/10 text-cyan-glow">METHOD</div>
-          <div class="flex-1">
-            <h3 class="font-mono text-lg font-semibold text-foreground mb-2">clawchan.validateAddress(address)</h3>
-            <p class="font-sans text-sm text-muted-foreground">
-              Validate a Solana wallet address and check for known risks.
-            </p>
-          </div>
-        </div>
-
-        <div class="space-y-4 pl-3">
-          <div>
-            <h4 class="font-mono text-sm font-medium text-warm-gold mb-2">Example</h4>
-            <div class="rounded-lg bg-void-black border border-border p-4">
-              <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`const validation = await clawchan.validateAddress('7xKXt...AbC')
-if (validation.isValid && !validation.isScam) {
-  console.log('Address is safe')
-}`}</code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Types -->
-    <div class="bento-card p-6">
-      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">TypeScript Types</h2>
-
-      <div class="space-y-6">
-        <!-- ChatOptions -->
-        <div>
-          <h3 class="font-mono text-lg font-medium text-cyan-glow mb-3">ChatOptions</h3>
-          <div class="rounded-lg bg-void-black border border-border p-4">
-            <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`interface ChatOptions {
-  temperature?: number      // 0-1, default: 0.7
-  maxTokens?: number        // Max response length, default: 500
-  knowledge?: string[]      // Filter knowledge domains
-  includeMetadata?: boolean // Include response metadata
-}`}</code></pre>
-          </div>
-        </div>
-
-        <!-- ChatResponse -->
-        <div>
-          <h3 class="font-mono text-lg font-medium text-cyan-glow mb-3">ChatResponse</h3>
-          <div class="rounded-lg bg-void-black border border-border p-4">
-            <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`interface ChatResponse {
-  content: string           // CLAWCHAN's response
-  confidence: number        // Confidence score (0-1)
-  topics: string[]          // Detected topics
-  timestamp: Date           // Response timestamp
-  metadata?: {
-    tokens: number
-    latency: number
-    sources: string[]
-  }
-}`}</code></pre>
-          </div>
-        </div>
-
-        <!-- KnowledgeTopic -->
-        <div>
-          <h3 class="font-mono text-lg font-medium text-cyan-glow mb-3">KnowledgeTopic</h3>
-          <div class="rounded-lg bg-void-black border border-border p-4">
-            <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`type KnowledgeTopic =
-  | 'solana' | 'svm' | 'jito' | 'jupiter'
-  | 'web3' | 'blockchain' | 'wallet'
-  | 'security' | 'phishing' | 'privatekey'
-  | 'bugs' | 'coffee' | 'stackoverflow' | 'coding'
-  | 'gaming' | 'anime' | 'gacha'
-  | 'meme' | 'wojak'`}</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Error Handling -->
-    <div class="bento-card p-6">
-      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">Error Handling</h2>
-
-      <p class="font-sans text-sm text-muted-foreground mb-4">
-        All CLAWCHAN methods can throw errors. Always wrap calls in try-catch blocks:
-      </p>
-
-      <div class="rounded-lg bg-void-black border border-border p-4 mb-4">
-        <pre class="font-mono text-sm text-foreground overflow-x-auto"><code>{`try {
-  const response = await clawchan.chat('gm')
-  console.log(response.content)
-} catch (error) {
-  if (error instanceof AuraError) {
-    console.error('CLAWCHAN Error:', error.code, error.message)
-  }
-}`}</code></pre>
-      </div>
-
-      <div class="grid gap-3 sm:grid-cols-2">
-        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
-          <div class="font-mono text-sm font-medium text-destructive mb-2">RATE_LIMIT_EXCEEDED</div>
-          <p class="font-sans text-xs text-muted-foreground">
-            Too many requests. Wait before retrying.
-          </p>
-        </div>
-        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
-          <div class="font-mono text-sm font-medium text-destructive mb-2">INVALID_API_KEY</div>
-          <p class="font-sans text-xs text-muted-foreground">
-            API key is missing or invalid.
-          </p>
-        </div>
-        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
-          <div class="font-mono text-sm font-medium text-destructive mb-2">NETWORK_ERROR</div>
-          <p class="font-sans text-xs text-muted-foreground">
-            Failed to connect to CLAWCHAN servers.
-          </p>
-        </div>
-        <div class="rounded-lg border border-destructive/30 bg-destructive/5 p-4">
-          <div class="font-mono text-sm font-medium text-destructive mb-2">INVALID_PARAMETERS</div>
-          <p class="font-sans text-xs text-muted-foreground">
-            Invalid method parameters provided.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rate Limits -->
-    <div class="bento-card p-6">
-      <h2 class="font-mono text-2xl font-semibold text-warm-gold mb-6">Rate Limits</h2>
-
-      <div class="grid gap-4 sm:grid-cols-3">
-        <div class="rounded-lg border border-border bg-card-bg p-4">
-          <div class="font-mono text-2xl font-bold text-cyan-glow mb-1">100</div>
-          <div class="font-mono text-xs text-muted-foreground">Requests per minute</div>
-        </div>
-        <div class="rounded-lg border border-border bg-card-bg p-4">
-          <div class="font-mono text-2xl font-bold text-warm-gold mb-1">10,000</div>
-          <div class="font-mono text-xs text-muted-foreground">Requests per day</div>
-        </div>
-        <div class="rounded-lg border border-border bg-card-bg p-4">
-          <div class="font-mono text-2xl font-bold text-amber mb-1">1,000</div>
-          <div class="font-mono text-xs text-muted-foreground">Max tokens per request</div>
-        </div>
-      </div>
-
-      <p class="font-sans text-sm text-muted-foreground mt-4">
-        Rate limits apply per API key. Contact support for higher limits.
-      </p>
-    </div>
-
-    <!-- Navigation -->
-    <div class="grid gap-4 sm:grid-cols-2">
-      <a href="/docs/getting-started" class="bento-card group p-5 hover:border-warm-gold/50 transition-colors">
-        <div class="flex items-center gap-2 mb-2">
-          <Icon name="lucide:arrow-left" class="text-warm-gold size-4" />
-          <span class="font-mono text-sm text-muted-foreground">Previous</span>
-        </div>
-        <div class="font-mono text-base font-semibold text-foreground group-hover:text-warm-gold transition-colors">Getting Started</div>
-      </a>
-
-      <a href="/docs/code-examples" class="bento-card group p-5 hover:border-cyan-glow/50 transition-colors text-right">
-        <div class="flex items-center justify-end gap-2 mb-2">
-          <span class="font-mono text-sm text-muted-foreground">Next</span>
-          <Icon name="lucide:arrow-right" class="text-cyan-glow size-4" />
-        </div>
-        <div class="font-mono text-base font-semibold text-foreground group-hover:text-cyan-glow transition-colors">Code Examples</div>
-      </a>
-    </div>
-  </section>
-</Layout>
+</DocsLayout>

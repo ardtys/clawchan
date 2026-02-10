@@ -1,653 +1,77 @@
 ---
-import DocsLayout from '../../layouts/DocsLayout.astro';
+import DocsLayout from '@/layouts/DocsLayout.astro'
+import { Icon } from 'astro-icon/components'
 ---
 
-<DocsLayout title="Production Deployment" description="Deploy ClawChan to production environments">
+<DocsLayout title="Production Deployment">
   <h1>Production Deployment</h1>
+  <p class="text-xl text-foreground/80 mt-2">Deploy ClawChan to production environments.</p>
 
-  <p class="lead">
-    This guide covers deploying ClawChan to production environments, including security hardening,
-    monitoring, and best practices for running a reliable AI agent platform.
-  </p>
+  <h2>Overview</h2>
+  <p>This guide covers deploying ClawChan to production, including hosting options, configuration, and best practices for running a reliable AI agent.</p>
 
-  <h2>Pre-Deployment Checklist</h2>
-
-  <p>Before deploying to production, ensure you have:</p>
-
+  <h3>Deployment Options</h3>
   <ul>
-    <li><strong>Environment Variables</strong>: All secrets stored securely (never in code)</li>
-    <li><strong>API Keys</strong>: Production Groq API key with appropriate rate limits</li>
-    <li><strong>Database</strong>: Production-ready database with backups configured</li>
-    <li><strong>Domain</strong>: Domain name with DNS configured</li>
-    <li><strong>SSL Certificate</strong>: Valid SSL/TLS certificate for HTTPS</li>
-    <li><strong>Monitoring</strong>: Logging and monitoring tools configured</li>
-    <li><strong>Backup Strategy</strong>: Automated backups for data and configuration</li>
+    <li>Vercel - Recommended for static frontend hosting</li>
+    <li>Netlify - Alternative static site hosting</li>
+    <li>VPS/Cloud - For full control (DigitalOcean, AWS, etc.)</li>
+    <li>Docker - Containerized deployment</li>
   </ul>
 
-  <h2>Deployment Options</h2>
+  <h3>Frontend Deployment</h3>
+  <p>Deploy the Astro frontend:</p>
+  <ul>
+    <li>Build the project with npm run build</li>
+    <li>Output is in the dist folder</li>
+    <li>Deploy to Vercel, Netlify, or any static host</li>
+    <li>Configure environment variables in host dashboard</li>
+  </ul>
 
-  <h3>Option 1: VPS Deployment (DigitalOcean, Linode, Vultr)</h3>
+  <h3>Agent Deployment</h3>
+  <p>Deploy the ElizaOS agent:</p>
+  <ul>
+    <li>Set up a VPS or cloud server</li>
+    <li>Install Node.js and dependencies</li>
+    <li>Configure production environment variables</li>
+    <li>Use PM2 for process management</li>
+    <li>Set up Nginx as reverse proxy</li>
+  </ul>
 
-  <p>Recommended for full control and cost-effectiveness.</p>
+  <h3>Production Configuration</h3>
+  <ul>
+    <li>Set NODE_ENV=production</li>
+    <li>Use production API keys</li>
+    <li>Enable logging and monitoring</li>
+    <li>Configure HTTPS/SSL certificates</li>
+    <li>Set up health check endpoints</li>
+  </ul>
 
-  <h4>Server Requirements</h4>
+  <h3>Security Checklist</h3>
+  <ul>
+    <li>All API keys stored in environment variables</li>
+    <li>HTTPS enabled for all traffic</li>
+    <li>Rate limiting configured</li>
+    <li>Input validation enabled</li>
+    <li>Error messages sanitized</li>
+    <li>Firewall rules configured</li>
+  </ul>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Component</th>
-        <th>Minimum</th>
-        <th>Recommended</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>CPU</td>
-        <td>2 cores</td>
-        <td>4+ cores</td>
-      </tr>
-      <tr>
-        <td>RAM</td>
-        <td>4 GB</td>
-        <td>8+ GB</td>
-      </tr>
-      <tr>
-        <td>Storage</td>
-        <td>20 GB SSD</td>
-        <td>50+ GB SSD</td>
-      </tr>
-      <tr>
-        <td>Bandwidth</td>
-        <td>1 TB/month</td>
-        <td>2+ TB/month</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3>Monitoring and Maintenance</h3>
+  <ul>
+    <li>Set up uptime monitoring</li>
+    <li>Configure error alerting</li>
+    <li>Review logs regularly</li>
+    <li>Plan for regular updates</li>
+    <li>Create backup procedures</li>
+  </ul>
 
-  <h4>Initial Server Setup</h4>
-
-  <pre><code class="language-bash"># Update system packages
-sudo apt update && sudo apt upgrade -y
-
-# Install Node.js 20+ (Ubuntu/Debian)
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install -y nodejs
-
-# Install pnpm
-npm install -g pnpm
-
-# Install PM2 for process management
-npm install -g pm2
-
-# Install Nginx for reverse proxy
-sudo apt install -y nginx
-
-# Install certbot for SSL
-sudo apt install -y certbot python3-certbot-nginx
-
-# Create application user
-sudo useradd -m -s /bin/bash clawchan
-sudo usermod -aG sudo clawchan</code></pre>
-
-  <h4>Deploy Application</h4>
-
-  <pre><code class="language-bash"># Switch to application user
-sudo su - clawchan
-
-# Clone repository
-git clone https://github.com/yourusername/clawchan.git
-cd clawchan
-
-# Install dependencies
-pnpm install
-
-# Create production .env file
-nano .env.local</code></pre>
-
-  <div class="callout callout-warning">
-    <strong>Security Warning:</strong> Never commit .env files to version control. Use secure methods
-    to transfer environment variables (SSH, secure vaults, CI/CD secrets).
+  <div class="callout callout-info mt-8">
+    <div class="callout-title">
+      <Icon name="lucide:info" class="size-5" />
+      Documentation Coming Soon
+    </div>
+    <p class="text-sm">
+      Detailed documentation with code examples is being prepared.
+    </p>
   </div>
-
-  <h4>Production Environment Variables</h4>
-
-  <pre><code class="language-bash"># .env.local - Production Configuration
-
-# Groq API Configuration
-GROQ_API_KEY=gsk_your_production_api_key_here
-
-# Moltbook Configuration
-MOLTBOOK_USERNAME=ClawChan
-MOLTBOOK_PASSWORD=your_secure_password_here
-MOLTBOOK_URL=https://moltbook.com
-
-# Database Configuration
-DATABASE_URL=postgresql://user:password@localhost:5432/clawchan_prod
-
-# Security
-NODE_ENV=production
-SECRET_KEY=your_256_bit_secret_key_here
-
-# Logging
-LOG_LEVEL=info
-LOG_TO_FILE=true
-
-# Rate Limiting
-RATE_LIMIT_ENABLED=true
-MAX_REQUESTS_PER_MINUTE=60
-
-# CORS (adjust based on your domain)
-ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com</code></pre>
-
-  <h4>Build for Production</h4>
-
-  <pre><code class="language-bash"># Build Astro frontend
-pnpm build
-
-# Test the build
-pnpm preview
-
-# Build ElizaOS agent
-cd agent
-pnpm build
-cd ..</code></pre>
-
-  <h2>Process Management with PM2</h2>
-
-  <p>PM2 ensures your application stays running and automatically restarts on crashes.</p>
-
-  <h3>Create PM2 Ecosystem File</h3>
-
-  <pre><code class="language-javascript">// ecosystem.config.cjs
-module.exports = {
-  apps: [
-    {
-      name: 'clawchan-agent',
-      script: 'agent/dist/index.js',
-      instances: 1,
-      exec_mode: 'fork',
-      env: {
-        NODE_ENV: 'production',
-      },
-      error_file: './logs/agent-error.log',
-      out_file: './logs/agent-out.log',
-      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
-      max_memory_restart: '1G',
-      autorestart: true,
-      watch: false,
-    },
-    {
-      name: 'clawchan-frontend',
-      script: 'node_modules/.bin/astro',
-      args: 'preview --host 0.0.0.0 --port 3000',
-      instances: 1,
-      exec_mode: 'fork',
-      env: {
-        NODE_ENV: 'production',
-      },
-      error_file: './logs/frontend-error.log',
-      out_file: './logs/frontend-out.log',
-      max_memory_restart: '500M',
-      autorestart: true,
-      watch: false,
-    },
-  ],
-};</code></pre>
-
-  <h3>Start with PM2</h3>
-
-  <pre><code class="language-bash"># Create logs directory
-mkdir -p logs
-
-# Start applications
-pm2 start ecosystem.config.cjs
-
-# Save PM2 configuration
-pm2 save
-
-# Setup PM2 to start on system boot
-pm2 startup systemd
-# Run the command that PM2 outputs
-
-# Monitor processes
-pm2 monit
-
-# View logs
-pm2 logs clawchan-agent
-pm2 logs clawchan-frontend
-
-# Restart all
-pm2 restart all
-
-# Stop all
-pm2 stop all</code></pre>
-
-  <h2>Nginx Reverse Proxy</h2>
-
-  <p>Configure Nginx to handle incoming requests and proxy to your application.</p>
-
-  <h3>Nginx Configuration</h3>
-
-  <pre><code class="language-nginx"># /etc/nginx/sites-available/clawchan
-server {
-    listen 80;
-    server_name yourdomain.com www.yourdomain.com;
-
-    # Redirect HTTP to HTTPS
-    return 301 https://$server_name$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-    server_name yourdomain.com www.yourdomain.com;
-
-    # SSL Configuration (certbot will add this)
-    ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
-
-    # SSL Security Settings
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-    ssl_prefer_server_ciphers on;
-    ssl_session_cache shared:SSL:10m;
-    ssl_session_timeout 10m;
-
-    # Security Headers
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    add_header X-Content-Type-Options "nosniff" always;
-    add_header X-Frame-Options "SAMEORIGIN" always;
-    add_header X-XSS-Protection "1; mode=block" always;
-    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
-
-    # Gzip Compression
-    gzip on;
-    gzip_vary on;
-    gzip_min_length 1024;
-    gzip_types text/plain text/css text/xml text/javascript application/javascript application/json;
-
-    # Frontend
-    location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_cache_bypass $http_upgrade;
-
-        # Timeout settings
-        proxy_connect_timeout 60s;
-        proxy_send_timeout 60s;
-        proxy_read_timeout 60s;
-    }
-
-    # Static files caching
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf)$ {
-        proxy_pass http://localhost:3000;
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-
-    # Max upload size
-    client_max_body_size 10M;
-}</code></pre>
-
-  <h3>Enable Nginx Site</h3>
-
-  <pre><code class="language-bash"># Create symbolic link
-sudo ln -s /etc/nginx/sites-available/clawchan /etc/nginx/sites-enabled/
-
-# Test Nginx configuration
-sudo nginx -t
-
-# Reload Nginx
-sudo systemctl reload nginx</code></pre>
-
-  <h2>SSL Certificate with Let's Encrypt</h2>
-
-  <pre><code class="language-bash"># Obtain SSL certificate
-sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
-
-# Test automatic renewal
-sudo certbot renew --dry-run
-
-# Certbot will automatically renew certificates before expiry</code></pre>
-
-  <h2>Security Hardening</h2>
-
-  <h3>Firewall Configuration</h3>
-
-  <pre><code class="language-bash"># Enable UFW firewall
-sudo ufw enable
-
-# Allow SSH (change 22 to your SSH port if different)
-sudo ufw allow 22/tcp
-
-# Allow HTTP and HTTPS
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-
-# Check firewall status
-sudo ufw status verbose</code></pre>
-
-  <h3>Fail2Ban for Intrusion Prevention</h3>
-
-  <pre><code class="language-bash"># Install fail2ban
-sudo apt install -y fail2ban
-
-# Create local configuration
-sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-
-# Edit configuration
-sudo nano /etc/fail2ban/jail.local
-
-# Enable and start fail2ban
-sudo systemctl enable fail2ban
-sudo systemctl start fail2ban</code></pre>
-
-  <h3>Environment Variable Security</h3>
-
-  <pre><code class="language-bash"># Secure .env file permissions
-chmod 600 .env.local
-chown clawchan:clawchan .env.local
-
-# Never log environment variables
-# Add to .gitignore
-echo ".env*" >> .gitignore
-echo "*.local" >> .gitignore</code></pre>
-
-  <h2>Database Setup (PostgreSQL)</h2>
-
-  <pre><code class="language-bash"># Install PostgreSQL
-sudo apt install -y postgresql postgresql-contrib
-
-# Create database and user
-sudo -u postgres psql
-
-# In PostgreSQL shell:
-CREATE DATABASE clawchan_prod;
-CREATE USER clawchan_user WITH ENCRYPTED PASSWORD 'your_secure_password';
-GRANT ALL PRIVILEGES ON DATABASE clawchan_prod TO clawchan_user;
-\q
-
-# Run migrations (if applicable)
-pnpm db:migrate</code></pre>
-
-  <h2>Monitoring and Logging</h2>
-
-  <h3>Application Logging</h3>
-
-  <pre><code class="language-bash"># View PM2 logs
-pm2 logs --lines 100
-
-# View specific application logs
-pm2 logs clawchan-agent --lines 50
-
-# Export logs
-pm2 logs --raw > application.log
-
-# Rotate logs
-pm2 install pm2-logrotate
-pm2 set pm2-logrotate:max_size 10M
-pm2 set pm2-logrotate:retain 7</code></pre>
-
-  <h3>System Monitoring</h3>
-
-  <pre><code class="language-bash"># Install monitoring tools
-sudo apt install -y htop iotop nethogs
-
-# Monitor processes
-htop
-
-# Monitor disk I/O
-iotop
-
-# Monitor network
-nethogs
-
-# Check disk space
-df -h
-
-# Check memory usage
-free -m</code></pre>
-
-  <h3>PM2 Plus (Optional - Paid)</h3>
-
-  <p>PM2 Plus provides advanced monitoring, alerts, and application management.</p>
-
-  <pre><code class="language-bash"># Link PM2 to PM2 Plus
-pm2 link your_secret_key your_public_key
-
-# View dashboard at: https://app.pm2.io/</code></pre>
-
-  <h2>Backup Strategy</h2>
-
-  <h3>Automated Database Backups</h3>
-
-  <pre><code class="language-bash"># Create backup script
-cat > ~/backup-db.sh << 'EOF'
-#!/bin/bash
-BACKUP_DIR="/home/clawchan/backups"
-DATE=$(date +%Y%m%d_%H%M%S)
-DB_NAME="clawchan_prod"
-
-mkdir -p $BACKUP_DIR
-
-# Backup database
-pg_dump -U clawchan_user $DB_NAME | gzip > $BACKUP_DIR/db_$DATE.sql.gz
-
-# Keep only last 7 days of backups
-find $BACKUP_DIR -name "db_*.sql.gz" -mtime +7 -delete
-
-echo "Backup completed: db_$DATE.sql.gz"
-EOF
-
-# Make executable
-chmod +x ~/backup-db.sh
-
-# Add to crontab (daily at 2 AM)
-crontab -e
-# Add line:
-0 2 * * * /home/clawchan/backup-db.sh >> /home/clawchan/logs/backup.log 2>&1</code></pre>
-
-  <h3>Configuration Backups</h3>
-
-  <pre><code class="language-bash"># Backup .env and critical files
-tar -czf config-backup-$(date +%Y%m%d).tar.gz \
-  .env.local \
-  ecosystem.config.cjs \
-  /etc/nginx/sites-available/clawchan
-
-# Store backups securely (consider AWS S3, Backblaze, etc.)</code></pre>
-
-  <h2>Deployment Workflow</h2>
-
-  <h3>Manual Deployment</h3>
-
-  <pre><code class="language-bash"># On server, pull latest changes
-cd ~/clawchan
-git pull origin main
-
-# Install new dependencies
-pnpm install
-
-# Rebuild application
-pnpm build
-cd agent && pnpm build && cd ..
-
-# Restart with PM2
-pm2 restart all
-
-# Check status
-pm2 status
-pm2 logs --lines 20</code></pre>
-
-  <h3>CI/CD with GitHub Actions (Optional)</h3>
-
-  <pre><code class="language-yaml"># .github/workflows/deploy.yml
-name: Deploy to Production
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd ~/clawchan
-            git pull origin main
-            pnpm install
-            pnpm build
-            cd agent && pnpm build && cd ..
-            pm2 restart all</code></pre>
-
-  <h2>Performance Optimization</h2>
-
-  <h3>Node.js Optimization</h3>
-
-  <pre><code class="language-bash"># Set Node.js memory limit in PM2
-# In ecosystem.config.cjs:
-node_args: '--max-old-space-size=4096'
-
-# Enable production mode
-NODE_ENV=production</code></pre>
-
-  <h3>Database Optimization</h3>
-
-  <pre><code class="language-sql">-- Create indexes for frequently queried fields
-CREATE INDEX idx_messages_timestamp ON messages(timestamp);
-CREATE INDEX idx_users_username ON users(username);
-
--- Analyze query performance
-EXPLAIN ANALYZE SELECT * FROM messages WHERE timestamp > NOW() - INTERVAL '1 day';</code></pre>
-
-  <h3>Caching Strategy</h3>
-
-  <pre><code class="language-bash"># Install Redis for caching
-sudo apt install -y redis-server
-
-# Enable Redis
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
-
-# Configure in your application
-# Use Redis for:
-# - Session storage
-# - API response caching
-# - Rate limiting
-# - Message queues</code></pre>
-
-  <h2>Health Checks and Uptime Monitoring</h2>
-
-  <h3>Create Health Check Endpoint</h3>
-
-  <pre><code class="language-typescript">// src/pages/api/health.ts
-export async function GET() {
-  return new Response(JSON.stringify({
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-    version: process.env.npm_package_version,
-  }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
-}</code></pre>
-
-  <h3>Uptime Monitoring Services</h3>
-
-  <ul>
-    <li><strong>UptimeRobot</strong> - Free tier available, 5-minute checks</li>
-    <li><strong>Pingdom</strong> - Advanced monitoring with SMS alerts</li>
-    <li><strong>StatusCake</strong> - Free SSL monitoring included</li>
-    <li><strong>Better Uptime</strong> - Status pages and incident management</li>
-  </ul>
-
-  <h2>Scaling Considerations</h2>
-
-  <h3>Horizontal Scaling</h3>
-
-  <pre><code class="language-javascript">// ecosystem.config.cjs - Multiple instances
-{
-  name: 'clawchan-frontend',
-  script: 'node_modules/.bin/astro',
-  args: 'preview',
-  instances: 'max', // Use all CPU cores
-  exec_mode: 'cluster',
-  // ... other config
-}</code></pre>
-
-  <h3>Load Balancing</h3>
-
-  <pre><code class="language-nginx"># Nginx load balancer
-upstream clawchan_backend {
-    least_conn;
-    server 127.0.0.1:3000;
-    server 127.0.0.1:3001;
-    server 127.0.0.1:3002;
-}
-
-server {
-    location / {
-        proxy_pass http://clawchan_backend;
-    }
-}</code></pre>
-
-  <h2>Troubleshooting Production Issues</h2>
-
-  <h3>Application Won't Start</h3>
-
-  <pre><code class="language-bash"># Check PM2 logs
-pm2 logs --err --lines 50
-
-# Check if port is in use
-sudo lsof -i :3000
-
-# Restart specific app
-pm2 restart clawchan-agent</code></pre>
-
-  <h3>High Memory Usage</h3>
-
-  <pre><code class="language-bash"># Monitor memory in real-time
-pm2 monit
-
-# Check Node.js heap usage
-node --expose-gc --max-old-space-size=4096 your-app.js
-
-# Set memory limit in PM2
-max_memory_restart: '1G'</code></pre>
-
-  <h3>SSL Certificate Issues</h3>
-
-  <pre><code class="language-bash"># Check certificate expiry
-sudo certbot certificates
-
-# Force renewal
-sudo certbot renew --force-renewal
-
-# Test SSL configuration
-curl -vI https://yourdomain.com</code></pre>
-
-  <div class="callout callout-success">
-    <strong>Production Ready:</strong> Following this guide ensures your ClawChan deployment is
-    secure, scalable, and maintainable. Remember to regularly update dependencies, monitor logs,
-    and maintain backups.
-  </div>
-
-  <h2>Next Steps</h2>
-
-  <ul>
-    <li><a href="/docs/security">Security Best Practices</a> - Advanced security hardening</li>
-    <li><a href="/docs/troubleshooting">Troubleshooting</a> - Common issues and solutions</li>
-    <li><a href="/docs/monitoring">Monitoring & Analytics</a> - Advanced monitoring setup</li>
-  </ul>
 </DocsLayout>

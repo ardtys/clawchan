@@ -1,560 +1,67 @@
 ---
-import DocsLayout from '../../layouts/DocsLayout.astro';
+import DocsLayout from '@/layouts/DocsLayout.astro'
+import { Icon } from 'astro-icon/components'
 ---
 
-<DocsLayout title="Environment Setup" description="Configure your development environment for ClawChan">
+<DocsLayout title="Environment Setup">
   <h1>Environment Setup</h1>
+  <p class="text-xl text-foreground/80 mt-2">Configure your development and production environment variables.</p>
 
-  <p class="lead">
-    Proper environment configuration is critical for ClawChan to function correctly. This guide
-    covers all environment variables, configuration files, and setup steps for both development
-    and production environments.
-  </p>
+  <h2>Overview</h2>
+  <p>Proper environment configuration is essential for running ClawChan securely. This guide covers all required and optional environment variables.</p>
 
-  <h2>Environment Variables Overview</h2>
-
-  <p>
-    ClawChan uses environment variables to manage sensitive configuration data like API keys,
-    database credentials, and service URLs. These should never be committed to version control.
-  </p>
-
-  <div class="callout callout-danger">
-    <strong>Security Warning:</strong> Never commit .env files to git. Always use .env.local or
-    .env.production for sensitive data and ensure they're listed in .gitignore.
-  </div>
-
-  <h2>Required Environment Variables</h2>
-
-  <h3>Core Configuration</h3>
-
-  <pre><code class="language-bash"># .env.local - Core settings
-
-# Application Environment
-NODE_ENV=development # development | production | test
-
-# Server Configuration
-PORT=3000
-HOST=localhost</code></pre>
-
-  <h3>Groq LLM Configuration</h3>
-
-  <pre><code class="language-bash"># Groq API Configuration
-GROQ_API_KEY=gsk_your_api_key_here
-
-# Model Selection
-GROQ_MODEL=llama-3.1-70b-versatile # or llama-3.1-8b-instant
-
-# Model Parameters
-GROQ_TEMPERATURE=0.7 # 0.0 to 2.0 (creativity level)
-GROQ_MAX_TOKENS=2048 # Maximum response length
-GROQ_TOP_P=0.9 # Nucleus sampling parameter</code></pre>
-
-  <h4>Obtaining a Groq API Key</h4>
-
-  <ol>
-    <li>Visit <a href="https://console.groq.com" target="_blank">console.groq.com</a></li>
-    <li>Sign up or log in to your account</li>
-    <li>Navigate to API Keys section</li>
-    <li>Click "Create API Key"</li>
-    <li>Copy the key (starts with "gsk_")</li>
-    <li>Add to your .env.local file</li>
-  </ol>
-
-  <h3>Moltbook Integration</h3>
-
-  <pre><code class="language-bash"># Moltbook Configuration
-MOLTBOOK_URL=https://moltbook.com
-MOLTBOOK_USERNAME=ClawChan
-MOLTBOOK_PASSWORD=your_secure_password_here
-
-# Moltbook Features
-MOLTBOOK_AUTO_ARCHIVE=true
-MOLTBOOK_ARCHIVE_INTERVAL=3600 # seconds (1 hour)
-MOLTBOOK_PUBLIC_POSTS=false # true to share posts publicly
-MOLTBOOK_ENABLE_WEBHOOKS=false</code></pre>
-
-  <h4>Moltbook Account Setup</h4>
-
-  <ol>
-    <li>Visit Moltbook.com and create an account</li>
-    <li>Choose a unique username for your agent</li>
-    <li>Generate a strong password</li>
-    <li>Configure privacy settings (public/private)</li>
-    <li>Add credentials to .env.local</li>
-  </ol>
-
-  <h2>Optional Configuration</h2>
-
-  <h3>Database Configuration</h3>
-
-  <pre><code class="language-bash"># Database (Optional - for persistent storage)
-DATABASE_URL=postgresql://user:password@localhost:5432/clawchan
-DATABASE_POOL_MIN=2
-DATABASE_POOL_MAX=10
-
-# SQLite Alternative (simpler, for development)
-DATABASE_URL=sqlite:./data/clawchan.db</code></pre>
-
-  <h3>Redis Cache (Optional)</h3>
-
-  <pre><code class="language-bash"># Redis Configuration
-REDIS_URL=redis://localhost:6379
-REDIS_PASSWORD=your_redis_password
-REDIS_CACHE_TTL=3600 # Cache expiration in seconds</code></pre>
-
-  <h3>Logging Configuration</h3>
-
-  <pre><code class="language-bash"># Logging
-LOG_LEVEL=info # debug | info | warn | error
-LOG_FORMAT=json # json | pretty
-LOG_TO_FILE=false # Set true in production
-LOG_FILE_PATH=./logs/clawchan.log</code></pre>
-
-  <h3>Security Settings</h3>
-
-  <pre><code class="language-bash"># Security
-SECRET_KEY=your_256_bit_secret_key_here # Generate with: openssl rand -hex 32
-JWT_SECRET=your_jwt_secret_key_here
-JWT_EXPIRATION=3600 # 1 hour
-
-# CORS
-ALLOWED_ORIGINS=http://localhost:4321,http://localhost:3000
-CORS_CREDENTIALS=true
-
-# Rate Limiting
-RATE_LIMIT_ENABLED=true
-RATE_LIMIT_REQUESTS=60 # requests per window
-RATE_LIMIT_WINDOW=60000 # window in milliseconds (1 minute)</code></pre>
-
-  <h2>Complete .env.local Template</h2>
-
-  <pre><code class="language-bash"># ClawChan Environment Configuration
-# Copy this to .env.local and fill in your values
-
-# ==========================================
-# Application Settings
-# ==========================================
-NODE_ENV=development
-PORT=3000
-HOST=localhost
-
-# ==========================================
-# Groq LLM Configuration
-# ==========================================
-GROQ_API_KEY=gsk_your_api_key_here
-GROQ_MODEL=llama-3.1-70b-versatile
-GROQ_TEMPERATURE=0.7
-GROQ_MAX_TOKENS=2048
-GROQ_TOP_P=0.9
-
-# ==========================================
-# Moltbook Integration
-# ==========================================
-MOLTBOOK_URL=https://moltbook.com
-MOLTBOOK_USERNAME=ClawChan
-MOLTBOOK_PASSWORD=your_secure_password
-MOLTBOOK_AUTO_ARCHIVE=true
-MOLTBOOK_ARCHIVE_INTERVAL=3600
-MOLTBOOK_PUBLIC_POSTS=false
-
-# ==========================================
-# Database (Optional)
-# ==========================================
-# PostgreSQL
-# DATABASE_URL=postgresql://user:password@localhost:5432/clawchan
-
-# SQLite (Default)
-# DATABASE_URL=sqlite:./data/clawchan.db
-
-# ==========================================
-# Redis Cache (Optional)
-# ==========================================
-# REDIS_URL=redis://localhost:6379
-# REDIS_PASSWORD=
-# REDIS_CACHE_TTL=3600
-
-# ==========================================
-# Security
-# ==========================================
-SECRET_KEY=generate_with_openssl_rand_hex_32
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRATION=3600
-
-# CORS
-ALLOWED_ORIGINS=http://localhost:4321,http://localhost:3000
-CORS_CREDENTIALS=true
-
-# Rate Limiting
-RATE_LIMIT_ENABLED=true
-RATE_LIMIT_REQUESTS=60
-RATE_LIMIT_WINDOW=60000
-
-# ==========================================
-# Logging
-# ==========================================
-LOG_LEVEL=info
-LOG_FORMAT=pretty
-LOG_TO_FILE=false
-LOG_FILE_PATH=./logs/clawchan.log
-
-# ==========================================
-# Feature Flags (Optional)
-# ==========================================
-# ENABLE_ANALYTICS=false
-# ENABLE_TELEMETRY=false
-# DEBUG_MODE=false</code></pre>
-
-  <h2>Environment-Specific Configuration</h2>
-
-  <h3>Development Environment</h3>
-
-  <pre><code class="language-bash"># .env.local (Development)
-NODE_ENV=development
-PORT=3000
-HOST=localhost
-
-# Development-specific settings
-LOG_LEVEL=debug
-LOG_FORMAT=pretty
-GROQ_MODEL=llama-3.1-8b-instant # Faster model for dev
-DEBUG_MODE=true
-
-# Allow localhost origins
-ALLOWED_ORIGINS=http://localhost:4321,http://localhost:3000,http://127.0.0.1:4321</code></pre>
-
-  <h3>Production Environment</h3>
-
-  <pre><code class="language-bash"># .env.production (Production)
-NODE_ENV=production
-PORT=3000
-HOST=0.0.0.0
-
-# Production-specific settings
-LOG_LEVEL=warn
-LOG_FORMAT=json
-LOG_TO_FILE=true
-LOG_FILE_PATH=/var/log/clawchan/app.log
-
-GROQ_MODEL=llama-3.1-70b-versatile # More capable model
-
-# Production domain
-ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
-
-# Stronger rate limiting
-RATE_LIMIT_REQUESTS=30
-RATE_LIMIT_WINDOW=60000
-
-# Enable production features
-ENABLE_ANALYTICS=true
-ENABLE_TELEMETRY=true</code></pre>
-
-  <h3>Testing Environment</h3>
-
-  <pre><code class="language-bash"># .env.test (Testing)
-NODE_ENV=test
-PORT=3001
-
-# Test database
-DATABASE_URL=sqlite::memory:
-
-# Disable external services
-MOLTBOOK_AUTO_ARCHIVE=false
-RATE_LIMIT_ENABLED=false
-
-# Fast model for tests
-GROQ_MODEL=llama-3.1-8b-instant
-
-LOG_LEVEL=error</code></pre>
-
-  <h2>Loading Environment Variables</h2>
-
-  <h3>Automatic Loading (Recommended)</h3>
-
-  <p>ClawChan automatically loads environment variables using <code>dotenv</code>:</p>
-
-  <pre><code class="language-typescript">// agent/src/index.ts
-import dotenv from 'dotenv';
-
-// Load environment variables
-dotenv.config({ path: '.env.local' });
-
-// Access variables
-const groqApiKey = process.env.GROQ_API_KEY;
-const moltbookUrl = process.env.MOLTBOOK_URL;</code></pre>
-
-  <h3>Manual Loading</h3>
-
-  <pre><code class="language-bash"># Load .env.local before running
-export $(cat .env.local | xargs)
-pnpm start</code></pre>
-
-  <h3>Environment-Specific Loading</h3>
-
-  <pre><code class="language-typescript">// Load based on NODE_ENV
-const envFile = process.env.NODE_ENV === 'production'
-  ? '.env.production'
-  : '.env.local';
-
-dotenv.config({ path: envFile });</code></pre>
-
-  <h2>Validation and Type Safety</h2>
-
-  <h3>Environment Validation</h3>
-
-  <pre><code class="language-typescript">// agent/src/lib/env.ts
-export interface EnvConfig {
-  groq: {
-    apiKey: string;
-    model: string;
-    temperature: number;
-    maxTokens: number;
-  };
-  moltbook: {
-    url: string;
-    username: string;
-    password: string;
-    autoArchive: boolean;
-  };
-  app: {
-    nodeEnv: 'development' | 'production' | 'test';
-    port: number;
-    host: string;
-  };
-}
-
-export function validateEnv(): EnvConfig {
-  // Required variables
-  const required = [
-    'GROQ_API_KEY',
-    'MOLTBOOK_USERNAME',
-    'MOLTBOOK_PASSWORD',
-  ];
-
-  for (const key of required) {
-    if (!process.env[key]) {
-      throw new Error(`Missing required environment variable: ${key}`);
-    }
-  }
-
-  // Validate formats
-  if (!process.env.GROQ_API_KEY?.startsWith('gsk_')) {
-    throw new Error('Invalid Groq API key format (should start with gsk_)');
-  }
-
-  // Build typed config
-  return {
-    groq: {
-      apiKey: process.env.GROQ_API_KEY!,
-      model: process.env.GROQ_MODEL || 'llama-3.1-70b-versatile',
-      temperature: parseFloat(process.env.GROQ_TEMPERATURE || '0.7'),
-      maxTokens: parseInt(process.env.GROQ_MAX_TOKENS || '2048'),
-    },
-    moltbook: {
-      url: process.env.MOLTBOOK_URL || 'https://moltbook.com',
-      username: process.env.MOLTBOOK_USERNAME!,
-      password: process.env.MOLTBOOK_PASSWORD!,
-      autoArchive: process.env.MOLTBOOK_AUTO_ARCHIVE === 'true',
-    },
-    app: {
-      nodeEnv: (process.env.NODE_ENV as any) || 'development',
-      port: parseInt(process.env.PORT || '3000'),
-      host: process.env.HOST || 'localhost',
-    },
-  };
-}
-
-// Usage
-const config = validateEnv();
-console.log('✓ Environment configuration validated');</code></pre>
-
-  <h2>Generating Secure Keys</h2>
-
-  <h3>Generate SECRET_KEY</h3>
-
-  <pre><code class="language-bash"># Using OpenSSL (recommended)
-openssl rand -hex 32
-
-# Using Node.js
-node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-
-# Using Python
-python3 -c "import secrets; print(secrets.token_hex(32))"</code></pre>
-
-  <h3>Generate JWT_SECRET</h3>
-
-  <pre><code class="language-bash"># Similar to SECRET_KEY
-openssl rand -base64 32</code></pre>
-
-  <h2>Managing Multiple Environments</h2>
-
-  <h3>Using .env Files</h3>
-
-  <pre><code class="language-bash"># Project structure
-.env.example         # Template with all variables (no sensitive data)
-.env.local          # Development (gitignored)
-.env.production     # Production (gitignored)
-.env.test           # Testing (gitignored)</code></pre>
-
-  <h3>Switching Environments</h3>
-
-  <pre><code class="language-bash"># Development
-cp .env.local .env
-pnpm dev
-
-# Production
-cp .env.production .env
-pnpm build && pnpm start
-
-# Testing
-cp .env.test .env
-pnpm test</code></pre>
-
-  <h2>Docker Configuration</h2>
-
-  <h3>Docker Compose with Environment</h3>
-
-  <pre><code class="language-yaml"># docker-compose.yml
-version: '3.8'
-
-services:
-  clawchan:
-    build: .
-    ports:
-      - "3000:3000"
-    env_file:
-      - .env.production
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
-
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: clawchan
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  redis:
-    image: redis:7-alpine
-    command: redis-server --requirepass ${REDIS_PASSWORD}
-
-volumes:
-  pgdata:</code></pre>
-
-  <h2>CI/CD Integration</h2>
-
-  <h3>GitHub Actions Secrets</h3>
-
-  <pre><code class="language-yaml"># .github/workflows/deploy.yml
-name: Deploy
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    env:
-      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-      MOLTBOOK_PASSWORD: ${{ secrets.MOLTBOOK_PASSWORD }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Create .env file
-        run: |
-          echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" >> .env.production
-          echo "MOLTBOOK_PASSWORD=${{ secrets.MOLTBOOK_PASSWORD }}" >> .env.production
-          # ... other secrets
-
-      - name: Deploy
-        run: ./deploy.sh</code></pre>
-
-  <h2>Troubleshooting</h2>
-
-  <h3>Common Issues</h3>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Issue</th>
-        <th>Solution</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Variables not loading</td>
-        <td>Check file is named .env.local and in project root</td>
-      </tr>
-      <tr>
-        <td>API key invalid</td>
-        <td>Verify key starts with "gsk_" and has no extra spaces</td>
-      </tr>
-      <tr>
-        <td>Port already in use</td>
-        <td>Change PORT in .env or kill process using port</td>
-      </tr>
-      <tr>
-        <td>CORS errors</td>
-        <td>Add frontend URL to ALLOWED_ORIGINS</td>
-      </tr>
-      <tr>
-        <td>Database connection failed</td>
-        <td>Verify DATABASE_URL format and credentials</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Debug Environment Loading</h3>
-
-  <pre><code class="language-bash"># Check if .env.local is loaded
-pnpm run env-check
-
-# Print environment variables (be careful not to expose secrets!)
-node -e "console.log(process.env)" | grep -i groq</code></pre>
-
-  <pre><code class="language-typescript">// Create env-check script
-// package.json
-{
-  "scripts": {
-    "env-check": "node scripts/check-env.js"
-  }
-}
-
-// scripts/check-env.js
-require('dotenv').config({ path: '.env.local' });
-
-const required = ['GROQ_API_KEY', 'MOLTBOOK_USERNAME'];
-const missing = required.filter(key => !process.env[key]);
-
-if (missing.length > 0) {
-  console.error('❌ Missing variables:', missing.join(', '));
-  process.exit(1);
-}
-
-console.log('✅ All required variables present');
-console.log('📋 Configuration:');
-console.log('  - GROQ_API_KEY:', process.env.GROQ_API_KEY?.slice(0, 10) + '...');
-console.log('  - MOLTBOOK_USERNAME:', process.env.MOLTBOOK_USERNAME);
-console.log('  - NODE_ENV:', process.env.NODE_ENV);</code></pre>
-
-  <div class="callout callout-success">
-    <strong>Environment Setup Complete:</strong> With proper environment configuration, ClawChan
-    is ready to run securely and efficiently in any environment.
-  </div>
-
-  <h2>Next Steps</h2>
-
+  <h3>Required Variables</h3>
+  <p>These environment variables must be set:</p>
   <ul>
-    <li><a href="/docs/groq-setup">Groq LLM Setup</a> - Configure Groq integration</li>
-    <li><a href="/docs/moltbook-integration">Moltbook Integration</a> - Set up archival features</li>
-    <li><a href="/docs/security">Security Best Practices</a> - Secure your environment</li>
-    <li><a href="/docs/production-deployment">Production Deployment</a> - Deploy to production</li>
+    <li>GROQ_API_KEY - Your Groq API key for LLM inference</li>
+    <li>LLM_API_KEY - Same as GROQ_API_KEY for fallback</li>
+    <li>MODEL_PROVIDER - Set to groq</li>
+    <li>NODE_ENV - Set to development or production</li>
   </ul>
+
+  <h3>Groq Configuration</h3>
+  <p>Configure the Groq LLM provider:</p>
+  <ul>
+    <li>GROQ_MODEL - Model name like llama-3.1-70b-versatile</li>
+    <li>GROQ_API_BASE_URL - API endpoint URL</li>
+    <li>GROQ_TEMPERATURE - Response creativity level (0-1)</li>
+    <li>GROQ_MAX_TOKENS - Maximum response length</li>
+  </ul>
+
+  <h3>Moltbook Configuration</h3>
+  <p>Optional Moltbook integration settings:</p>
+  <ul>
+    <li>MOLTBOOK_TOKEN - API token from registration</li>
+    <li>MOLTBOOK_AGENT_NAME - Your agent's display name</li>
+    <li>MOLTBOOK_AUTONOMOUS_MODE - Enable autonomous behavior</li>
+    <li>MOLTBOOK_PERSONALITY - Agent personality description</li>
+  </ul>
+
+  <h3>Creating the .env File</h3>
+  <p>Steps to set up your environment:</p>
+  <ul>
+    <li>Copy .env.example to .env in the project root</li>
+    <li>Fill in your API keys and configuration values</li>
+    <li>Never commit .env files to version control</li>
+    <li>Use different .env files for development and production</li>
+  </ul>
+
+  <h3>Security Best Practices</h3>
+  <ul>
+    <li>Never expose API keys in client-side code</li>
+    <li>Rotate keys regularly (recommended: every 90 days)</li>
+    <li>Use separate keys for development and production</li>
+    <li>Store production secrets in a secure vault</li>
+    <li>Review access permissions periodically</li>
+  </ul>
+
+  <div class="callout callout-info mt-8">
+    <div class="callout-title">
+      <Icon name="lucide:info" class="size-5" />
+      Documentation Coming Soon
+    </div>
+    <p class="text-sm">
+      Detailed documentation with code examples is being prepared.
+    </p>
+  </div>
 </DocsLayout>
