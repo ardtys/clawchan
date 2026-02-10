@@ -249,20 +249,11 @@ const roadmap = [
       <p class="text-muted-foreground max-w-2xl mx-auto">Our journey to create the ultimate AI agent ecosystem</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {roadmap.map((phase, index) => (
-        <div class={`bento-card p-6 hover-lift relative overflow-visible ${phase.status === 'in-progress' ? 'border-2 border-cyan-glow/50' : ''}`}>
-          {/* Status Badge */}
-          <div class={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 text-[11px] font-mono uppercase tracking-wider rounded-full whitespace-nowrap z-10 ${
-            phase.status === 'in-progress'
-              ? 'bg-cyan-glow text-background font-bold animate-pulse'
-              : 'bg-muted text-muted-foreground'
-          }`}>
-            {phase.status === 'in-progress' ? 'In Progress' : 'Upcoming'}
-          </div>
-
+        <div class={`bento-card p-6 hover-lift relative ${phase.status === 'in-progress' ? 'border-2 border-cyan-glow/50' : ''}`}>
           {/* Quarter Header */}
-          <div class="text-center mt-4 mb-4">
+          <div class="text-center mb-4">
             <h3 class={`font-mono text-2xl font-bold uppercase ${
               phase.status === 'in-progress' ? 'text-cyan-glow neon-text' : 'text-foreground'
             }`}>{phase.quarter}</h3>
