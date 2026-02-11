@@ -117,7 +117,7 @@ const SystemStats = () => {
         <div className="flex items-center gap-2">
           <span className="text-warm-gold text-lg">⚡</span>
           <span className="font-mono text-sm font-bold uppercase tracking-wider text-foreground">
-            Solana Network
+            Ecosystem Network
           </span>
         </div>
         <span className="flex items-center gap-2 rounded-full bg-cyan-glow/10 px-3 py-1">
