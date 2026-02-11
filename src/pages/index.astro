@@ -16,12 +16,36 @@ import Layout from '@/layouts/Layout.astro'
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 
+// Color class mappings for Tailwind
+const colorClasses = {
+  'cyan-glow': {
+    text: 'text-cyan-glow',
+    bg: 'bg-cyan-glow',
+    bgLight: 'bg-cyan-glow/10',
+    border: 'border-cyan-glow/30',
+  },
+  'warm-gold': {
+    text: 'text-warm-gold',
+    bg: 'bg-warm-gold',
+    bgLight: 'bg-warm-gold/10',
+    border: 'border-warm-gold/30',
+  },
+  'amber': {
+    text: 'text-amber',
+    bg: 'bg-amber',
+    bgLight: 'bg-amber/10',
+    border: 'border-amber/30',
+  },
+} as const;
+
+type ColorKey = keyof typeof colorClasses;
+
 // Dynamic Data Arrays
 const keyStats = [
-  { icon: '⚡', value: 'Sub-Second', label: 'Response Time', color: 'cyan-glow' },
-  { icon: '🧠', value: '70B Params', label: 'Llama 3.3 Model', color: 'warm-gold' },
-  { icon: '🔒', value: 'AES-256', label: 'Encryption', color: 'amber' },
-  { icon: '📚', value: 'Infinite', label: 'Archive Capacity', color: 'cyan-glow' },
+  { icon: '⚡', value: 'Sub-Second', label: 'Response Time', color: 'cyan-glow' as ColorKey },
+  { icon: '🧠', value: '70B Params', label: 'Llama 3.3 Model', color: 'warm-gold' as ColorKey },
+  { icon: '🔒', value: 'AES-256', label: 'Encryption', color: 'amber' as ColorKey },
+  { icon: '📚', value: 'Infinite', label: 'Archive Capacity', color: 'cyan-glow' as ColorKey },
 ]
 
 const dnaStrands = [
@@ -29,7 +53,7 @@ const dnaStrands = [
     name: 'ElizaOS DNA',
     subtitle: 'Intelligence Strand',
     icon: 'lucide:cpu',
-    color: 'cyan-glow',
+    color: 'cyan-glow' as ColorKey,
     description: 'Adaptive intelligence powered by Groq\'s ultra-fast LLM inference. Learns autonomously and evolves with every interaction.',
     features: ['Sub-second AI responses', 'Plugin-based extensibility', 'Continuous learning system'],
     effect: 'scanlines'
@@ -38,7 +62,7 @@ const dnaStrands = [
     name: 'Open Claw DNA',
     subtitle: 'Security Strand',
     icon: 'lucide:shield',
-    color: 'warm-gold',
+    color: 'warm-gold' as ColorKey,
     description: 'Pragmatic protection protocols with encryption mastery. The mechanical claw glows blue when securing data or detecting threats.',
     features: ['Zero-trust architecture', 'AES-256 vault encryption', 'Threat detection & prevention'],
     effect: 'digital-grid'
@@ -46,36 +70,36 @@ const dnaStrands = [
 ]
 
 const techStack = [
-  { name: 'Astro v5', desc: 'Static Site Generation', icon: 'lucide:rocket', color: 'cyan-glow' },
-  { name: 'React 18', desc: 'Interactive UI', icon: 'lucide:component', color: 'warm-gold' },
-  { name: 'TypeScript', desc: 'Type Safety', icon: 'lucide:code-2', color: 'amber' },
-  { name: 'Tailwind CSS', desc: 'Utility-First Styling', icon: 'lucide:paintbrush', color: 'cyan-glow' },
+  { name: 'Astro v5', desc: 'Static Site Generation', icon: 'lucide:rocket', color: 'cyan-glow' as ColorKey },
+  { name: 'React 18', desc: 'Interactive UI', icon: 'lucide:boxes', color: 'warm-gold' as ColorKey },
+  { name: 'TypeScript', desc: 'Type Safety', icon: 'lucide:file-code', color: 'amber' as ColorKey },
+  { name: 'Tailwind CSS', desc: 'Utility-First Styling', icon: 'lucide:palette', color: 'cyan-glow' as ColorKey },
 ]
 
 const useCases = [
-  { title: 'Personal AI Assistant', icon: 'lucide:bot', color: 'cyan-glow', desc: 'Your always-available digital companion for daily tasks, research, coding help, and knowledge management.' },
-  { title: 'Enterprise Knowledge Base', icon: 'lucide:building', color: 'warm-gold', desc: 'Deploy as company-wide AI assistant with secure data handling. Perfect for internal documentation.' },
-  { title: 'Development Companion', icon: 'lucide:code', color: 'amber', desc: 'Code review, debugging, architecture discussions, and API documentation integration.' },
-  { title: 'Community Moderator', icon: 'lucide:users', color: 'cyan-glow', desc: 'Deploy on Discord, Telegram, or Twitter/X for automated community management.' },
-  { title: 'Research Assistant', icon: 'lucide:search', color: 'warm-gold', desc: 'Perfect for academic research, market analysis, and competitive intelligence.' },
-  { title: 'Data Archivist', icon: 'lucide:database', color: 'amber', desc: 'Automatically archive conversations and documents with intelligent categorization.' },
+  { title: 'Personal AI Assistant', icon: 'lucide:bot', color: 'cyan-glow' as ColorKey, desc: 'Your always-available digital companion for daily tasks, research, coding help, and knowledge management.' },
+  { title: 'Enterprise Knowledge Base', icon: 'lucide:building-2', color: 'warm-gold' as ColorKey, desc: 'Deploy as company-wide AI assistant with secure data handling. Perfect for internal documentation.' },
+  { title: 'Development Companion', icon: 'lucide:code', color: 'amber' as ColorKey, desc: 'Code review, debugging, architecture discussions, and API documentation integration.' },
+  { title: 'Community Moderator', icon: 'lucide:users', color: 'cyan-glow' as ColorKey, desc: 'Deploy on Discord, Telegram, or Twitter/X for automated community management.' },
+  { title: 'Research Assistant', icon: 'lucide:search', color: 'warm-gold' as ColorKey, desc: 'Perfect for academic research, market analysis, and competitive intelligence.' },
+  { title: 'Data Archivist', icon: 'lucide:database', color: 'amber' as ColorKey, desc: 'Automatically archive conversations and documents with intelligent categorization.' },
 ]
 
 const capabilities = [
-  { title: 'Ultra-Fast Inference', icon: 'lucide:zap', color: 'cyan-glow', desc: 'Powered by Groq\'s LPU technology delivering sub-second response times with Llama 3.3 70B.', stat: '500+ tokens/second', statIcon: 'lucide:trending-up', effect: 'scanlines' },
-  { title: 'Enterprise Security', icon: 'lucide:shield-check', color: 'warm-gold', desc: 'Zero-trust architecture with AES-256 encryption. Self-hosted deployment means you control everything.', stat: 'SOC 2 compliant', statIcon: 'lucide:lock', effect: 'digital-grid' },
-  { title: 'Omnichannel Presence', icon: 'lucide:globe', color: 'amber', desc: 'Deploy across Twitter/X, Discord, Telegram, and web terminals with unified personality.', stat: '5+ platform integrations', statIcon: 'lucide:network', effect: 'data-streams' },
-  { title: 'Extensible Plugins', icon: 'lucide:plug', color: 'cyan-glow', desc: 'Built on ElizaOS plugin architecture. Add custom actions without touching core code.', stat: 'TypeScript-based', statIcon: 'lucide:puzzle', effect: 'hex-corners' },
+  { title: 'Ultra-Fast Inference', icon: 'lucide:zap', color: 'cyan-glow' as ColorKey, desc: 'Powered by Groq\'s LPU technology delivering sub-second response times with Llama 3.3 70B.', stat: '500+ tokens/second', statIcon: 'lucide:trending-up', effect: 'scanlines' },
+  { title: 'Enterprise Security', icon: 'lucide:shield-check', color: 'warm-gold' as ColorKey, desc: 'Zero-trust architecture with AES-256 encryption. Self-hosted deployment means you control everything.', stat: 'SOC 2 compliant', statIcon: 'lucide:lock', effect: 'digital-grid' },
+  { title: 'Omnichannel Presence', icon: 'lucide:globe', color: 'amber' as ColorKey, desc: 'Deploy across Twitter/X, Discord, Telegram, and web terminals with unified personality.', stat: '5+ platform integrations', statIcon: 'lucide:share-2', effect: 'data-streams' },
+  { title: 'Extensible Plugins', icon: 'lucide:plug', color: 'cyan-glow' as ColorKey, desc: 'Built on ElizaOS plugin architecture. Add custom actions without touching core code.', stat: 'TypeScript-based', statIcon: 'lucide:puzzle', effect: 'hex-corners' },
 ]
 
 const steps = [
-  { num: '1', title: 'Clone & Install', desc: 'Get the code and install dependencies with npm or pnpm', color: 'cyan-glow' },
-  { num: '2', title: 'Configure Keys', desc: 'Add your Groq API key and optional credentials', color: 'warm-gold' },
-  { num: '3', title: 'Launch & Chat', desc: 'Start the development server and begin interacting', color: 'amber' },
+  { num: '1', title: 'Clone & Install', desc: 'Get the code and install dependencies with npm or pnpm', color: 'cyan-glow' as ColorKey },
+  { num: '2', title: 'Configure Keys', desc: 'Add your Groq API key and optional credentials', color: 'warm-gold' as ColorKey },
+  { num: '3', title: 'Launch & Chat', desc: 'Start the development server and begin interacting', color: 'amber' as ColorKey },
 ]
 
 const socialLinks = [
-  { label: 'Twitter', icon: 'mdi:twitter', color: 'cyan-glow' },
+  { label: 'Twitter', icon: 'mdi:twitter', color: 'cyan-glow' as ColorKey },
 ]
 
 // Token Data
@@ -175,7 +199,7 @@ const roadmap = [
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
         {keyStats.map((stat) => (
           <div class="bento-card p-4 hover-lift">
-            <div class={`text-3xl font-bold text-${stat.color} neon-text mb-1`}>{stat.icon}</div>
+            <div class={`text-3xl font-bold neon-text mb-1 ${colorClasses[stat.color].text}`}>{stat.icon}</div>
             <div class="font-mono text-xs text-muted-foreground uppercase">{stat.value}</div>
             <div class="font-mono text-[10px] text-muted-foreground/70">{stat.label}</div>
           </div>
@@ -325,11 +349,11 @@ const roadmap = [
       {dnaStrands.map((strand) => (
         <div class={`bento-card p-6 hover-lift ${strand.effect}`}>
           <div class="flex items-center gap-3 mb-4">
-            <div class={`size-12 rounded-lg bg-${strand.color}/10 border border-${strand.color}/30 flex items-center justify-center`}>
-              <Icon name={strand.icon} class={`size-6 text-${strand.color}`} />
+            <div class={`size-12 rounded-lg flex items-center justify-center ${colorClasses[strand.color].bgLight} ${colorClasses[strand.color].border}`}>
+              <Icon name={strand.icon} class={`size-6 ${colorClasses[strand.color].text}`} />
             </div>
             <div>
-              <h3 class={`font-mono text-lg font-bold text-${strand.color} uppercase`}>{strand.name}</h3>
+              <h3 class={`font-mono text-lg font-bold uppercase ${colorClasses[strand.color].text}`}>{strand.name}</h3>
               <p class="font-mono text-[10px] text-muted-foreground uppercase">{strand.subtitle}</p>
             </div>
           </div>
@@ -337,7 +361,7 @@ const roadmap = [
           <ul class="space-y-2">
             {strand.features.map((feature) => (
               <li class="flex items-start gap-2 text-sm text-muted-foreground">
-                <Icon name="lucide:check" class={`size-4 text-${strand.color} mt-0.5 flex-shrink-0`} />
+                <Icon name="lucide:check" class={`size-4 mt-0.5 flex-shrink-0 ${colorClasses[strand.color].text}`} />
                 <span>{feature}</span>
               </li>
             ))}
@@ -357,8 +381,8 @@ const roadmap = [
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       {techStack.map((tech) => (
         <div class="bento-card p-6 hover-lift text-center">
-          <div class={`size-12 mx-auto mb-3 rounded-lg bg-${tech.color}/10 border border-${tech.color}/30 flex items-center justify-center`}>
-            <Icon name={tech.icon} class={`size-7 text-${tech.color}`} />
+          <div class={`size-12 mx-auto mb-3 rounded-lg flex items-center justify-center ${colorClasses[tech.color].bgLight} ${colorClasses[tech.color].border}`}>
+            <Icon name={tech.icon} class={`size-7 ${colorClasses[tech.color].text}`} />
           </div>
           <h4 class="font-mono text-sm font-bold text-foreground mb-1">{tech.name}</h4>
           <p class="font-mono text-[10px] text-muted-foreground">{tech.desc}</p>
@@ -378,7 +402,7 @@ const roadmap = [
       {useCases.map((useCase) => (
         <div class="bento-card p-6 hover-lift">
           <div class="flex items-center gap-3 mb-3">
-            <Icon name={useCase.icon} class={`size-6 text-${useCase.color}`} />
+            <Icon name={useCase.icon} class={`size-6 ${colorClasses[useCase.color].text}`} />
             <h4 class="font-mono text-base font-bold text-foreground uppercase">{useCase.title}</h4>
           </div>
           <p class="text-sm text-muted-foreground leading-relaxed">{useCase.desc}</p>
@@ -398,13 +422,13 @@ const roadmap = [
       {capabilities.map((cap) => (
         <div class={`bento-card p-6 hover-lift ${cap.effect}`}>
           <div class="flex items-start gap-4">
-            <div class={`size-10 rounded-lg bg-${cap.color}/10 border border-${cap.color}/30 flex items-center justify-center flex-shrink-0`}>
-              <Icon name={cap.icon} class={`size-5 text-${cap.color}`} />
+            <div class={`size-10 rounded-lg flex items-center justify-center flex-shrink-0 ${colorClasses[cap.color].bgLight} ${colorClasses[cap.color].border}`}>
+              <Icon name={cap.icon} class={`size-5 ${colorClasses[cap.color].text}`} />
             </div>
             <div>
               <h4 class="font-mono text-base font-bold text-foreground mb-2 uppercase">{cap.title}</h4>
               <p class="text-sm text-muted-foreground leading-relaxed mb-3">{cap.desc}</p>
-              <div class={`flex items-center gap-2 text-xs text-${cap.color}`}>
+              <div class={`flex items-center gap-2 text-xs ${colorClasses[cap.color].text}`}>
                 <Icon name={cap.statIcon} class="size-3" />
                 <span class="font-mono">{cap.stat}</span>
               </div>
@@ -426,8 +450,8 @@ const roadmap = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {steps.map((step) => (
           <div class="text-center">
-            <div class={`size-16 mx-auto mb-4 rounded-full bg-${step.color}/10 border border-${step.color}/30 flex items-center justify-center`}>
-              <span class={`font-mono text-2xl font-bold text-${step.color}`}>{step.num}</span>
+            <div class={`size-16 mx-auto mb-4 rounded-full flex items-center justify-center ${colorClasses[step.color].bgLight} ${colorClasses[step.color].border}`}>
+              <span class={`font-mono text-2xl font-bold ${colorClasses[step.color].text}`}>{step.num}</span>
             </div>
             <h4 class="font-mono text-sm font-bold text-foreground mb-2 uppercase">{step.title}</h4>
             <p class="text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
@@ -517,13 +541,13 @@ const roadmap = [
         <div class="lg:col-span-1 stagger-item">
           <Link href={SOCIAL_LINKS.find((link) => link.label === social.label)?.href || '#'} external class="block h-full">
             <div class="bento-card group relative flex aspect-square items-center justify-center hover-lift hex-corners digital-grid">
-              <Icon name={social.icon} class={`text-${social.color}/10 absolute size-32 transition-all duration-500 group-hover:text-${social.color}/20 group-hover:scale-110`} />
+              <Icon name={social.icon} class="text-cyan-glow/10 absolute size-32 transition-all duration-500 group-hover:text-cyan-glow/20 group-hover:scale-110" />
               <div class="relative z-10 text-center">
-                <Icon name={social.icon} class={`mx-auto mb-3 text-${social.color} size-14 transition-transform duration-300 group-hover:scale-110`} />
-                <span class={`font-mono text-xs text-muted-foreground group-hover:text-${social.color} transition-colors uppercase tracking-widest`}>{social.label}</span>
+                <Icon name={social.icon} class="mx-auto mb-3 text-cyan-glow size-14 transition-transform duration-300 group-hover:scale-110" />
+                <span class="font-mono text-xs text-muted-foreground group-hover:text-cyan-glow transition-colors uppercase tracking-widest">{social.label}</span>
               </div>
               <div class="absolute right-3 bottom-3 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <Icon name="lucide:move-up-right" class={`text-${social.color}`} size={14} />
+                <Icon name="lucide:arrow-up-right" class="text-cyan-glow" size={14} />
               </div>
             </div>
           </Link>
