@@ -19,7 +19,7 @@ interface TokenData {
 // Real contract addresses for tokens
 const TOKEN_CONTRACTS = {
   // Base chain tokens
-  clawchan: '0x51b6fda0038c00ca619faf8b2601a1861f8bcf16',
+  clawchan: '0x0000000000000000000000000000000000000000',
 }
 
 const TokenMonitoring = () => {

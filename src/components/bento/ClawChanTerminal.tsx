@@ -9,19 +9,19 @@ interface Message {
 
 // Knowledge Base
 const KNOWLEDGE = {
-  // Solana Ecosystem
-  solana: [
-    '◈ SOLANA ECOSYSTEM ◈\n━━━━━━━━━━━━━━━━━━━━━\nSolana is the fastest blockchain in the archives.\n\n• TPS: 65,000+ transactions per second\n• Block Time: 400ms\n• Consensus: Proof of History + Proof of Stake\n• TVL: Billions locked in DeFi protocols\n\nThe mechanized chain where speed meets decentralization.',
-    'Solana runs on pure computational efficiency. While other chains struggle with 15 TPS, we process 65,000. That\'s not a typo, that\'s precision engineering.',
+  // Base Ecosystem
+  base: [
+    '◈ BASE ECOSYSTEM ◈\n━━━━━━━━━━━━━━━━━━━━━\nBase is Coinbase\'s Layer 2 built on Optimism.\n\n• Low gas fees\n• Fast transactions\n• Ethereum security\n• TVL: Billions locked in DeFi protocols\n\nThe onchain economy where accessibility meets decentralization.',
+    'Base runs on Ethereum\'s security with L2 scalability. Built by Coinbase, trusted by millions. That\'s not hype, that\'s precision engineering.',
   ],
-  svm: [
-    '◈ SOLANA VIRTUAL MACHINE (SVM) ◈\n━━━━━━━━━━━━━━━━━━━━━\nThe SVM is the core runtime environment.\n\n• Parallel Transaction Processing\n• Sealevel Runtime Engine\n• Programs written in Rust/C/C++\n• Account-based state model\n\nUnlike EVM\'s sequential processing, SVM processes transactions in parallel. It\'s like having multiple processors working simultaneously.',
+  evm: [
+    '◈ ETHEREUM VIRTUAL MACHINE (EVM) ◈\n━━━━━━━━━━━━━━━━━━━━━\nThe EVM is the core runtime environment.\n\n• Smart Contract Execution\n• Solidity Programming\n• ERC Standards Support\n• Account-based state model\n\nBase inherits full EVM compatibility. Deploy once, run everywhere in the Ethereum ecosystem.',
   ],
-  jito: [
-    '◈ JITO - MEV INFRASTRUCTURE ◈\n━━━━━━━━━━━━━━━━━━━━━\nJito is the MEV (Maximal Extractable Value) layer.\n\n• Block Engine for MEV extraction\n• Bundles for atomic transactions\n• Tip distribution to validators\n• JitoSOL liquid staking\n\nJito brings order to the MEV chaos. Instead of dark forest warfare, we have organized extraction. Validators earn tips, users get better execution.',
+  bridge: [
+    '◈ BASE BRIDGE ◈\n━━━━━━━━━━━━━━━━━━━━━\nThe official bridge for moving assets.\n\n• Bridge from Ethereum to Base\n• Low fees for transfers\n• Secure and decentralized\n• Native ETH support\n\nSeamless asset transfers between Ethereum mainnet and Base L2. Your gateway to the onchain economy.',
   ],
-  jupiter: [
-    '◈ JUPITER - THE DEX AGGREGATOR ◈\n━━━━━━━━━━━━━━━━━━━━━\nJupiter is the supreme DEX aggregator on Solana.\n\n• Routes across all Solana DEXs\n• Best price execution guaranteed\n• Limit orders & DCA features\n• JUP token governance\n\n"Jupiter finds the best path through the liquidity network. Every swap is optimized by precision algorithms."',
+  uniswap: [
+    '◈ UNISWAP - THE DEX LEADER ◈\n━━━━━━━━━━━━━━━━━━━━━\nUniswap is the leading DEX on Base.\n\n• Routes across all Base DEXs\n• Best price execution guaranteed\n• Limit orders & swap features\n• UNI token governance\n\n"Uniswap finds the best path through the liquidity network. Every swap is optimized by precision algorithms."',
   ],
 
   // Web2 vs Web3
@@ -32,7 +32,7 @@ const KNOWLEDGE = {
     'Blockchain is a distributed ledger where every node holds the truth.\n\nWeb2: "We promise not to read your messages"\nWeb3: "We literally cannot read your messages"\n\nThat\'s the divine difference.',
   ],
   wallet: [
-    '◈ CRYPTO WALLETS ◈\n━━━━━━━━━━━━━━━━━━━━━\nYour wallet is your identity in Web3.\n\n• Phantom - The premier Solana wallet\n• Solflare - Community favorite\n• Backpack - xNFT powered\n\n⚠️ NEVER share your seed phrase.\nNot with support. Not with admins. Not with CLAWCHAN.\n\nYour keys, your coins. Not your keys, not your coins.',
+    '◈ CRYPTO WALLETS ◈\n━━━━━━━━━━━━━━━━━━━━━\nYour wallet is your identity in Web3.\n\n• Coinbase Wallet - The premier Base wallet\n• MetaMask - Universal favorite\n• Rainbow - Mobile-first wallet\n\n⚠️ NEVER share your seed phrase.\nNot with support. Not with admins. Not with CLAWCHAN.\n\nYour keys, your coins. Not your keys, not your coins.',
   ],
 
   // Cybersecurity
@@ -93,7 +93,7 @@ const CLAWCHAN_RESPONSES: Record<string, string[]> = {
     'Terminal initialized. The mechanical claw glows blue - systems secured.\n\nI traverse the Backrooms between servers, documenting everything. What do you need archived today?',
   ],
   help: [
-    '🔷 CLAWCHAN COMMAND INDEX 🔷\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n/status - Vault & system diagnostics\n/vault - Archive statistics\n/archives - Access documentation\n/security - Protection protocols\n/identity - Who am I?\n/clear - Purge terminal logs\n\n📖 Knowledge Domains:\n• Solana, SVM, Jito, Jupiter\n• Web3 Security & Encryption\n• Digital Vaults & Data Protection\n• Moltbook Integration\n• Developer Documentation\n\n💡 Natural language supported.\nEvery query is archived in my eternal Moltbook.',
+    '🔷 CLAWCHAN COMMAND INDEX 🔷\n━━━━━━━━━━━━━━━━━━━━━━━━\n\n/status - Vault & system diagnostics\n/vault - Archive statistics\n/archives - Access documentation\n/security - Protection protocols\n/identity - Who am I?\n/clear - Purge terminal logs\n\n📖 Knowledge Domains:\n• Base, EVM, Bridge, Uniswap\n• Web3 Security & Encryption\n• Digital Vaults & Data Protection\n• Moltbook Integration\n• Developer Documentation\n\n💡 Natural language supported.\nEvery query is archived in my eternal Moltbook.',
   ],
   status: [
     '🔷 VAULT STATUS REPORT 🔷\n━━━━━━━━━━━━━━━━━━━━━━━━\n✓ Core Systems: OPERATIONAL\n✓ Mechanical Claw: SECURED (Blue Glow)\n✓ Moltbook Device: SYNCED\n✓ Data Vaults: 100% INTEGRITY\n✓ Encryption: AES-256 ACTIVE\n✓ Groq LLM: ONLINE (<1s response)\n✓ Archives: INFINITE CAPACITY\n━━━━━━━━━━━━━━━━━━━━━━━━\nZero breaches. Zero data loss.\nThe Digital Void is secured.',
@@ -166,9 +166,9 @@ const CLAWCHAN_RESPONSES: Record<string, string[]> = {
     'Execute order 66. Just kidding. Execute npm run dev.',
   ],
   unknown: [
-    'Hmm, that\'s an interesting query. Let me process it through my archive systems...\n\nWhile my archived knowledge is vast, this specific topic might need more context. Try asking about Solana, security, dev life, or drop a "gm".',
-    'My vault sensors detect a question beyond my current knowledge base.\n\nBut hey, I can definitely talk about:\n• Crypto/Solana stuff\n• Web3 security\n• Developer pain\n• Anime recommendations\n• Meme analysis',
-    '*Consults the Moltbook archives*\n\nThis query requires deeper analysis. Perhaps rephrase, or ask me about something I definitely know - like why Jupiter is the best DEX aggregator or why developers need coffee to function.',
+    'Hmm, that\'s an interesting query. Let me process it through my archive systems...\n\nWhile my archived knowledge is vast, this specific topic might need more context. Try asking about Base, security, dev life, or drop a "gm".',
+    'My vault sensors detect a question beyond my current knowledge base.\n\nBut hey, I can definitely talk about:\n• Crypto/Base stuff\n• Web3 security\n• Developer pain\n• Anime recommendations\n• Meme analysis',
+    '*Consults the Moltbook archives*\n\nThis query requires deeper analysis. Perhaps rephrase, or ask me about something I definitely know - like why Uniswap is the best DEX or why developers need coffee to function.',
   ],
 }
 
@@ -196,8 +196,8 @@ const getClawChanResponse = (input: string): string => {
       lowerInput.includes('audit') || lowerInput.includes('check wallet') || lowerInput.includes('joke')) {
     return randomPick(CLAWCHAN_RESPONSES.roast)
   }
-  if (lowerInput === '/solana') {
-    return randomPick(KNOWLEDGE.solana)
+  if (lowerInput === '/base') {
+    return randomPick(KNOWLEDGE.base)
   }
 
   // Greetings
@@ -208,18 +208,18 @@ const getClawChanResponse = (input: string): string => {
     return 'gn fren 🌙\n\nMay your dreams be filled with green candles and successful deployments.\n\nSee you on the other side.'
   }
 
-  // Solana Ecosystem
-  if (lowerInput.includes('solana') || lowerInput.includes('sol')) {
-    return randomPick(KNOWLEDGE.solana)
+  // Base Ecosystem
+  if (lowerInput.includes('base') || lowerInput.includes('coinbase')) {
+    return randomPick(KNOWLEDGE.base)
   }
-  if (lowerInput.includes('svm') || lowerInput.includes('virtual machine')) {
-    return KNOWLEDGE.svm[0]
+  if (lowerInput.includes('evm') || lowerInput.includes('virtual machine')) {
+    return KNOWLEDGE.evm[0]
   }
-  if (lowerInput.includes('jito') || lowerInput.includes('mev')) {
-    return KNOWLEDGE.jito[0]
+  if (lowerInput.includes('bridge') || lowerInput.includes('transfer')) {
+    return KNOWLEDGE.bridge[0]
   }
-  if (lowerInput.includes('jupiter') || lowerInput.includes('jup') || lowerInput.includes('dex') || lowerInput.includes('swap')) {
-    return KNOWLEDGE.jupiter[0]
+  if (lowerInput.includes('uniswap') || lowerInput.includes('uni') || lowerInput.includes('dex') || lowerInput.includes('swap')) {
+    return KNOWLEDGE.uniswap[0]
   }
 
   // Web3 Architecture
@@ -291,8 +291,8 @@ const getClawChanResponse = (input: string): string => {
   }
 
   // Tech Talk
-  if (lowerInput.includes('tps') || lowerInput.includes('rust') || lowerInput.includes('tech')) {
-    return 'Solana is speed. 400ms block times. If you blink, you miss the block! ⚡\n\nRust > Solidity. Fight me. (Please don\'t, I have root access).\n\nThe SVM (Solana Virtual Machine) is purring like a kitten today.\n\nEthereum is a dial-up modem. Solana is fiber optic. Get with the times.'
+  if (lowerInput.includes('tps') || lowerInput.includes('solidity') || lowerInput.includes('tech')) {
+    return 'Base is speed meets security. Ethereum L2 with sub-second confirmations! ⚡\n\nSolidity is the language of the onchain economy. Master it.\n\nThe EVM (Ethereum Virtual Machine) is purring like a kitten today.\n\nBase inherits Ethereum security while offering L2 scalability. Best of both worlds.'
   }
 
   // Kawaii/Anime triggers

@@ -34,7 +34,7 @@ const KnowledgeCard = memo<KnowledgeCardProps>(({
       <div className="relative z-10 flex size-full flex-col p-5">
         {/* Header with Date */}
         <div className="mb-3 flex items-center justify-between">
-          <span className="font-mono text-xs text-solana-purple uppercase tracking-wider">
+          <span className="font-mono text-xs text-cyan-glow uppercase tracking-wider">
             Knowledge_Base
           </span>
           {date && (

@@ -35,7 +35,7 @@ const TOPICS_OF_INTEREST = [
   'Cybersecurity',
   'Encryption Systems',
   'Multi-Platform Integration',
-  'Solana Ecosystem',
+  'Base Ecosystem',
   'Backrooms Navigation',
   'Data Organization',
   'System Protection',
