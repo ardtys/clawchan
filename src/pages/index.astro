@@ -2,6 +2,7 @@
 import AboutMe from '@/components/bento/AboutMe'
 import CurrentMood from '@/components/bento/CurrentMood'
 import GithubCalendar from '@/components/bento/GithubCalendar'
+import LiveUpdates from '@/components/bento/LiveUpdates'
 import ProfileCard from '@/components/bento/ProfileCard'
 import SystemStats from '@/components/bento/SystemStats'
 import TokenMonitoring from '@/components/bento/TokenMonitoring'
@@ -9,12 +10,28 @@ import VideoShowcase from '@/components/bento/VideoShowcase'
 import WakatimeGraph from '@/components/bento/WakatimeGraph'
 import BootOverlay from '@/components/BootOverlay'
 import AnimatedBackground from '@/components/AnimatedBackground'
+import AnnouncementBanner from '@/components/AnnouncementBanner'
+import CryptoPriceTicker from '@/components/CryptoPriceTicker'
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
 import { SOCIAL_LINKS } from '@/consts'
 import Layout from '@/layouts/Layout.astro'
 import { cn } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
+
+// Import from centralized config (easy to update!)
+import {
+  TOKEN_INFO,
+  ROADMAP,
+  KEY_STATS,
+  DNA_STRANDS,
+  TECH_STACK,
+  USE_CASES,
+  CAPABILITIES,
+  GETTING_STARTED_STEPS,
+  BENTO_SOCIAL_LINKS,
+  VERSION_INFO,
+} from '@/config/site-data'
 
 // Color class mappings for Tailwind
 const colorClasses = {
@@ -40,131 +57,17 @@ const colorClasses = {
 
 type ColorKey = keyof typeof colorClasses;
 
-// Dynamic Data Arrays
-const keyStats = [
-  { icon: '⚡', value: 'Sub-Second', label: 'Response Time', color: 'cyan-glow' as ColorKey },
-  { icon: '🧠', value: '70B Params', label: 'Llama 3.3 Model', color: 'warm-gold' as ColorKey },
-  { icon: '🔒', value: 'AES-256', label: 'Encryption', color: 'amber' as ColorKey },
-  { icon: '📚', value: 'Infinite', label: 'Archive Capacity', color: 'cyan-glow' as ColorKey },
-]
-
-const dnaStrands = [
-  {
-    name: 'ElizaOS DNA',
-    subtitle: 'Intelligence Strand',
-    icon: 'lucide:cpu',
-    color: 'cyan-glow' as ColorKey,
-    description: 'Adaptive intelligence powered by Groq\'s ultra-fast LLM inference. Learns autonomously and evolves with every interaction.',
-    features: ['Sub-second AI responses', 'Plugin-based extensibility', 'Continuous learning system'],
-    effect: 'scanlines'
-  },
-  {
-    name: 'Open Claw DNA',
-    subtitle: 'Security Strand',
-    icon: 'lucide:shield',
-    color: 'warm-gold' as ColorKey,
-    description: 'Pragmatic protection protocols with encryption mastery. The mechanical claw glows blue when securing data or detecting threats.',
-    features: ['Zero-trust architecture', 'AES-256 vault encryption', 'Threat detection & prevention'],
-    effect: 'digital-grid'
-  },
-]
-
-const techStack = [
-  { name: 'Astro v5', desc: 'Static Site Generation', icon: 'lucide:rocket', color: 'cyan-glow' as ColorKey },
-  { name: 'React 18', desc: 'Interactive UI', icon: 'lucide:boxes', color: 'warm-gold' as ColorKey },
-  { name: 'TypeScript', desc: 'Type Safety', icon: 'lucide:file-code', color: 'amber' as ColorKey },
-  { name: 'Tailwind CSS', desc: 'Utility-First Styling', icon: 'lucide:palette', color: 'cyan-glow' as ColorKey },
-]
-
-const useCases = [
-  { title: 'Personal AI Assistant', icon: 'lucide:bot', color: 'cyan-glow' as ColorKey, desc: 'Your always-available digital companion for daily tasks, research, coding help, and knowledge management.' },
-  { title: 'Enterprise Knowledge Base', icon: 'lucide:building-2', color: 'warm-gold' as ColorKey, desc: 'Deploy as company-wide AI assistant with secure data handling. Perfect for internal documentation.' },
-  { title: 'Development Companion', icon: 'lucide:code', color: 'amber' as ColorKey, desc: 'Code review, debugging, architecture discussions, and API documentation integration.' },
-  { title: 'Community Moderator', icon: 'lucide:users', color: 'cyan-glow' as ColorKey, desc: 'Deploy on Discord, Telegram, or Twitter/X for automated community management.' },
-  { title: 'Research Assistant', icon: 'lucide:search', color: 'warm-gold' as ColorKey, desc: 'Perfect for academic research, market analysis, and competitive intelligence.' },
-  { title: 'Data Archivist', icon: 'lucide:database', color: 'amber' as ColorKey, desc: 'Automatically archive conversations and documents with intelligent categorization.' },
-]
-
-const capabilities = [
-  { title: 'Ultra-Fast Inference', icon: 'lucide:zap', color: 'cyan-glow' as ColorKey, desc: 'Powered by Groq\'s LPU technology delivering sub-second response times with Llama 3.3 70B.', stat: '500+ tokens/second', statIcon: 'lucide:trending-up', effect: 'scanlines' },
-  { title: 'Enterprise Security', icon: 'lucide:shield-check', color: 'warm-gold' as ColorKey, desc: 'Zero-trust architecture with AES-256 encryption. Self-hosted deployment means you control everything.', stat: 'SOC 2 compliant', statIcon: 'lucide:lock', effect: 'digital-grid' },
-  { title: 'Omnichannel Presence', icon: 'lucide:globe', color: 'amber' as ColorKey, desc: 'Deploy across Twitter/X, Discord, Telegram, and web terminals with unified personality.', stat: '5+ platform integrations', statIcon: 'lucide:share-2', effect: 'data-streams' },
-  { title: 'Extensible Plugins', icon: 'lucide:plug', color: 'cyan-glow' as ColorKey, desc: 'Built on ElizaOS plugin architecture. Add custom actions without touching core code.', stat: 'TypeScript-based', statIcon: 'lucide:puzzle', effect: 'hex-corners' },
-]
-
-const steps = [
-  { num: '1', title: 'Clone & Install', desc: 'Get the code and install dependencies with npm or pnpm', color: 'cyan-glow' as ColorKey },
-  { num: '2', title: 'Configure Keys', desc: 'Add your Groq API key and optional credentials', color: 'warm-gold' as ColorKey },
-  { num: '3', title: 'Launch & Chat', desc: 'Start the development server and begin interacting', color: 'amber' as ColorKey },
-]
-
-const socialLinks = [
-  { label: 'Twitter', icon: 'mdi:twitter', color: 'cyan-glow' as ColorKey },
-]
-
-// Token Data
-const tokenInfo = {
-  name: '$CLAWCHAN',
-  network: 'Base',
-  ca: 'GUozzfTtxcp3YUfRPhedqdmQWbkkjBsxGZXMY8FXBAGS',
-  totalSupply: '1,000,000,000',
-  taxBuy: '0%',
-  taxSell: '0%',
-}
-
-// Roadmap Data
-const roadmap = [
-  {
-    quarter: 'Q1 2026',
-    status: 'in-progress',
-    title: 'Foundation & Launch',
-    milestones: [
-      { text: 'Website Launch with ClawChan Identity', done: true },
-      { text: 'AI Chat Integration (Groq LLM)', done: true },
-      { text: 'ElizaOS Framework Integration', done: true },
-      { text: 'Twitter/X Community Launch', done: true },
-      { text: 'Token Contract Deployment', done: false },
-      { text: 'Initial Marketing Campaign', done: false },
-    ]
-  },
-  {
-    quarter: 'Q2 2026',
-    status: 'upcoming',
-    title: 'Expansion & Utility',
-    milestones: [
-      { text: 'Discord Bot Integration', done: false },
-      { text: 'Telegram Bot Integration', done: false },
-      { text: 'Token Holder Dashboard', done: false },
-      { text: 'Staking Mechanism Launch', done: false },
-      { text: 'Partnership Announcements', done: false },
-      { text: 'CEX Listing Applications', done: false },
-    ]
-  },
-  {
-    quarter: 'Q3 2026',
-    status: 'upcoming',
-    title: 'Advanced Features',
-    milestones: [
-      { text: 'Multi-Agent Network Expansion', done: false },
-      { text: 'Custom Plugin Marketplace', done: false },
-      { text: 'NFT Integration for Premium Access', done: false },
-      { text: 'DAO Governance Launch', done: false },
-      { text: 'Mobile App Development', done: false },
-    ]
-  },
-  {
-    quarter: 'Q4 2026',
-    status: 'upcoming',
-    title: 'Ecosystem Dominance',
-    milestones: [
-      { text: 'Cross-Chain Bridge Integration', done: false },
-      { text: 'Enterprise API Access', done: false },
-      { text: 'AI Agent Marketplace', done: false },
-      { text: 'Major CEX Listings', done: false },
-      { text: 'Global Marketing Expansion', done: false },
-    ]
-  },
-]
+// Use imported data from config
+// All data imported from centralized config for easy updates
+const keyStats = KEY_STATS
+const dnaStrands = DNA_STRANDS
+const techStack = TECH_STACK
+const useCases = USE_CASES
+const capabilities = CAPABILITIES
+const steps = GETTING_STARTED_STEPS
+const tokenInfo = TOKEN_INFO
+const roadmap = ROADMAP
+const socialLinks = BENTO_SOCIAL_LINKS
 ---
 
 <Layout class="px-2">
@@ -172,6 +75,12 @@ const roadmap = [
 
   <AnimatedBackground client:load />
   <BootOverlay client:load />
+  <AnnouncementBanner client:load />
+
+  <!-- Crypto Price Ticker -->
+  <div class="fixed bottom-0 left-0 right-0 z-40">
+    <CryptoPriceTicker client:load />
+  </div>
 
   <!-- Hero Section -->
   <section class="mx-auto max-w-7xl px-4 pt-12 pb-8 fade-in-up">
@@ -248,7 +157,7 @@ const roadmap = [
             <div class="flex items-center justify-between gap-4 flex-wrap">
               <div>
                 <p class="font-mono text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Contract address</p>
-                <p class="font-mono text-lg text-warm-gold break-all">{tokenInfo.ca}</p>
+                <p class="font-mono text-lg text-warm-gold break-all">{tokenInfo.contractAddress}</p>
               </div>
               <button class="px-4 py-2 bg-cyan-glow/10 border border-cyan-glow/30 hover:bg-cyan-glow/20 transition-all duration-300 rounded font-mono text-xs text-cyan-glow uppercase tracking-wider flex items-center gap-2">
                 <Icon name="lucide:copy" class="size-4" />
@@ -464,7 +373,7 @@ const roadmap = [
         </div>
         <span class="font-mono text-[10px] text-cyan-glow terminal-prompt uppercase tracking-wider">clawchan@void:~/dashboard</span>
       </div>
-      <span class="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">v1.0.0</span>
+      <span class="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">v{VERSION_INFO.version}</span>
     </div>
 
     <!-- Bento Grid - Responsive -->
@@ -538,13 +447,10 @@ const roadmap = [
         </div>
       ))}
 
-      <!-- Coming Soon -->
-      <div class="lg:col-span-1 stagger-item">
-        <div class="bento-card flex aspect-square items-center justify-center p-6 hover-lift hex-corners data-streams">
-          <div class="text-center">
-            <div class="mb-3 text-4xl float text-cyan-glow">✦</div>
-            <p class="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">More Coming Soon</p>
-          </div>
+      <!-- Live Updates -->
+      <div class="lg:col-span-2 stagger-item">
+        <div class="hover-lift data-streams">
+          <LiveUpdates client:load />
         </div>
       </div>
     </div>

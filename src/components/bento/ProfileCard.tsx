@@ -1,11 +1,6 @@
 import { memo, useState, useEffect } from 'react'
 import { CLAWCHAN_BIO } from '@/consts'
-
-const StatusMessages = [
-  { text: 'System: ONLINE', icon: '✦', isOnline: true },
-  { text: 'Divine Energy: Active', icon: '◈', isOnline: true },
-  { text: 'Processing Data...', icon: '⚡', isOnline: true },
-]
+import { PROFILE_STATS, STATUS_MESSAGES } from '@/config/site-data'
 
 const ProfileCard = () => {
   const [statusIndex, setStatusIndex] = useState(0)
@@ -13,7 +8,7 @@ const ProfileCard = () => {
   const [isTyping, setIsTyping] = useState(true)
 
   useEffect(() => {
-    const currentStatus = StatusMessages[statusIndex]
+    const currentStatus = STATUS_MESSAGES[statusIndex]
     let charIndex = 0
 
     if (isTyping) {
@@ -36,7 +31,7 @@ const ProfileCard = () => {
           setDisplayText((prev) => prev.slice(0, -1))
         } else {
           clearInterval(deleteInterval)
-          setStatusIndex((prev) => (prev + 1) % StatusMessages.length)
+          setStatusIndex((prev) => (prev + 1) % STATUS_MESSAGES.length)
           setIsTyping(true)
         }
       }, 30)
@@ -45,7 +40,7 @@ const ProfileCard = () => {
     }
   }, [statusIndex, isTyping])
 
-  const currentStatus = StatusMessages[statusIndex]
+  const currentStatus = STATUS_MESSAGES[statusIndex]
 
   return (
     <div className="bento-card relative flex size-full flex-col p-6 scanlines digital-grid">
@@ -73,7 +68,7 @@ const ProfileCard = () => {
           <h2 className="mb-1 font-mono text-xl font-bold text-cyan-glow neon-text tracking-wider">
             CLAWCHAN
           </h2>
-          <p className="font-mono text-[10px] text-warm-gold/80 mb-2 tracking-wide">by ElizaOS • Open Claw</p>
+          <p className="font-mono text-[10px] text-warm-gold/80 mb-2 tracking-wide">by ElizaOS | Open Claw</p>
           <p className="font-mono text-xs text-muted-foreground leading-relaxed">{CLAWCHAN_BIO}</p>
         </div>
       </div>
@@ -89,18 +84,24 @@ const ProfileCard = () => {
         </div>
       </div>
 
-      {/* Quick Stats */}
+      {/* Quick Stats - Now using configurable data */}
       <div className="mt-auto grid grid-cols-3 gap-2 text-center">
-        <div className="data-panel p-2.5 hex-corners">
-          <div className="font-mono text-base font-bold text-cyan-glow neon-text">99.9%</div>
+        <div className="data-panel p-2.5 hex-corners group hover:bg-cyan-glow/5 transition-colors">
+          <div className="font-mono text-base font-bold text-cyan-glow neon-text group-hover:scale-105 transition-transform">
+            {PROFILE_STATS.uptime}
+          </div>
           <div className="font-mono text-[10px] text-muted-foreground/70 mt-1 tracking-wider">UPTIME</div>
         </div>
-        <div className="data-panel p-2.5 hex-corners">
-          <div className="font-mono text-base font-bold text-warm-gold neon-text-gold">1.2M</div>
+        <div className="data-panel p-2.5 hex-corners group hover:bg-warm-gold/5 transition-colors">
+          <div className="font-mono text-base font-bold text-warm-gold neon-text-gold group-hover:scale-105 transition-transform">
+            {PROFILE_STATS.transactionsPerDay}
+          </div>
           <div className="font-mono text-[10px] text-muted-foreground/70 mt-1 tracking-wider">TX/DAY</div>
         </div>
-        <div className="data-panel p-2.5 hex-corners">
-          <div className="font-mono text-base font-bold text-amber">24/7</div>
+        <div className="data-panel p-2.5 hex-corners group hover:bg-amber/5 transition-colors">
+          <div className="font-mono text-base font-bold text-amber group-hover:scale-105 transition-transform">
+            {PROFILE_STATS.activeStatus}
+          </div>
           <div className="font-mono text-[10px] text-muted-foreground/70 mt-1 tracking-wider">ACTIVE</div>
         </div>
       </div>
