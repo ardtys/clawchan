@@ -50,7 +50,8 @@
       "Bash(then mv \"$file\" \"_$file\")",
       "Bash(for file in faqs.astro quick-start.astro)",
       "Bash(powershell -Command:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git -C \"C:\\\\Users\\\\Daffa\\\\OneDrive\\\\Desktop\\\\aura-by-ElizaOS-main\" log --oneline)"
     ]
   }
 }
