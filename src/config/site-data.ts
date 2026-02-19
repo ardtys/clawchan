@@ -11,15 +11,15 @@
 export const TOKEN_INFO = {
   name: '$CLAWCHAN',
   symbol: 'CLAW',
-  network: 'Base',
-  contractAddress: '',
+  network: 'Solana',
+  contractAddress: 'Fma6PFQtVVSyZfcWFBqLdNNJT4MwamCeVBZvzdSJpump',
   totalSupply: '1,000,000,000',
   taxBuy: '0%',
   taxSell: '0%',
   // Add links for token
   links: {
-    dexscreener: 'https://dexscreener.com/base/',
-    pumpfun: '',
+    dexscreener: 'https://dexscreener.com/solana/Fma6PFQtVVSyZfcWFBqLdNNJT4MwamCeVBZvzdSJpump',
+    pumpfun: 'https://pump.fun/coin/Fma6PFQtVVSyZfcWFBqLdNNJT4MwamCeVBZvzdSJpump',
     uniswap: '',
   },
 }
@@ -85,7 +85,7 @@ export const ROADMAP = [
       { text: 'AI Chat Integration (Groq LLM)', done: true },
       { text: 'ElizaOS Framework Integration', done: true },
       { text: 'Twitter/X Community Launch', done: true },
-      { text: 'Token Contract Deployment', done: false },
+      { text: 'Token Contract Deployment', done: true },
       { text: 'Initial Marketing Campaign', done: false },
     ],
   },
